@@ -1,0 +1,97 @@
+# docker-compose.yml — curso-adaptativo-ia
+#
+# Servicios:
+#   moodle-db, moodle          -> LMS que aloja el curso Adapt como paquete SCORM
+#   ll-mongo, ll-redis, ll-app -> Learning Locker (LRS) que recibe los statements xAPI
+#   middleware                 -> API Node.js que consulta el LRS y llama a Claude
+#
+# NOTA: las versiones/tags exactas de las imágenes de Moodle y Learning Locker
+# se confirman y fijan la primera vez que se levanta el stack (ver docs/riesgos.md).
+# Este archivo es el punto de partida, no un despliegue ya probado en producción.
+
+version: "3.9"
+
+services:
+  moodle-db:
+    image: mariadb:11
+    container_name: curso-adaptativo-ia-moodle-db
+    restart: unless-stopped
+    environment:
+      MARIADB_DATABASE: ${MOODLE_DB_NAME}
+      MARIADB_USER: ${MOODLE_DB_USER}
+      MARIADB_PASSWORD: ${MOODLE_DB_PASSWORD}
+      MARIADB_ROOT_PASSWORD: ${MOODLE_DB_PASSWORD}
+    volumes:
+      - moodle-db-data:/var/lib/mysql
+
+  moodle:
+    image: bitnami/moodle:4.5
+    container_name: curso-adaptativo-ia-moodle
+    restart: unless-stopped
+    depends_on:
+      - moodle-db
+    environment:
+      MOODLE_DATABASE_HOST: moodle-db
+      MOODLE_DATABASE_NAME: ${MOODLE_DB_NAME}
+      MOODLE_DATABASE_USER: ${MOODLE_DB_USER}
+      MOODLE_DATABASE_PASSWORD: ${MOODLE_DB_PASSWORD}
+      MOODLE_USERNAME: admin
+      MOODLE_PASSWORD: ${MOODLE_ADMIN_PASSWORD}
+      MOODLE_EMAIL: admin@example.com
+    ports:
+      - "8080:8080"
+    volumes:
+      - moodle-data:/bitnami/moodle
+      - moodle-moodledata:/bitnami/moodledata
+
+  ll-mongo:
+    image: mongo:7
+    container_name: curso-adaptativo-ia-ll-mongo
+    restart: unless-stopped
+    volumes:
+      - ll-mongo-data:/data/db
+
+  ll-redis:
+    image: redis:7-alpine
+    container_name: curso-adaptativo-ia-ll-redis
+    restart: unless-stopped
+
+  ll-app:
+    # Imagen comunitaria de Learning Locker (confirmar tag vigente al hacer el primer build,
+    # ver docs/riesgos.md). Alternativa: seguir el deploy script oficial si esta imagen
+    # queda desactualizada.
+    image: learninglocker/learninglocker2-app:latest
+    container_name: curso-adaptativo-ia-ll-app
+    restart: unless-stopped
+    depends_on:
+      - ll-mongo
+      - ll-redis
+    environment:
+      APP_SECRET: ${LEARNINGLOCKER_APP_SECRET}
+      MONGO_URL: ${MONGO_URI}
+      REDIS_URL: ${REDIS_URL}
+    ports:
+      - "8081:8081"
+
+  middleware:
+    build:
+      context: ./middleware
+    container_name: curso-adaptativo-ia-middleware
+    restart: unless-stopped
+    depends_on:
+      - ll-app
+    environment:
+      ANTHROPIC_API_KEY: ${ANTHROPIC_API_KEY}
+      CLAUDE_MODEL: ${CLAUDE_MODEL}
+      LRS_ENDPOINT: ${LRS_ENDPOINT}
+      LRS_KEY: ${LRS_KEY}
+      LRS_SECRET: ${LRS_SECRET}
+      PORT: ${MIDDLEWARE_PORT}
+    ports:
+      - "${MIDDLEWARE_PORT}:${MIDDLEWARE_PORT}"
+
+volumes:
+  moodle-db-data:
+  moodle-data:
+  moodle-moodledata:
+  ll-mongo-data:
