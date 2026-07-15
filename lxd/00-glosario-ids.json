@@ -1,0 +1,29 @@
+{
+  "_readme": "Fuente única de verdad de IDs. Estos strings deben coincidir LITERALMENTE con course.json (Adapt), con el checkpointId que envía la extensión decisionEngine.js, y con el nextBlockId que devuelve middleware/src/claude.js. No dupliques IDs entre listas. Completa tú los valores reales — aquí solo hay placeholders de ejemplo con el formato esperado.",
+
+  "courseId": "curso-adaptativo-ia",
+
+  "checkpoints": [
+    {
+      "checkpointId": "TU-CHECKPOINT-1-AQUI",
+      "descripcionCorta": "",
+      "ubicacionEnCurso": ""
+    },
+    {
+      "checkpointId": "TU-CHECKPOINT-2-AQUI",
+      "descripcionCorta": "",
+      "ubicacionEnCurso": ""
+    }
+  ],
+
+  "contentObjects": [
+    {
+      "blockId": "TU-BLOCK-ID-AQUI",
+      "tipo": "contentObject | article | block | component",
+      "descripcionCorta": "",
+      "esCandidatoDeRuta": false
+    }
+  ],
+
+  "notaSobreConvencionDeNombres": "Sugerencia (ajústala si ya tienes otra convención): checkpointId en kebab-case descriptivo, ej. 'chk-conceptos-basicos'; blockId igual, ej. 'b-refuerzo-conceptos-basicos', 'b-avanzado-conceptos-basicos' — que el nombre ya sugiera si es ruta de refuerzo o avance ayuda a leer la Fase 2 sin tener que saltar de documento."
+}

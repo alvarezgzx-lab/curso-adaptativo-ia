@@ -16,6 +16,7 @@ services:
     image: mariadb:11
     container_name: curso-adaptativo-ia-moodle-db
     restart: unless-stopped
+    command: --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
     environment:
       MARIADB_DATABASE: ${MOODLE_DB_NAME}
       MARIADB_USER: ${MOODLE_DB_USER}
@@ -25,7 +26,7 @@ services:
       - moodle-db-data:/var/lib/mysql
 
   moodle:
-    image: bitnami/moodle:4.5
+    image: bitnamilegacy/moodle:5.0.2
     container_name: curso-adaptativo-ia-moodle
     restart: unless-stopped
     depends_on:
