@@ -88,11 +88,15 @@ services:
       LRS_KEY: ${LRS_KEY}
       LRS_SECRET: ${LRS_SECRET}
       PORT: ${MIDDLEWARE_PORT}
+      STATE_DB_PATH: /app/data/bayes-state.sqlite
     ports:
       - "${MIDDLEWARE_PORT}:${MIDDLEWARE_PORT}"
+    volumes:
+      - middleware-data:/app/data
 
 volumes:
   moodle-db-data:
   moodle-data:
   moodle-moodledata:
   ll-mongo-data:
+  middleware-data:

@@ -21,12 +21,16 @@ Ver `../ROADMAP.md` para la secuencia completa con dependencias. Resumen:
 2. `01-analisis-objetivos.md` + `02-especificacion-decision-checkpoints.json`
 3. `03-storyboard.md` + `04-diccionario-xapi.md`
 4. `05-banco-evaluacion.md` + `06-assets.md` + `07-checklist-udl.md`
+5. `08-banco-items-bayesiano.json` — solo si el checkpoint usa el motor
+   bayesiano (ver `docs/arquitectura-motor-bayesiano-adaptativo.md`).
+   Necesario antes de correr `npm run monte-carlo` en `middleware/`.
 
 ## Definition of Done (todo el paquete)
 
 - [ ] Todo `nextBlockId` mencionado en `02-especificacion-decision-checkpoints.json` existe como fila en `03-storyboard.md`.
 - [ ] Todo verbo xAPI usado en `04-diccionario-xapi.md` es ADL estándar o está justificado como custom.
 - [ ] Ningún checkpoint en `02-especificacion-decision-checkpoints.json` quedó sin `casoSinHistorialPrevio`.
+- [ ] Si el checkpoint usa motor bayesiano: `npm run monte-carlo -- <checkpointId>` corrido sin alerta (exactitud equilibrada ≥ 0.70) antes de activarlo en producción.
 
 Cuando las tres casillas estén marcadas, el paquete está listo para que
 desarrollo lo traduzca a `course.json`, config de `adapt-contrib-spoor`, y

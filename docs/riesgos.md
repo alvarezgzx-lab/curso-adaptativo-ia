@@ -35,26 +35,36 @@ levanta esa parte del stack, y actualizar este archivo con lo que resulte.
   esos hostnames `ll-app` no habría podido resolver DNS dentro de la red de
   Docker. Corregido en `.env`/`.env.example`.
 
-## Brecha #1 — Claude no conoce las rutas válidas (pendiente de cerrar en código)
+## Brecha #1 — Claude no conoce las rutas válidas (RESUELTA ARQUITECTÓNICAMENTE, pendiente de datos reales)
 
-`middleware/src/claude.js` hoy le pasa a Claude el historial xAPI crudo y el
-`checkpointId`, pero no le dice cuáles son los `nextBlockId` posibles ni el
-criterio de selección — Claude está decidiendo sin saber sobre qué conjunto
-de opciones. Esto se resuelve con datos, no con más código: una vez
-`lxd/02-especificacion-decision-checkpoints.json` esté completo, hay que:
+Resuelta en el diseño: `middleware/src/claude.js` ya no decide `nextBlockId`.
+`bayesEngine.js` (ver `docs/arquitectura-motor-bayesiano-adaptativo.md`) enruta
+de forma determinista vía `resolveNextBlockId()`, con guardrails estructurales
+(solo puede devolver un `nextBlockId` que exista en `checkpointSpec.rutasPosibles`
+o `casoSinHistorialPrevio` — no hay superficie para que devuelva algo fuera de
+esa lista). Claude queda solo para redactar feedback (`POST /api/item-response`).
 
-1. Cargar ese JSON en el middleware (o una versión reducida) y pasarlo como
-   parte del contexto del system prompt, junto con el `checkpointId` actual.
-2. Agregar instrucción explícita en el system prompt de nunca devolver un
-   `nextBlockId` fuera de la lista de rutas válidas para ese checkpoint —
-   hoy no hay ningún guardrail para eso, `decideNextStep()` confía
-   ciegamente en lo que Claude devuelva.
-3. Manejar el caso "sin historial previo" (definido por checkpoint en el
-   mismo JSON) como un atajo *antes* de llamar a Claude — no tiene sentido
-   ni costo pagar una llamada a la API para una decisión que ya es fija.
+Pendiente real: no hay banco de ítems ni checkpoints reales todavía (`lxd/`
+sigue en plantilla), así que esto no se ha probado con datos de un alumno
+real — sigue bloqueado hasta que exista `lxd/02` + `lxd/08` completos y pase
+la validación Monte Carlo (ver `ROADMAP.md`, "Gate del motor bayesiano").
 
-No hay nada que hacer en código hasta que exista esa especificación — ver
-`lxd/README.md` y `ROADMAP.md`.
+## Brecha #2 — persistencia del estado bayesiano no probada contra uso real
+
+`middleware/src/stateStore.js` usa SQLite en modo WAL, adecuado para
+lecturas/escrituras de un mismo alumno en un checkpoint a la vez, pero no se
+ha probado con escritura concurrente real (dos pestañas del mismo alumno,
+por ejemplo). Confirmar la primera vez que haya tráfico real; si se vuelve
+un problema, la migración natural es Postgres, no más SQLite tuning.
+
+## Brecha #3 — `better-sqlite3` en `node:24-alpine` no probado
+
+`better-sqlite3` compila un binding nativo. Puede que no haya binario
+prebuilt para musl/alpine en esta arquitectura, forzando compilación desde
+código fuente (por eso el Dockerfile ahora instala `python3 make g++`). Si
+el build de `docker compose build middleware` falla aquí, la alternativa es
+cambiar la imagen base a `node:24-slim` (glibc, sin ese riesgo) — confirmar
+al primer build real, no antes.
 
 ## Pendientes (confirmar contra código real)
 

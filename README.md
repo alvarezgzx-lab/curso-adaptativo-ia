@@ -18,13 +18,20 @@ Alumno → Curso Adapt (embebido/lanzado desde Moodle como paquete SCORM)
             │
             ├─ interacciones del alumno → statements xAPI → Learning Locker (LRS)
             │
-            └─ en puntos de decisión → llamada a Middleware (Node.js)
-                                              │
-                                              ├─ lee historial del alumno en el LRS
-                                              ├─ llama a la API de Claude con ese contexto
-                                              └─ devuelve la siguiente ruta/bloque a mostrar
+            ├─ por cada ítem → POST /api/item-response (Middleware)
+            │                       │
+            │                       ├─ bayesEngine.js actualiza el estado (Bayes/IRT)
+            │                       ├─ persiste el estado (SQLite, stateStore.js)
+            │                       └─ Claude API SOLO redacta el feedback del ítem
+            │
+            └─ en cada checkpoint → POST /api/decision (Middleware)
+                                          │
+                                          └─ bayesEngine.resolveNextBlockId()
+                                             (determinista, sin llamar a Claude)
+                                             → nextBlockId
 ```
 
+Motor de decisión adaptativa (bayesiano): [`docs/arquitectura-motor-bayesiano-adaptativo.md`](docs/arquitectura-motor-bayesiano-adaptativo.md).
 Detalle completo de las decisiones de arquitectura: [`docs/proyecto-tecnico.md`](docs/proyecto-tecnico.md).
 Plan del video showcase: [`docs/brief-video-showcase.md`](docs/brief-video-showcase.md).
 Vocabulario xAPI custom del proyecto: [`docs/xapi-verbs.md`](docs/xapi-verbs.md).
@@ -81,11 +88,12 @@ Luego seguir, en orden:
 API mínima en `middleware/`:
 
 - `GET /health`
-- `POST /api/decision` — `{ actorId, courseId, checkpointId }` → consulta el
-  historial del alumno en el LRS, llama a Claude, devuelve
-  `{ nextBlockId, rationale }`. Nota: hoy no tiene guardrails de rutas
-  válidas — ver `docs/riesgos.md`, sección "brecha #1", que se cierra con el
-  contenido de `lxd/02-especificacion-decision-checkpoints.json`.
+- `POST /api/item-response` — `{ actorId, checkpointId, itemId, isCorrect, factorId? }`
+  → registra la respuesta en el motor bayesiano, persiste el estado, devuelve
+  `{ nextItemId, diagnostico, feedback }`.
+- `POST /api/decision` — `{ actorId, checkpointId }` → resuelve, sin llamar a
+  Claude, si el alumno ya puede avanzar de etapa y a qué `nextBlockId`.
+  Ver `docs/arquitectura-motor-bayesiano-adaptativo.md`.
 
 ```bash
 cd middleware
