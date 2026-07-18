@@ -44,6 +44,23 @@ levanta esa parte del stack, y actualizar este archivo con lo que resulte.
   middleware no necesitó ningún cambio de código. Ver `lrs/README.md`
   (antes `learninglocker/README.md`) y el servicio `lrs` en
   `docker-compose.yml`.
+- ~~Superficie real de `Adapt.blocks` / eventos en `decisionEngine.js`~~ —
+  Adapt Framework (v5.56.2) instalado y probado localmente en `course/`.
+  La extensión real (`course/src/extensions/adapt-contrib-decisionEngine/`)
+  usa APIs confirmadas leyendo el código fuente del framework instalado, no
+  supuestas: `Adapt.on('questionView:submitted', ...)` para saber cuándo se
+  respondió una pregunta, `data.findById(id)` (`core/js/data.js`) para
+  ubicar bloques/componentes, y `_isAvailable` + `Adapt.parentView.
+  addChildren()` para revelar contenido dinámicamente — el mismo mecanismo
+  que usa `adapt-contrib-trickle` para desbloquear contenido progresivo.
+  Verificado con `grunt build` (el código de la extensión queda en el
+  bundle final) y en vivo contra el middleware real corriendo (ver el
+  commit de `decisionEngine.js` para el detalle de qué se probó en
+  navegador vs. qué se confirmó llamando al middleware directamente).
+- ~~Acceso al actor xAPI desde adapt-contrib-spoor~~ — confirmado:
+  `core/js/offlineStorage.js` (`offlineStorage.get('learnerinfo')`) expone
+  `cmi.core.student_id` sin necesidad de llamar a la API SCORM directamente
+  — es lo que usa `decisionEngine.js` para el `actorId`.
 
 ## Brecha #1 — Claude no conoce las rutas válidas (RESUELTA ARQUITECTÓNICAMENTE, pendiente de datos reales)
 
@@ -54,7 +71,23 @@ de forma determinista vía `resolveNextBlockId()`, con guardrails estructurales
 o `casoSinHistorialPrevio` — no hay superficie para que devuelva algo fuera de
 esa lista). Claude queda solo para redactar feedback (`POST /api/item-response`).
 
-Pendiente real (actualizado en este PR): `lxd/00`, `01`, `03`, `04`, `05`, `06` y `07` ya están completos para el Módulo 1 (EC1705/E5336) y los checkpoints de apertura/cierre de curso. `lxd/02` tiene los 4 checkpoints reales con rutas y `criterioDeSeleccion` documentado (fallback funcional sin el motor), pero `espacioDeHipotesis`, `configMotor` (valores de arranque sin validar), `hipotesisAsociadas`/`factorAsociado` por ruta y `rutaPorDefectoSiAmbiguo` siguen sin calibrar. `lxd/08` sigue vacío (solo con las claves de checkpoint reservadas). Sigue bloqueado hasta que exista esa calibración y pase `npm run monte-carlo -- <checkpointId>` con exactitud equilibrada ≥ 0.70 (ver `ROADMAP.md`, "Gate del motor bayesiano").
+Pendiente real (actualizado): `lxd/00` a `lxd/07` completos para el Módulo 1
+(EC1705/E5336) y los checkpoints de apertura/cierre de curso. `lxd/02` tiene
+los 4 checkpoints reales con rutas y `criterioDeSeleccion` documentado.
+Mientras `espacioDeHipotesis`/`hipotesisAsociadas`/`factorAsociado`/
+`rutaPorDefectoSiAmbiguo` sigan sin calibrar, el enrutamiento de
+`chk-diagnostico-inicial` y `chk-conceptos-basicos` lo resuelve
+`middleware/src/simpleCheckpointRules.js` (implementación literal del
+`criterioDeSeleccion`, no el motor bayesiano) — ver la nota de arquitectura
+en `lxd/02`. `lxd/08` tiene los 5 ítems del quiz de `chk-conceptos-basicos`
+(CB1-CB5) con `b` elicitado del criterio cualitativo del instructor
+(Básico/Medio/Avanzado), usados para selección adaptativa pregunta-por-
+pregunta — no calibración psicométrica real. `course/` tiene Adapt
+Framework instalado y el contenido de Módulo 1 construido y verificado
+(`grunt build`); `decisionEngine.js` conecta ambos extremos. Sigue
+bloqueado para producción real hasta calibrar `espacioDeHipotesis` con
+datos de uso y pasar `npm run monte-carlo -- <checkpointId>` con exactitud
+equilibrada ≥ 0.70 (ver `ROADMAP.md`, "Gate del motor bayesiano").
 
 ## Brecha #2 — persistencia del estado bayesiano no probada contra uso real
 
@@ -93,9 +126,33 @@ al primer build real, no antes.
 - **Envío de statements xAPI en paralelo al SCORM**: el objetivo es que Adapt
   mande statements xAPI *directo* al LRS (para capturar detalle de
   interacción) mientras Moodle solo trackea finalización vía SCORM. Confirmar
-  que ambos flujos no chocan.
+  que ambos flujos no chocan. `decisionEngine.js` no implementa esto
+  todavía — solo llama al middleware, no escribe statements xAPI al LRS
+  directamente.
+- **`chk-evaluacion-final-curso` sin implementar en `decisionEngine.js`**:
+  depende de que existan Módulos 2 y 3 (ver `lxd/03-storyboard.md`, bloques
+  reservados `b-evaluacion-final-estandar`/`b-evaluacion-final-repaso-dirigido`).
+  No hay nada que conectar todavía para este checkpoint.
+- **Interacción completa en navegador (D2/D3 del diagnóstico) no confirmada
+  en vivo**: se verificó D1 completo end-to-end (clic → evento → llamada al
+  middleware simulada → notificación) y se confirmó por separado, llamando
+  al middleware directamente con el payload exacto que arma la extensión,
+  que `POST /api/decision` y `POST /api/item-response` responden
+  correctamente — pero el flujo de clics D2/D3 completo dentro del
+  navegador no se pudo confirmar en esta sesión por inestabilidad de la
+  herramienta de automatización (coordenadas de clic no se refrescaban
+  tras cambios de scroll/DOM). Repetir la prueba manualmente antes de dar
+  por cerrada la integración.
+- **Calibración de `lxd/08` (CB1-CB5) es criterio cualitativo del
+  instructor, no psicométrico**: los valores de dificultad (`b`) se
+  elicitaron pidiéndole a Ángel que clasificara cada pregunta como
+  Básico/Medio/Avanzado, no de datos reales de alumnos. Suficiente para que
+  la selección adaptativa del quiz funcione de forma razonable, pero sigue
+  bloqueado para producción real hasta pasar `npm run monte-carlo` con
+  datos de uso (ver `ROADMAP.md`, "Gate del motor bayesiano").
 
 `docker-compose up` de `moodle-db`, `moodle` y `middleware` sí se probó de
 punta a punta (Docker Desktop en Windows) — de ahí salieron los tres
 hallazgos ya marcados como resueltos arriba. El servicio `lrs` (LRSQL) es
-nuevo en este cambio y todavía no se ha probado levantado.
+nuevo en este cambio y todavía no se ha probado levantado. Adapt Framework
+sí se instaló, construyó (`grunt build`) y sirvió localmente con éxito.
