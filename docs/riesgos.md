@@ -89,6 +89,11 @@ bloqueado para producción real hasta calibrar `espacioDeHipotesis` con
 datos de uso y pasar `npm run monte-carlo -- <checkpointId>` con exactitud
 equilibrada ≥ 0.70 (ver `ROADMAP.md`, "Gate del motor bayesiano").
 
+Actualización (corrección de Módulo 1): se agregó el checkpoint
+`chk-avance-fundamentos` y 2 bloques de ruta avanzada opcional, sin afectar
+el estado de calibración IRT descrito arriba — sigue pendiente exactamente
+igual, ahora con 5 checkpoints totales en vez de 4.
+
 ## Brecha #2 — persistencia del estado bayesiano no probada contra uso real
 
 `middleware/src/stateStore.js` usa SQLite en modo WAL, adecuado para
