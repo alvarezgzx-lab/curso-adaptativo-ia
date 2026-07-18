@@ -63,6 +63,15 @@ export function hStop(pmin, n) {
   return -pmin * Math.log2(pmin) - (1 - pmin) * Math.log2((1 - pmin) / (n - 1));
 }
 
+/** Los campos `casoSinHistorialPrevio`/`rutaPorDefectoSiAmbiguo` de un
+ *  checkpointSpec siguen la convención "blockId — explicación en prosa para
+ *  humanos" (ver lxd/02-especificacion-decision-checkpoints.json). Extrae
+ *  solo el blockId real antes de devolverlo como nextBlockId. */
+export function extractBlockId(raw) {
+  if (typeof raw !== "string") return raw;
+  return raw.split(/\s+—\s+|\s+--\s+/)[0].trim();
+}
+
 function normalize(p) {
   const s = p.reduce((a, b) => a + b, 0);
   return s > 0 ? p.map((pi) => pi / s) : p.map(() => 1 / p.length);
@@ -395,7 +404,7 @@ export class BayesianAdaptiveEngine {
    */
   resolveNextBlockId(checkpointSpec) {
     if (this.history.length === 0) {
-      return checkpointSpec.casoSinHistorialPrevio; // trivial: nunca llama a Claude para esto
+      return extractBlockId(checkpointSpec.casoSinHistorialPrevio); // trivial: nunca llama a Claude para esto
     }
     const promo = this.evaluateStagePromotion({
       exitItemResults: checkpointSpec._exitItemResults ?? [],
@@ -416,6 +425,6 @@ export class BayesianAdaptiveEngine {
     const rutaPorNivel = checkpointSpec.rutasPosibles.find((r) =>
       r.hipotesisAsociadas?.includes(diag.nivel.hipotesisGanadora)
     );
-    return rutaPorNivel ? rutaPorNivel.nextBlockId : checkpointSpec.rutaPorDefectoSiAmbiguo ?? null;
+    return rutaPorNivel ? rutaPorNivel.nextBlockId : extractBlockId(checkpointSpec.rutaPorDefectoSiAmbiguo) ?? null;
   }
 }

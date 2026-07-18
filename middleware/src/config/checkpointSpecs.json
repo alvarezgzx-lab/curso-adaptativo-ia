@@ -1,8 +1,125 @@
 {
-  "_readme": "Copia manual de lxd/02-especificacion-decision-checkpoints.json una vez validado (ver ROADMAP.md, gate de Iteración 1). No editar aquí directamente — editar en lxd/ y volver a copiar.",
+  "_readme": "Extiende plantilla-checkpoints-decision.json (guion-instruccional-adaptativo). El campo 'criterioDeSeleccion' en lenguaje claro SE CONSERVA como documentación para humanos y como fallback si bayesEngine.resolveNextBlockId devuelve null por falta de parámetros — pero la decisión real la calcula el motor, no Claude. Cada checkpointId existe en lxd/00-glosario-ids.json. Cada nextBlockId candidato existe como fila en lxd/03-storyboard.md.",
+
   "espacioDeHipotesis": {
-    "nivel": { "ids": [], "thetas": [] },
-    "factoresDeError": {}
+    "_comentario": "SIN CALIBRAR — copiado del template sin modificar valores. Pendiente: anclar nivelBloomAsociado y definir factoresDeError reales del curso EC1705/E5336 (ver docs/arquitectura-motor-bayesiano-adaptativo.md, sección 6 — 'trabajo de Ángel, no de esta integración técnica'). No usar en producción hasta calibrar y correr npm run monte-carlo.",
+    "nivel": {
+      "ids": ["H_basico", "H_medio", "H_avanzado"],
+      "nivelBloomAsociado": ["", "", ""],
+      "thetas": [-2, 0, 2],
+      "priorInicial": "uniforme salvo evidencia previa fiable"
+    },
+    "factoresDeError": {
+      "_comentario": "TODO — un factor por cada error/concepción errónea diagnosticable de forma independiente. Ejemplo: confundir 'prompt' con 'generación', o no distinguir buscador vs IA generativa. Prior informativo 0.2-0.3 cuando se definan, nunca uniforme."
+    }
   },
-  "checkpoints": []
+
+  "checkpoints": [
+    {
+      "checkpointId": "chk-diagnostico-curso-inicial",
+      "modo": "itinerario_con_practica_interna",
+      "queSeEvaluaAntesDeEsePunto": {
+        "actividadesPrevias": [],
+        "senalesXapi": ["answered sobre b-diagnostico-curso-inicial: línea base de conocimientos y actitudes previas sobre IA generativa, ética y experiencia general con estas herramientas."]
+      },
+      "configMotor": { "lambda": 0.9, "pmin": 0.8, "minAttemptsPerCategory": 2, "alphaUtility": 0.5 },
+      "itemsDeSalida": { "itemIds": [] },
+      "rutasPosibles": [
+        {
+          "nextBlockId": "b-bienvenida-m1",
+          "hipotesisAsociadas": null,
+          "factorAsociado": null,
+          "criterioDeSeleccion": "Siempre, sin excepción: todo alumno continúa al Módulo 1 completo sin importar su resultado en la línea base. EC1705 es un estándar de certificación, no de nivelación — la línea base NO exime ningún desempeño exigido. Su único efecto es quedar registrada en la LRS para comparación posterior en chk-evaluacion-final-curso."
+        }
+      ],
+      "rutaPorDefectoSiAmbiguo": "TODO — este checkpoint no tiene ambigüedad real (una sola ruta posible), pero el campo se deja explícito para cumplir el schema.",
+      "casoSinHistorialPrevio": "b-bienvenida-m1 — no aplica como excepción real: por definición, todo alumno llega aquí 'sin historial previo', es el punto de entrada del curso completo."
+    },
+    {
+      "checkpointId": "chk-diagnostico-inicial",
+      "modo": "itinerario_con_practica_interna",
+      "queSeEvaluaAntesDeEsePunto": {
+        "actividadesPrevias": ["b-bienvenida-m1", "b-que-es-iagen", "b-terminologia-basica", "b-tipos-contenido", "b-diagnostico-previo"],
+        "senalesXapi": ["answered sobre b-diagnostico-previo, con result.response = respuestas a D1 (¿ha usado IA generativa antes? Sí/No), D2 (¿ubicaría el campo de prompt? Sí/No/No estoy seguro) y D3 (ítem de opción múltiple sobre qué es un prompt, con result.success)"]
+      },
+      "configMotor": { "lambda": 0.9, "pmin": 0.8, "minAttemptsPerCategory": 2, "alphaUtility": 0.5 },
+      "itemsDeSalida": { "itemIds": [] },
+      "rutasPosibles": [
+        {
+          "nextBlockId": "b-exploracion-guiada-principiante",
+          "hipotesisAsociadas": null,
+          "factorAsociado": null,
+          "criterioDeSeleccion": "Si el alumno responde 'No' en D1 (nunca ha usado herramientas de IA generativa), o 'No estoy seguro' en D2, o responde incorrectamente D3, ir aquí. Basta con que UNA de las tres señales indique baja experiencia o confianza."
+        },
+        {
+          "nextBlockId": "b-exploracion-directa-experiencia",
+          "hipotesisAsociadas": null,
+          "factorAsociado": null,
+          "criterioDeSeleccion": "Si el alumno responde 'Sí' en D1 Y 'Sí' en D2 Y responde correctamente D3 (las tres señales indican experiencia y confianza), ir aquí."
+        }
+      ],
+      "rutaPorDefectoSiAmbiguo": "TODO — pendiente definir con Ángel qué hacer si las señales son mixtas (ej. D1=Sí pero D3 incorrecta). El diseño original resuelve esto con un OR simple hacia la ruta de refuerzo (ver criterioDeSeleccion de arriba); confirmar si eso basta como 'ruta por defecto si ambiguo' o si se requiere una regla explícita distinta.",
+      "casoSinHistorialPrevio": "b-exploracion-guiada-principiante — perfil principiante por defecto; opción pedagógicamente más segura."
+    },
+    {
+      "checkpointId": "chk-conceptos-basicos",
+      "modo": "itinerario_con_practica_interna",
+      "queSeEvaluaAntesDeEsePunto": {
+        "actividadesPrevias": ["b-precauciones-seguridad", "b-capacidades-limitaciones", "b-quiz-conceptos"],
+        "senalesXapi": ["attempted/passed/failed sobre b-quiz-conceptos, con result.score.scaled y número de intento registrado en context.extensions"]
+      },
+      "configMotor": { "lambda": 0.9, "pmin": 0.8, "minAttemptsPerCategory": 2, "alphaUtility": 0.5 },
+      "itemsDeSalida": {
+        "_comentario": "CB1-CB5 ya están en el banco general (lxd/08-banco-items-bayesiano.json, con b/cq elicitados del criterio cualitativo del instructor) y se usan para la selección adaptativa pregunta-por-pregunta dentro del quiz (bayesEngine.selectNextItem). itemsDeSalida sigue vacío a propósito: la ruta de ESTE checkpoint hoy la resuelve un módulo de reglas deterministas (middleware/src/simpleCheckpointRules.js, ver notaParaDesarrollo), no evaluateStagePromotion() — este campo queda reservado para cuando el motor bayesiano calibrado tome la decisión real.",
+        "itemIds": []
+      },
+      "rutasPosibles": [
+        {
+          "nextBlockId": "b-refuerzo-conceptos-basicos",
+          "hipotesisAsociadas": null,
+          "factorAsociado": null,
+          "criterioDeSeleccion": "Si el alumno obtiene un score.scaled menor a 0.70 en b-quiz-conceptos, o falla (failed) 2 o más intentos, ir aquí."
+        },
+        {
+          "nextBlockId": "b-sintesis-avanzada",
+          "hipotesisAsociadas": null,
+          "factorAsociado": null,
+          "criterioDeSeleccion": "Si el alumno obtiene un score.scaled de 0.70 o más en b-quiz-conceptos, en su primer o segundo intento, ir aquí."
+        }
+      ],
+      "rutaPorDefectoSiAmbiguo": "TODO",
+      "casoSinHistorialPrevio": "b-refuerzo-conceptos-basicos — sin intento registrado, tratar como si necesitara refuerzo (opción conservadora)."
+    },
+    {
+      "checkpointId": "chk-evaluacion-final-curso",
+      "modo": "itinerario_con_practica_interna",
+      "queSeEvaluaAntesDeEsePunto": {
+        "actividadesPrevias": ["TODAS las actividades de m0-linea-base-curso, m1-fundamentos-iagen, m2-produccion-texto-imagen y m3-produccion-audio-video-uso-responsable registradas para ese alumno hasta la fecha en que llega a este checkpoint. No es una lista fija: m2/m3 pueden no existir todavía."],
+        "senalesXapi": [
+          "Query a la LRS: GET /statements?agent={actorId}&activity={courseId}&related_activities=true, con courseId = 'curso-adaptativo-ia'. NUNCA filtrado por un moduleId específico.",
+          "Agrega: (a) resultado de chk-diagnostico-curso-inicial; (b) resultado y nextBlockId asignado de cada checkpoint de cada módulo disponible; (c) passed/failed y score.scaled de cada evaluación sumativa de módulo disponible; (d) todos los statements con verbo 'commented' de cualquier módulo."
+        ]
+      },
+      "configMotor": { "lambda": 0.9, "pmin": 0.8, "minAttemptsPerCategory": 2, "alphaUtility": 0.5 },
+      "itemsDeSalida": { "itemIds": [] },
+      "rutasPosibles": [
+        {
+          "nextBlockId": "b-evaluacion-final-estandar",
+          "hipotesisAsociadas": null,
+          "factorAsociado": null,
+          "criterioDeSeleccion": "Si el alumno aprobó (passed) todas las evaluaciones sumativas de módulo disponibles en su historial, Y tomó como máximo 1 ruta de refuerzo en total sumando todos los checkpoints de todos los módulos, ir aquí: examen de certificación estándar, sin repaso previo."
+        },
+        {
+          "nextBlockId": "b-evaluacion-final-repaso-dirigido",
+          "hipotesisAsociadas": null,
+          "factorAsociado": null,
+          "criterioDeSeleccion": "Si el alumno tomó 2 o más rutas de refuerzo entre todos los módulos, O recibió retroalimentación (commented) señalando la misma dificultad/objetivo en 2 o más módulos distintos, ir aquí primero: repaso dirigido antes del examen de certificación."
+        }
+      ],
+      "rutaPorDefectoSiAmbiguo": "TODO",
+      "casoSinHistorialPrevio": "b-evaluacion-final-estandar — si por una falla técnica no se puede recuperar histórico alguno, NO se bloquea al alumno del examen de certificación: se le envía a la ruta estándar y el caso se marca para revisión manual. Regla dura: ausencia de evidencia nunca se trata como evidencia de dificultad."
+    }
+  ],
+
+  "notaParaDesarrollo": "middleware/src/claude.js YA NO decide nextBlockId por lenguaje natural. Decisión de arquitectura (elicitada con Ángel): mientras espacioDeHipotesis/hipotesisAsociadas/factorAsociado/rutaPorDefectoSiAmbiguo sigan sin calibrar, bayesEngine.resolveNextBlockId() no puede resolver la RUTA de estos checkpoints (devuelve null indefinidamente para chk-diagnostico-inicial y chk-conceptos-basicos). Por eso, para esos dos checkpoints, el enrutamiento real lo calcula middleware/src/simpleCheckpointRules.js — una implementación literal, determinista, del criterioDeSeleccion de cada ruta (ej. D1/D2/D3 para chk-diagnostico-inicial, score.scaled<0.70 para chk-conceptos-basicos) — no el motor bayesiano. chk-diagnostico-curso-inicial siempre resuelve a b-bienvenida-m1 (regla trivial, sin ambigüedad). chk-evaluacion-final-curso sigue sin resolver (depende de Módulos 2/3). Aparte de la ruta, bayesEngine SÍ se usa activamente para la selección adaptativa de ítems dentro del quiz de chk-conceptos-basicos (POST /api/item-response por cada pregunta, bayesEngine.selectNextItem + registerResponse), alimentando datos reales para cuando exista calibración completa. Cuando se calibre espacioDeHipotesis/rutasPosibles, resolveNextBlockId() puede reemplazar a simpleCheckpointRules.js sin cambiar el contrato del endpoint."
 }

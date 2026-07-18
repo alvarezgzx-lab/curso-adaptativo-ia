@@ -1,7 +1,16 @@
 // test/bayesEngine.smoke.test.js
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { BayesianAdaptiveEngine } from "../src/bayesEngine.js";
+import { BayesianAdaptiveEngine, extractBlockId } from "../src/bayesEngine.js";
+
+test("extractBlockId separa el blockId de la explicación en prosa (convención lxd/02)", () => {
+  assert.equal(
+    extractBlockId("b-refuerzo-conceptos-basicos — sin intento registrado, tratar como si necesitara refuerzo."),
+    "b-refuerzo-conceptos-basicos"
+  );
+  assert.equal(extractBlockId("b-inicio"), "b-inicio"); // sin explicación, no cambia nada
+  assert.equal(extractBlockId(null), null);
+});
 
 test("responder bien repetidamente sube la confianza hacia el nivel más alto", () => {
   const engine = new BayesianAdaptiveEngine({

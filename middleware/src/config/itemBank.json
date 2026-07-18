@@ -1,3 +1,48 @@
 {
-  "_readme": "Copia manual de lxd/08-banco-items-bayesiano.json una vez que exista un banco de ítems real. Formato: { [checkpointId]: [ítems...] }. No editar aquí directamente."
+  "_readme": "Banco de ítems del motor bayesiano, por checkpoint. Formato: { [checkpointId]: [items] }. Cada ítem de NIVEL (factorId=null) necesita 'b' (dificultad IRT) y opcionalmente 'cq'. Cada ítem de FACTOR DE ERROR (factorId != null) necesita 'likelihoodAusente' y 'likelihoodPresente'. Ver bayesEngine.js sección 2 y monteCarloValidate.js.",
+
+  "chk-diagnostico-curso-inicial": [],
+
+  "chk-diagnostico-inicial": [],
+
+  "chk-conceptos-basicos": [
+    {
+      "_calibracion": "b elicitado por criterio cualitativo del instructor (Básico=-2, Medio=0, Avanzado=2, alineado a los thetas de espacioDeHipotesis.nivel en lxd/02) — NO es calibración psicométrica real (no viene de datos de respuestas de alumnos). Corresponde a CB1-CB5 de lxd/05-banco-evaluacion.md. Ajustar con datos reales una vez haya uso del curso (ver docs/arquitectura-motor-bayesiano-adaptativo.md, sección 6, y ROADMAP.md, 'Gate del motor bayesiano').",
+      "itemId": "CB1",
+      "category": "conceptos-basicos",
+      "factorId": null,
+      "b": 0,
+      "cq": 0.25
+    },
+    {
+      "itemId": "CB2",
+      "category": "conceptos-basicos",
+      "factorId": null,
+      "b": -2,
+      "cq": 0.25
+    },
+    {
+      "itemId": "CB3",
+      "category": "conceptos-basicos",
+      "factorId": null,
+      "b": 0,
+      "cq": 0.25
+    },
+    {
+      "itemId": "CB4",
+      "category": "conceptos-basicos",
+      "factorId": null,
+      "b": 2,
+      "cq": 0.25
+    },
+    {
+      "itemId": "CB5",
+      "category": "conceptos-basicos",
+      "factorId": null,
+      "b": 0,
+      "cq": 0.25
+    }
+  ],
+
+  "chk-evaluacion-final-curso": []
 }
