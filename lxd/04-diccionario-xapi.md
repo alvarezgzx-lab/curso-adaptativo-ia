@@ -21,6 +21,8 @@
 | Middleware solicita decisión a Claude | `decision-requested` *(custom)* | `activityId` = checkpointId | `context.extensions`: lista de `nextBlockId` candidatos | Verbo custom — evento interno de infraestructura, no de aprendizaje pedagógico estándar |
 | Middleware asigna ruta | `route-assigned` *(custom)* | `activityId` = `nextBlockId` asignado | `result.response` = `nextBlockId` elegido | Verbo custom — auditoría de la decisión de branching |
 | Retroalimentación recibida (automática o de un facilitador humano) sobre un bloque abierto, ej. `b-reflexion-guiada-privacidad` | `commented` *(ADL estándar)* | `activityId` = blockId revisado | `result.response` = texto de la retro | `context.extensions.autor`: "sistema" \| "facilitador"; ver nota de arquitectura multi-módulo en `guion-instruccional-modulo-1-EC1705.md`, sección 11 |
+| Responder pregunta de interés opcional al final de `b-sintesis-avanzada` | `answered` | `activityId` = `b-sintesis-avanzada` | `response` (Sí/No) | `result.extensions.interesAvanzado`: "Sí" \| "No" — mismo patrón que `chk-avance-texto`/`chk-avance-imagen` en Módulo 2 |
+| Ver bloque de ruta avanzada opcional (`b-fundamentos-avanzados`, `b-etica-legal-avanzado`) | `experienced` → `answered` | `activityId` = blockId | `completion: true`; `answered` con `response` a AV1/AV2 (no calificados) | `context.extensions.rutaOpcional: true` — para que la evaluación final pueda distinguir evidencia de piso obligatorio de evidencia de enriquecimiento |
 
 **Convención obligatoria** (para que la evaluación final de curso funcione
 sin reescribirse cuando se agreguen módulos): todo statement de este módulo
