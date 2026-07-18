@@ -1,10 +1,5 @@
 # Roadmap — diseño LXD de curso-adaptativo-ia
 
-Este roadmap asume un solo operador (Ángel) cubriendo las 6 fases de diseño
-de experiencia de aprendizaje del proyecto. No hay fecha límite fija (ver
-`docs/proyecto-tecnico.md`), así que este roadmap ordena por **dependencias
-lógicas e iteraciones**, no por calendario — tú decides el ritmo.
-
 Metodología de proceso: **SAM (Successive Approximation Model)**, no ADDIE
 lineal. Eso significa que las iteraciones de abajo se esperan revisitar — es
 normal volver a la Fase 1 después de armar el storyboard si un objetivo
