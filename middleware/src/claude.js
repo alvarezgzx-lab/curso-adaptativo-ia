@@ -1,6 +1,8 @@
 // src/claude.js
-// Wrapper delgado sobre el SDK de Anthropic para pedir la siguiente ruta adaptativa
-// con base en el historial xAPI del alumno.
+// Wrapper delgado sobre el SDK de Anthropic — SOLO redacción de feedback y
+// generación de variantes de contenido. Ya NO decide nextBlockId (eso lo
+// hace bayesEngine.resolveNextBlockId(), determinista). Ver
+// docs/arquitectura-motor-bayesiano-adaptativo.md, secciones 1-2.
 
 import Anthropic from "@anthropic-ai/sdk";
 
@@ -8,27 +10,32 @@ const client = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY });
 const MODEL = process.env.CLAUDE_MODEL || "claude-sonnet-5";
 
 /**
- * Decide el siguiente bloque/ruta del curso según el historial de statements del alumno.
- * @param {object[]} history - statements xAPI del alumno hasta este punto de decisión
- * @param {string} checkpointId - id del punto de decisión actual definido en el curso Adapt
- * @returns {Promise<{ nextBlockId: string, rationale: string }>}
+ * Redacta feedback para el alumno tras un ítem, usando el diagnóstico
+ * bayesiano como contexto (nunca como algo que Claude deba decidir o
+ * cuestionar).
+ * @param {object} decisionPayload - salida de bayesEngine.getDecisionPayload()
+ * @param {object} itemResult - { itemId, isCorrect, category }
+ * @returns {Promise<{ feedback: string }>}
  */
-export async function decideNextStep(history, checkpointId) {
+export async function generateFeedback(decisionPayload, itemResult) {
   const message = await client.messages.create({
     model: MODEL,
     max_tokens: 300,
     system:
-      "Eres el motor de decisión de un curso adaptativo. Recibes el historial de " +
-      "interacciones xAPI de un alumno y el punto de decisión actual. Responde " +
-      "únicamente con un JSON de la forma {\"nextBlockId\": string, \"rationale\": string}.",
+      "Redactas feedback breve y humano para un alumno de un curso adaptativo, " +
+      "en español, tono cercano (ver criterios H1/H2 de evaluador-di-rubrica: " +
+      "nunca sonar a plantilla). Recibes el diagnóstico bayesiano actual (nivel, " +
+      "factores de error) y el resultado del último ítem. NUNCA menciones " +
+      "probabilidades, entropía ni nombres internos de hipótesis — tradúcelos a " +
+      "lenguaje natural para el alumno. No decides qué bloque sigue, solo redactas.",
     messages: [
       {
         role: "user",
-        content: JSON.stringify({ checkpointId, history }),
+        content: JSON.stringify({ decisionPayload, itemResult }),
       },
     ],
   });
 
-  const text = message.content?.[0]?.text ?? "{}";
-  return JSON.parse(text);
+  const text = message.content?.[0]?.text ?? "";
+  return { feedback: text };
 }

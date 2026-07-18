@@ -1,0 +1,22 @@
+{
+  "_readme": "Banco de ítems del motor bayesiano, por checkpoint. Formato: { [checkpointId]: [items] }. Cada ítem de NIVEL (factorId=null) necesita 'b' (dificultad IRT) y opcionalmente 'cq' (pseudo-azar: 0 abierta, 0.25 4-opciones, 0.5 V/F). Cada ítem de FACTOR DE ERROR (factorId != null) necesita 'likelihoodAusente' y 'likelihoodPresente' en vez de b/cq. 'category' es el bloque pedagógico (para minAttemptsPerCategory y muestreo mínimo). Ver bayesEngine.js sección 2 y monteCarloValidate.js.",
+
+  "TU-CHECKPOINT-1-AQUI": [
+    {
+      "_ejemplo": "Ítem de nivel — borrar antes de usar en producción",
+      "itemId": "ITEM-EJEMPLO-NIVEL-1",
+      "category": "",
+      "factorId": null,
+      "b": 0,
+      "cq": 0.25
+    },
+    {
+      "_ejemplo": "Ítem de factor de error — borrar antes de usar en producción",
+      "itemId": "ITEM-EJEMPLO-FACTOR-1",
+      "category": "",
+      "factorId": "factor_ejemplo_id",
+      "likelihoodAusente": 0.9,
+      "likelihoodPresente": 0.3
+    }
+  ]
+}

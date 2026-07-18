@@ -25,5 +25,14 @@
     }
   ],
 
+  "itemIds": [
+    {
+      "itemId": "TU-ITEM-ID-AQUI",
+      "checkpointId": "TU-CHECKPOINT-1-AQUI",
+      "categoria": "",
+      "esItemDeSalida": false
+    }
+  ],
+
   "notaSobreConvencionDeNombres": "Sugerencia (ajústala si ya tienes otra convención): checkpointId en kebab-case descriptivo, ej. 'chk-conceptos-basicos'; blockId igual, ej. 'b-refuerzo-conceptos-basicos', 'b-avanzado-conceptos-basicos' — que el nombre ya sugiera si es ruta de refuerzo o avance ayuda a leer la Fase 2 sin tener que saltar de documento."
 }

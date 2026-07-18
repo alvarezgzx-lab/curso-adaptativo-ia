@@ -1,0 +1,8 @@
+{
+  "_readme": "Copia manual de lxd/02-especificacion-decision-checkpoints.json una vez validado (ver ROADMAP.md, gate de Iteración 1). No editar aquí directamente — editar en lxd/ y volver a copiar.",
+  "espacioDeHipotesis": {
+    "nivel": { "ids": [], "thetas": [] },
+    "factoresDeError": {}
+  },
+  "checkpoints": []
+}

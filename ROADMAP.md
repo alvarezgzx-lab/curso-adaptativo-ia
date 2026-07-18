@@ -65,6 +65,16 @@ como fila en el storyboard (Definition of Done del proyecto completo).
   adaptativa, no solo a la ruta default — cada rama es una obligación de
   accesibilidad aparte, no un extra opcional.
 
+## Gate del motor bayesiano (si aplica, antes del handoff)
+
+- [ ] `lxd/08-banco-items-bayesiano.json` completo para cada checkpoint que
+  use motor bayesiano (ver `docs/arquitectura-motor-bayesiano-adaptativo.md`).
+- [ ] `evaluador-di-rubrica` corrido sobre el storyboard de esa etapa
+  (criterios C1-C3, A1-A4) — un motor matemáticamente correcto sobre un
+  banco mal diseñado da diagnósticos seguros pero equivocados.
+- [ ] `npm run monte-carlo -- <checkpointId>` en `middleware/` sin alerta
+  (exactitud equilibrada ≥ 0.70).
+
 ## Handoff a desarrollo (después de la Iteración 3)
 
 Cuando las tres gates de arriba estén cerradas, el paquete completo de
@@ -72,9 +82,10 @@ Cuando las tres gates de arriba estén cerradas, el paquete completo de
 
 1. `course.json` real de Adapt (Fase 3 → estructura Adapt).
 2. Configuración de `adapt-contrib-spoor` (Fase 4 → tracking).
-3. System prompt de `middleware/src/claude.js` con guardrails que limiten
-   `nextBlockId` a las rutas válidas de la Fase 2 (hoy no existen — ver
-   `docs/riesgos.md`, sección "brecha #1").
+3. Copiar `lxd/02-especificacion-decision-checkpoints.json` a
+   `middleware/src/config/checkpointSpecs.json` y `lxd/08-banco-items-bayesiano.json`
+   a `middleware/src/config/itemBank.json` (ver `docs/arquitectura-motor-bayesiano-adaptativo.md`).
+   `middleware/src/claude.js` ya no enruta — solo redacta feedback.
 
 ## Qué NO cubre este roadmap
 

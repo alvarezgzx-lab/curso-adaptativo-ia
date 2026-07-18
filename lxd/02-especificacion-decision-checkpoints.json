@@ -1,26 +1,55 @@
 {
-  "_readme": "Este archivo es el que desarrollo traduce directamente al system prompt y a los guardrails de middleware/src/claude.js. Cada checkpointId debe existir en 00-glosario-ids.json. Cada nextBlockId candidato debe terminar existiendo como fila en 03-storyboard.md (Definition of Done del proyecto). No dejes ningún checkpoint sin 'casoSinHistorialPrevio' — es la pregunta 'qué pasa la primera vez que un alumno llega aquí, sin datos todavía' y hoy el middleware no tiene ese caso resuelto.",
+  "_readme": "Extiende el formato anterior (que solo tenía criterioDeSeleccion en prosa). El campo 'criterioDeSeleccion' SE CONSERVA como documentación para humanos y como fallback si bayesEngine.resolveNextBlockId devuelve null por falta de parámetros — pero la decisión real la calcula el motor, no Claude. Cada checkpointId debe existir en 00-glosario-ids.json. Cada nextBlockId candidato debe terminar existiendo como fila en 03-storyboard.md. Ver docs/arquitectura-motor-bayesiano-adaptativo.md.",
+
+  "espacioDeHipotesis": {
+    "_comentario": "Perfil A+C combinado. 'nivel' es ordinal (IRT 3PL); ancla cada id a un nivel Bloom si aplica (integración con evaluador-di-rubrica, criterio P1) para que theta tenga significado curricular, no solo estadístico.",
+    "nivel": {
+      "ids": ["H_basico", "H_medio", "H_avanzado"],
+      "nivelBloomAsociado": ["", "", ""],
+      "thetas": [-2, 0, 2],
+      "priorInicial": "uniforme salvo evidencia previa fiable (especificación 'Estado del alumno')"
+    },
+    "factoresDeError": {
+      "_comentario": "Perfil C. Prior informativo, NUNCA uniforme (0.2-0.3). Uno por cada error/concepción errónea diagnosticable de forma independiente. Completar con los factores reales del curso."
+    }
+  },
 
   "checkpoints": [
     {
       "checkpointId": "TU-CHECKPOINT-1-AQUI",
+      "modo": "itinerario_con_practica_interna",
       "queSeEvaluaAntesDeEsePunto": {
         "actividadesPrevias": [],
         "senalesXapi": []
       },
+      "configMotor": {
+        "lambda": 0.9,
+        "pmin": 0.8,
+        "minAttemptsPerCategory": 2,
+        "alphaUtility": 0.5
+      },
+      "itemsDeSalida": {
+        "_comentario": "Ítems de dificultad representativa del objetivo de la etapa, seleccionados SIN criterio de máxima IG (protocolo §13.3). Evitar verdadero/falso. Con 4-5 opciones, exigir acierto en todos.",
+        "itemIds": []
+      },
       "rutasPosibles": [
         {
           "nextBlockId": "TU-BLOCK-ID-RUTA-A",
-          "criterioDeSeleccion": "Lenguaje claro, no pseudocódigo: 'si el alumno falló 2+ veces el ejercicio X, ir aquí'."
+          "hipotesisAsociadas": ["H_avanzado"],
+          "factorAsociado": null,
+          "criterioDeSeleccion": "Documentación humana / fallback: 'nivel avanzado confirmado, sin errores activos → avanzar'."
         },
         {
           "nextBlockId": "TU-BLOCK-ID-RUTA-B",
+          "hipotesisAsociadas": null,
+          "factorAsociado": null,
           "criterioDeSeleccion": ""
         }
       ],
+      "rutaPorDefectoSiAmbiguo": "",
       "casoSinHistorialPrevio": "Qué ruta toma un alumno que llega a este checkpoint por primera vez, sin statements previos que evaluar."
     }
   ],
 
-  "notaParaDesarrollo": "Con este archivo completo, el system prompt de claude.js debe: (1) recibir la lista de nextBlockId válidos para el checkpointId actual, no solo el historial crudo, (2) recibir el criterio en lenguaje claro como parte del contexto, (3) tener instrucción explícita de nunca devolver un nextBlockId fuera de esa lista, (4) manejar el caso sin historial devolviendo el nextBlockId de casoSinHistorialPrevio sin necesidad de llamar a Claude para ese caso trivial (ahorra latencia y costo). Ver docs/riesgos.md, sección 'brecha #1'."
+  "notaParaDesarrollo": "middleware/src/routes/decision.js YA NO decide nextBlockId por lenguaje natural. En cada checkpoint: (1) bayesEngine.resolveNextBlockId(checkpointSpec) — si devuelve un nextBlockId válido, enrutar directo, SIN llamar a Claude; (2) si devuelve null (aún indeterminado), permanecer en el bloque/etapa actual y, si el ítem lo requiere, llamar a Claude SOLO para redactar el feedback de ese ítem vía POST /api/item-response; (3) el caso sin historial sigue resolviéndose sin llamar a Claude."
 }
