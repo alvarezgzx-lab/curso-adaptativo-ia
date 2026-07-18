@@ -1,7 +1,7 @@
 {
   "name": "curso-adaptativo-ia-middleware",
   "version": "0.1.0",
-  "description": "Middleware Node.js que conecta el curso Adapt / Moodle con Learning Locker (xAPI) y la API de Claude para decidir la ruta adaptativa del alumno.",
+  "description": "Middleware Node.js que conecta el curso Adapt / Moodle con un LRS (xAPI) y la API de Claude para el motor de decisión adaptativa.",
   "type": "module",
   "main": "src/index.js",
   "engines": {
