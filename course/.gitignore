@@ -1,0 +1,46 @@
+# El framework Adapt no se vendoriza en este repo (ver SETUP.md) — se clona e
+# instala localmente. Solo se versionan NUESTRAS piezas: el contenido del
+# curso (src/course/<idioma>/*.json) y la extensión decisionEngine.
+
+node_modules/
+build/
+.cache/
+.DS_Store
+coverage/
+
+# Core y plugins del framework — se reinstalan con `npm install` + `adapt install`
+src/core/
+src/components/
+src/theme/
+src/menu/
+src/less/
+src/plugins.js
+
+# Extensiones: todas se reinstalan con `adapt install`, salvo la nuestra
+src/extensions/*
+!src/extensions/adapt-contrib-decisionEngine/
+
+# Tooling propio del framework upstream — se obtiene al clonar (ver SETUP.md paso 1)
+/.bowerrc
+/.browserslistrc
+/.eslintignore
+/.eslintrc.json
+/.github/
+/.gitmodules
+/CHANGELOG.md
+/GRUNT.md
+/INSTALL.md
+/LICENSE
+/README.md
+/adapt.json
+/babel.config.js
+/cypress.config.js
+/gitmodules.js
+/grunt/
+/Gruntfile.js
+/jest.config.js
+/jsconfig.json
+/package.json
+/package-lock.json
+/test/
+/test.js

@@ -1,0 +1,102 @@
+[
+  {
+    "_id": "a-bienvenida",
+    "_parentId": "co-modulo-1",
+    "_type": "article",
+    "_classes": "",
+    "title": "Bienvenida",
+    "displayTitle": "",
+    "body": "",
+    "instruction": ""
+  },
+  {
+    "_id": "a-fundamentos",
+    "_parentId": "co-modulo-1",
+    "_type": "article",
+    "_classes": "",
+    "title": "Fundamentos",
+    "displayTitle": "",
+    "body": "",
+    "instruction": ""
+  },
+  {
+    "_id": "a-diagnostico-previo",
+    "_parentId": "co-modulo-1",
+    "_type": "article",
+    "_classes": "",
+    "title": "Autodiagnóstico",
+    "displayTitle": "",
+    "body": "",
+    "instruction": ""
+  },
+  {
+    "_id": "a-exploracion-guiada",
+    "_parentId": "co-modulo-1",
+    "_type": "article",
+    "_classes": "",
+    "title": "Exploración guiada (principiante)",
+    "displayTitle": "",
+    "body": "",
+    "instruction": ""
+  },
+  {
+    "_id": "a-exploracion-directa",
+    "_parentId": "co-modulo-1",
+    "_type": "article",
+    "_classes": "",
+    "title": "Exploración directa (con experiencia)",
+    "displayTitle": "",
+    "body": "",
+    "instruction": ""
+  },
+  {
+    "_id": "a-precauciones-capacidades",
+    "_parentId": "co-modulo-1",
+    "_type": "article",
+    "_classes": "",
+    "title": "Precauciones y capacidades",
+    "displayTitle": "",
+    "body": "",
+    "instruction": ""
+  },
+  {
+    "_id": "a-quiz-conceptos",
+    "_parentId": "co-modulo-1",
+    "_type": "article",
+    "_classes": "",
+    "title": "Quiz de conceptos básicos",
+    "displayTitle": "",
+    "body": "",
+    "instruction": ""
+  },
+  {
+    "_id": "a-refuerzo",
+    "_parentId": "co-modulo-1",
+    "_type": "article",
+    "_classes": "",
+    "title": "Refuerzo de conceptos básicos",
+    "displayTitle": "",
+    "body": "",
+    "instruction": ""
+  },
+  {
+    "_id": "a-sintesis",
+    "_parentId": "co-modulo-1",
+    "_type": "article",
+    "_classes": "",
+    "title": "Síntesis avanzada",
+    "displayTitle": "",
+    "body": "",
+    "instruction": ""
+  },
+  {
+    "_id": "a-cierre",
+    "_parentId": "co-modulo-1",
+    "_type": "article",
+    "_classes": "",
+    "title": "Cierre del módulo",
+    "displayTitle": "",
+    "body": "",
+    "instruction": ""
+  }
+]

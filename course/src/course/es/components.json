@@ -1,0 +1,1447 @@
+[
+  {
+    "_id": "c-bienvenida-m1",
+    "_parentId": "b-bienvenida-m1",
+    "_type": "component",
+    "_component": "text",
+    "_classes": "",
+    "_layout": "full",
+    "title": "Bienvenida al Módulo 1",
+    "displayTitle": "Bienvenida al Módulo 1",
+    "body": "¡Bienvenido/a al Módulo 1! Imagina que te piden crear en una hora un anuncio con texto, una imagen y un boceto de video para redes sociales, sin diseñador ni copywriter disponibles. Hoy la IA generativa lo hace posible. Aquí aprenderás qué es, qué herramientas existen (ChatGPT, Gemini, Claude, Copilot) y cómo navegar su interfaz con seguridad, antes de generar contenido en el Módulo 2.",
+    "instruction": "",
+    "_pageLevelProgress": {
+      "_isEnabled": true,
+      "_isCompletionIndicatorEnabled": false
+    }
+  },
+  {
+    "_id": "c-que-es-iagen",
+    "_parentId": "b-que-es-iagen",
+    "_type": "component",
+    "_component": "text",
+    "_classes": "",
+    "_layout": "full",
+    "title": "¿Qué es la IA generativa?",
+    "displayTitle": "¿Qué es la IA generativa?",
+    "body": "La IA Generativa (IAGen) es un tipo de IA capaz de crear contenido nuevo y original —textos, imágenes o videos— que no existía antes, a partir de lo que tú le indiques. A diferencia de un buscador, no encuentra información existente: la genera. Sirve para producir contenido digital rápido a partir de una descripción en lenguaje natural.",
+    "instruction": "",
+    "_pageLevelProgress": {
+      "_isEnabled": true,
+      "_isCompletionIndicatorEnabled": false
+    }
+  },
+  {
+    "_id": "c-terminologia-basica",
+    "_parentId": "b-terminologia-basica",
+    "_type": "component",
+    "_component": "matching",
+    "_classes": "",
+    "_layout": "full",
+    "title": "Terminología básica",
+    "displayTitle": "Terminología básica",
+    "body": "Dos palabras que usarás todo el curso. Relaciona cada término con su definición.",
+    "instruction": "Elige la definición correcta para cada término y selecciona Enviar.",
+    "ariaQuestion": "",
+    "_attempts": 2,
+    "_shouldDisplayAttempts": false,
+    "_shouldResetAllAnswers": false,
+    "_isRandom": false,
+    "_isRandomQuestionOrder": false,
+    "_questionWeight": 1,
+    "_canShowModelAnswer": true,
+    "_canShowCorrectness": true,
+    "_canShowFeedback": true,
+    "_canShowMarking": true,
+    "_recordInteraction": true,
+    "placeholder": "Selecciona una opción",
+    "_allowOnlyUniqueAnswers": true,
+    "_hasItemScoring": false,
+    "_items": [
+      {
+        "text": "Prompt",
+        "_options": [
+          {
+            "text": "La instrucción, pregunta o frase que le das a la herramienta para indicarle qué contenido quieres y con qué características.",
+            "_isCorrect": true,
+            "_score": 1
+          },
+          {
+            "text": "El proceso con el que la herramienta produce contenido nuevo.",
+            "_isCorrect": false,
+            "_score": 0
+          }
+        ]
+      },
+      {
+        "text": "Generación",
+        "_options": [
+          {
+            "text": "El proceso con el que la herramienta produce contenido nuevo a partir de tu prompt.",
+            "_isCorrect": true,
+            "_score": 1
+          },
+          {
+            "text": "La instrucción que le das a la herramienta.",
+            "_isCorrect": false,
+            "_score": 0
+          }
+        ]
+      }
+    ],
+    "_feedback": {
+      "title": "Retroalimentación",
+      "altTitle": "",
+      "correct": "¡Bien hecho!",
+      "_incorrect": {
+        "notFinal": "",
+        "final": "Revisa las definiciones e inténtalo de nuevo."
+      },
+      "_partlyCorrect": {
+        "notFinal": "",
+        "final": "Acertaste algunas — revisa las demás."
+      }
+    },
+    "_pageLevelProgress": {
+      "_isEnabled": true,
+      "_isCompletionIndicatorEnabled": false
+    }
+  },
+  {
+    "_id": "c-tipos-contenido",
+    "_parentId": "b-tipos-contenido",
+    "_type": "component",
+    "_component": "text",
+    "_classes": "",
+    "_layout": "full",
+    "title": "Tipos de contenido digital",
+    "displayTitle": "Tipos de contenido digital",
+    "body": "Con las herramientas de este curso puedes crear tres tipos de contenido: <b>Texto</b> (posts, artículos, guiones), <b>Imagen</b> (ilustraciones, banners, fotografías sintéticas) y <b>Video</b> (clips cortos, ideas y guiones).",
+    "instruction": "",
+    "_pageLevelProgress": {
+      "_isEnabled": true,
+      "_isCompletionIndicatorEnabled": false
+    }
+  },
+  {
+    "_id": "c-diagnostico-d1",
+    "_parentId": "b-diagnostico-previo",
+    "_type": "component",
+    "_component": "mcq",
+    "_classes": "",
+    "_layout": "full",
+    "_attempts": 1,
+    "_questionWeight": 1,
+    "_shouldDisplayAttempts": false,
+    "_isRandom": false,
+    "_selectable": 1,
+    "title": "D1",
+    "displayTitle": "D1",
+    "body": "¿Has usado antes una herramienta de IA generativa (ChatGPT, Gemini, Claude, Copilot u otra)?",
+    "instruction": "Responde con honestidad, no hay respuesta incorrecta.",
+    "ariaQuestion": "",
+    "_hasItemScoring": false,
+    "_canShowModelAnswer": false,
+    "_canShowCorrectness": false,
+    "_canShowFeedback": true,
+    "_canShowMarking": false,
+    "_recordInteraction": true,
+    "_items": [
+      {
+        "text": "Sí",
+        "altText": "",
+        "_shouldBeSelected": true,
+        "_isPartlyCorrect": false
+      },
+      {
+        "text": "No",
+        "altText": "",
+        "_shouldBeSelected": true,
+        "_isPartlyCorrect": false
+      }
+    ],
+    "_feedback": {
+      "title": "Retroalimentación",
+      "altTitle": "",
+      "correct": "Gracias por responder — esto ayuda a personalizar tu ruta.",
+      "_incorrect": {
+        "notFinal": "",
+        "final": "No es correcto — revisa la explicación e inténtalo de nuevo."
+      },
+      "_partlyCorrect": {
+        "notFinal": "",
+        "final": ""
+      }
+    },
+    "_pageLevelProgress": {
+      "_isEnabled": true,
+      "_isCompletionIndicatorEnabled": false
+    }
+  },
+  {
+    "_id": "c-diagnostico-d2",
+    "_parentId": "b-diagnostico-previo",
+    "_type": "component",
+    "_component": "mcq",
+    "_classes": "",
+    "_layout": "full",
+    "_attempts": 1,
+    "_questionWeight": 1,
+    "_shouldDisplayAttempts": false,
+    "_isRandom": false,
+    "_selectable": 1,
+    "title": "D2",
+    "displayTitle": "D2",
+    "body": "¿Sabrías identificar el campo donde se escribe un prompt en una de estas herramientas?",
+    "instruction": "Responde con honestidad, no hay respuesta incorrecta.",
+    "ariaQuestion": "",
+    "_hasItemScoring": false,
+    "_canShowModelAnswer": false,
+    "_canShowCorrectness": false,
+    "_canShowFeedback": true,
+    "_canShowMarking": false,
+    "_recordInteraction": true,
+    "_items": [
+      {
+        "text": "Sí",
+        "altText": "",
+        "_shouldBeSelected": true,
+        "_isPartlyCorrect": false
+      },
+      {
+        "text": "No",
+        "altText": "",
+        "_shouldBeSelected": true,
+        "_isPartlyCorrect": false
+      },
+      {
+        "text": "No estoy seguro/a",
+        "altText": "",
+        "_shouldBeSelected": true,
+        "_isPartlyCorrect": false
+      }
+    ],
+    "_feedback": {
+      "title": "Retroalimentación",
+      "altTitle": "",
+      "correct": "Gracias por responder — esto ayuda a personalizar tu ruta.",
+      "_incorrect": {
+        "notFinal": "",
+        "final": "No es correcto — revisa la explicación e inténtalo de nuevo."
+      },
+      "_partlyCorrect": {
+        "notFinal": "",
+        "final": ""
+      }
+    },
+    "_pageLevelProgress": {
+      "_isEnabled": true,
+      "_isCompletionIndicatorEnabled": false
+    }
+  },
+  {
+    "_id": "c-diagnostico-d3",
+    "_parentId": "b-diagnostico-previo",
+    "_type": "component",
+    "_component": "mcq",
+    "_classes": "",
+    "_layout": "full",
+    "_attempts": 2,
+    "_questionWeight": 1,
+    "_shouldDisplayAttempts": false,
+    "_isRandom": false,
+    "_selectable": 1,
+    "title": "D3",
+    "displayTitle": "D3",
+    "body": "Un prompt es:",
+    "instruction": "Elige una opción y selecciona Enviar.",
+    "ariaQuestion": "",
+    "_hasItemScoring": false,
+    "_canShowModelAnswer": true,
+    "_canShowCorrectness": true,
+    "_canShowFeedback": true,
+    "_canShowMarking": true,
+    "_recordInteraction": true,
+    "_items": [
+      {
+        "text": "Un tipo de archivo",
+        "altText": "",
+        "_shouldBeSelected": false,
+        "_isPartlyCorrect": false
+      },
+      {
+        "text": "Una instrucción que le das a la IA",
+        "altText": "",
+        "_shouldBeSelected": true,
+        "_isPartlyCorrect": false
+      },
+      {
+        "text": "Un error de la herramienta",
+        "altText": "",
+        "_shouldBeSelected": false,
+        "_isPartlyCorrect": false
+      }
+    ],
+    "_feedback": {
+      "title": "Retroalimentación",
+      "altTitle": "",
+      "correct": "Correcto: un prompt es la instrucción que tú le das a la IA.",
+      "_incorrect": {
+        "notFinal": "",
+        "final": "Un prompt es la instrucción que TÚ le das a la IA, no un tipo de archivo ni un error."
+      },
+      "_partlyCorrect": {
+        "notFinal": "",
+        "final": ""
+      }
+    },
+    "_pageLevelProgress": {
+      "_isEnabled": true,
+      "_isCompletionIndicatorEnabled": false
+    }
+  },
+  {
+    "_id": "c-exploracion-guiada-principiante",
+    "_parentId": "b-exploracion-guiada-principiante",
+    "_type": "component",
+    "_component": "text",
+    "_classes": "",
+    "_layout": "full",
+    "title": "Exploración guiada paso a paso",
+    "displayTitle": "Exploración guiada paso a paso",
+    "body": "Vamos paso a paso: 1) Inicia sesión o crea una cuenta gratuita. 2) Busca 'Términos de uso' o 'Política de privacidad' y ábrelo. 3) Localiza el recuadro para escribir tu prompt. 4) Encuentra el botón para enviar/generar. 5) Ubica los menús o pestañas para texto, imagen y video, si existen. Marca cada paso en tu checklist.<br><br><i>(Video-guía pendiente de producción — ver lxd/06-assets.md.)</i>",
+    "instruction": "",
+    "_pageLevelProgress": {
+      "_isEnabled": true,
+      "_isCompletionIndicatorEnabled": false
+    }
+  },
+  {
+    "_id": "c-practica-exploracion-principiante",
+    "_parentId": "b-practica-exploracion-principiante",
+    "_type": "component",
+    "_component": "mcq",
+    "_classes": "",
+    "_layout": "full",
+    "_attempts": 2,
+    "_questionWeight": 1,
+    "_shouldDisplayAttempts": false,
+    "_isRandom": false,
+    "_selectable": 1,
+    "title": "Práctica de identificación",
+    "displayTitle": "Práctica de identificación",
+    "body": "Mira esta captura de una herramienta de IA generativa. ¿Dónde escribirías tu prompt? <i>(Captura anotada pendiente de producción — ver lxd/06-assets.md.)</i>",
+    "instruction": "Elige una opción y selecciona Enviar.",
+    "ariaQuestion": "",
+    "_hasItemScoring": false,
+    "_canShowModelAnswer": true,
+    "_canShowCorrectness": true,
+    "_canShowFeedback": true,
+    "_canShowMarking": true,
+    "_recordInteraction": true,
+    "_items": [
+      {
+        "text": "En el recuadro central de texto, donde dice 'Escribe tu mensaje'",
+        "altText": "",
+        "_shouldBeSelected": true,
+        "_isPartlyCorrect": false
+      },
+      {
+        "text": "En el botón de cerrar sesión",
+        "altText": "",
+        "_shouldBeSelected": false,
+        "_isPartlyCorrect": false
+      },
+      {
+        "text": "En el menú de idioma",
+        "altText": "",
+        "_shouldBeSelected": false,
+        "_isPartlyCorrect": false
+      }
+    ],
+    "_feedback": {
+      "title": "Retroalimentación",
+      "altTitle": "",
+      "correct": "Correcto — ese es el campo de prompt.",
+      "_incorrect": {
+        "notFinal": "",
+        "final": "No es ahí — busca el recuadro central de texto."
+      },
+      "_partlyCorrect": {
+        "notFinal": "",
+        "final": ""
+      }
+    },
+    "_pageLevelProgress": {
+      "_isEnabled": true,
+      "_isCompletionIndicatorEnabled": false
+    }
+  },
+  {
+    "_id": "c-exploracion-directa-experiencia",
+    "_parentId": "b-exploracion-directa-experiencia",
+    "_type": "component",
+    "_component": "text",
+    "_classes": "",
+    "_layout": "full",
+    "title": "Reto de exploración directa",
+    "displayTitle": "Reto de exploración directa",
+    "body": "Ya conoces lo básico. Reto: abre dos herramientas de IA generativa distintas y completa la tabla comparando condiciones de uso, diferencias entre plan gratuito y de pago, y qué secciones tiene cada una para texto, imagen y video. <i>(Plantilla de tabla comparativa pendiente de producción — ver lxd/06-assets.md.)</i>",
+    "instruction": "",
+    "_pageLevelProgress": {
+      "_isEnabled": true,
+      "_isCompletionIndicatorEnabled": false
+    }
+  },
+  {
+    "_id": "c-practica-exploracion-avanzada",
+    "_parentId": "b-practica-exploracion-avanzada",
+    "_type": "component",
+    "_component": "text",
+    "_classes": "",
+    "_layout": "full",
+    "title": "Autoevaluación",
+    "displayTitle": "Autoevaluación",
+    "body": "Sube o pega tu tabla comparativa. Verifica que incluya: campo de prompt, botón de generación, condiciones de uso, diferencia gratis/pago y secciones de texto/imagen/video, para ambas herramientas.",
+    "instruction": "",
+    "_pageLevelProgress": {
+      "_isEnabled": true,
+      "_isCompletionIndicatorEnabled": false
+    }
+  },
+  {
+    "_id": "c-precauciones-seguridad",
+    "_parentId": "b-precauciones-seguridad",
+    "_type": "component",
+    "_component": "text",
+    "_classes": "",
+    "_layout": "full",
+    "title": "Precauciones de seguridad y privacidad",
+    "displayTitle": "Precauciones de seguridad y privacidad",
+    "body": "Antes de seguir: revisa siempre la política de privacidad de una herramienta de IA antes de usarla con datos reales. Evita ingresar información personal o confidencial si la política no es clara o no ofrece garantías suficientes. Regla práctica: si no compartirías ese dato con un desconocido, no se lo compartas a una IA sin verificar antes.",
+    "instruction": "",
+    "_pageLevelProgress": {
+      "_isEnabled": true,
+      "_isCompletionIndicatorEnabled": false
+    }
+  },
+  {
+    "_id": "c-capacidades-limitaciones",
+    "_parentId": "b-capacidades-limitaciones",
+    "_type": "component",
+    "_component": "text",
+    "_classes": "",
+    "_layout": "full",
+    "title": "Capacidades y limitaciones",
+    "displayTitle": "Capacidades y limitaciones",
+    "body": "La IA generativa es potente, pero no perfecta. <b>Puede</b>: redactar textos, generar ideas de imagen y bocetos de video en segundos. <b>No puede</b> (de forma confiable): garantizar que todo dato entregado sea 100% correcto, ni sustituir siempre el criterio humano. Ejemplo: puede inventar una fecha o cifra que suena creíble pero es falsa. En el Módulo 3 aprenderás a verificarlo.",
+    "instruction": "",
+    "_pageLevelProgress": {
+      "_isEnabled": true,
+      "_isCompletionIndicatorEnabled": false
+    }
+  },
+  {
+    "_id": "c-quiz-cb1",
+    "_parentId": "b-quiz-conceptos",
+    "_type": "component",
+    "_component": "mcq",
+    "_classes": "",
+    "_layout": "full",
+    "_attempts": 2,
+    "_questionWeight": 1,
+    "_shouldDisplayAttempts": false,
+    "_isRandom": false,
+    "_selectable": 1,
+    "title": "CB1",
+    "displayTitle": "CB1",
+    "body": "La principal diferencia entre un buscador tradicional y una herramienta de IA generativa es que la IA generativa...",
+    "instruction": "Elige una opción y selecciona Enviar.",
+    "ariaQuestion": "",
+    "_hasItemScoring": false,
+    "_canShowModelAnswer": true,
+    "_canShowCorrectness": true,
+    "_canShowFeedback": true,
+    "_canShowMarking": true,
+    "_recordInteraction": true,
+    "_items": [
+      {
+        "text": "También busca info en internet",
+        "altText": "",
+        "_shouldBeSelected": false,
+        "_isPartlyCorrect": false
+      },
+      {
+        "text": "Genera contenido nuevo que no existía antes",
+        "altText": "",
+        "_shouldBeSelected": true,
+        "_isPartlyCorrect": false
+      },
+      {
+        "text": "Solo funciona con imágenes",
+        "altText": "",
+        "_shouldBeSelected": false,
+        "_isPartlyCorrect": false
+      },
+      {
+        "text": "No necesita instrucciones",
+        "altText": "",
+        "_shouldBeSelected": false,
+        "_isPartlyCorrect": false
+      }
+    ],
+    "_feedback": {
+      "title": "Retroalimentación",
+      "altTitle": "",
+      "correct": "¡Correcto!",
+      "_incorrect": {
+        "notFinal": "",
+        "final": "No es correcto — revisa el bloque anterior y vuelve a intentar."
+      },
+      "_partlyCorrect": {
+        "notFinal": "",
+        "final": ""
+      }
+    },
+    "_pageLevelProgress": {
+      "_isEnabled": true,
+      "_isCompletionIndicatorEnabled": false
+    },
+    "_isAvailable": true
+  },
+  {
+    "_id": "c-quiz-cb2",
+    "_parentId": "b-quiz-conceptos",
+    "_type": "component",
+    "_component": "mcq",
+    "_classes": "",
+    "_layout": "full",
+    "_attempts": 2,
+    "_questionWeight": 1,
+    "_shouldDisplayAttempts": false,
+    "_isRandom": false,
+    "_selectable": 1,
+    "title": "CB2",
+    "displayTitle": "CB2",
+    "body": "'Generación', en el contexto de IA generativa, se refiere a:",
+    "instruction": "Elige una opción y selecciona Enviar.",
+    "ariaQuestion": "",
+    "_hasItemScoring": false,
+    "_canShowModelAnswer": true,
+    "_canShowCorrectness": true,
+    "_canShowFeedback": true,
+    "_canShowMarking": true,
+    "_recordInteraction": true,
+    "_items": [
+      {
+        "text": "El proceso de crear contenido nuevo a partir de un prompt",
+        "altText": "",
+        "_shouldBeSelected": true,
+        "_isPartlyCorrect": false
+      },
+      {
+        "text": "El proceso de borrar contenido",
+        "altText": "",
+        "_shouldBeSelected": false,
+        "_isPartlyCorrect": false
+      },
+      {
+        "text": "El nombre de una empresa",
+        "altText": "",
+        "_shouldBeSelected": false,
+        "_isPartlyCorrect": false
+      },
+      {
+        "text": "Un tipo de archivo de audio",
+        "altText": "",
+        "_shouldBeSelected": false,
+        "_isPartlyCorrect": false
+      }
+    ],
+    "_feedback": {
+      "title": "Retroalimentación",
+      "altTitle": "",
+      "correct": "¡Correcto!",
+      "_incorrect": {
+        "notFinal": "",
+        "final": "No es correcto — revisa el bloque anterior y vuelve a intentar."
+      },
+      "_partlyCorrect": {
+        "notFinal": "",
+        "final": ""
+      }
+    },
+    "_pageLevelProgress": {
+      "_isEnabled": true,
+      "_isCompletionIndicatorEnabled": false
+    },
+    "_isAvailable": false
+  },
+  {
+    "_id": "c-quiz-cb3",
+    "_parentId": "b-quiz-conceptos",
+    "_type": "component",
+    "_component": "mcq",
+    "_classes": "",
+    "_layout": "full",
+    "_attempts": 2,
+    "_questionWeight": 1,
+    "_shouldDisplayAttempts": false,
+    "_isRandom": false,
+    "_selectable": 1,
+    "title": "CB3",
+    "displayTitle": "CB3",
+    "body": "¿Cuál de estos NO es un tipo de contenido digital básico trabajado en este módulo?",
+    "instruction": "Elige una opción y selecciona Enviar.",
+    "ariaQuestion": "",
+    "_hasItemScoring": false,
+    "_canShowModelAnswer": true,
+    "_canShowCorrectness": true,
+    "_canShowFeedback": true,
+    "_canShowMarking": true,
+    "_recordInteraction": true,
+    "_items": [
+      {
+        "text": "Texto",
+        "altText": "",
+        "_shouldBeSelected": false,
+        "_isPartlyCorrect": false
+      },
+      {
+        "text": "Imagen",
+        "altText": "",
+        "_shouldBeSelected": false,
+        "_isPartlyCorrect": false
+      },
+      {
+        "text": "Video",
+        "altText": "",
+        "_shouldBeSelected": false,
+        "_isPartlyCorrect": false
+      },
+      {
+        "text": "Hoja de cálculo",
+        "altText": "",
+        "_shouldBeSelected": true,
+        "_isPartlyCorrect": false
+      }
+    ],
+    "_feedback": {
+      "title": "Retroalimentación",
+      "altTitle": "",
+      "correct": "¡Correcto!",
+      "_incorrect": {
+        "notFinal": "",
+        "final": "No es correcto — revisa el bloque anterior y vuelve a intentar."
+      },
+      "_partlyCorrect": {
+        "notFinal": "",
+        "final": ""
+      }
+    },
+    "_pageLevelProgress": {
+      "_isEnabled": true,
+      "_isCompletionIndicatorEnabled": false
+    },
+    "_isAvailable": false
+  },
+  {
+    "_id": "c-quiz-cb4",
+    "_parentId": "b-quiz-conceptos",
+    "_type": "component",
+    "_component": "mcq",
+    "_classes": "",
+    "_layout": "full",
+    "_attempts": 2,
+    "_questionWeight": 1,
+    "_shouldDisplayAttempts": false,
+    "_isRandom": false,
+    "_selectable": 1,
+    "title": "CB4",
+    "displayTitle": "CB4",
+    "body": "Si la política de privacidad de una herramienta de IA no es clara respecto al manejo de tus datos, ¿qué deberías hacer?",
+    "instruction": "Elige una opción y selecciona Enviar.",
+    "ariaQuestion": "",
+    "_hasItemScoring": false,
+    "_canShowModelAnswer": true,
+    "_canShowCorrectness": true,
+    "_canShowFeedback": true,
+    "_canShowMarking": true,
+    "_recordInteraction": true,
+    "_items": [
+      {
+        "text": "Ingresarlos de todas formas",
+        "altText": "",
+        "_shouldBeSelected": false,
+        "_isPartlyCorrect": false
+      },
+      {
+        "text": "Evitar ingresar información que comprometa tu privacidad",
+        "altText": "",
+        "_shouldBeSelected": true,
+        "_isPartlyCorrect": false
+      },
+      {
+        "text": "Ingresar solo la mitad",
+        "altText": "",
+        "_shouldBeSelected": false,
+        "_isPartlyCorrect": false
+      },
+      {
+        "text": "No importa, ninguna guarda datos",
+        "altText": "",
+        "_shouldBeSelected": false,
+        "_isPartlyCorrect": false
+      }
+    ],
+    "_feedback": {
+      "title": "Retroalimentación",
+      "altTitle": "",
+      "correct": "¡Correcto!",
+      "_incorrect": {
+        "notFinal": "",
+        "final": "No es correcto — revisa el bloque anterior y vuelve a intentar."
+      },
+      "_partlyCorrect": {
+        "notFinal": "",
+        "final": ""
+      }
+    },
+    "_pageLevelProgress": {
+      "_isEnabled": true,
+      "_isCompletionIndicatorEnabled": false
+    },
+    "_isAvailable": false
+  },
+  {
+    "_id": "c-quiz-cb5",
+    "_parentId": "b-quiz-conceptos",
+    "_type": "component",
+    "_component": "mcq",
+    "_classes": "",
+    "_layout": "full",
+    "_attempts": 2,
+    "_questionWeight": 1,
+    "_shouldDisplayAttempts": false,
+    "_isRandom": false,
+    "_selectable": 1,
+    "title": "CB5",
+    "displayTitle": "CB5",
+    "body": "Un ejemplo de limitación básica de la IA generativa es que puede:",
+    "instruction": "Elige una opción y selecciona Enviar.",
+    "ariaQuestion": "",
+    "_hasItemScoring": false,
+    "_canShowModelAnswer": true,
+    "_canShowCorrectness": true,
+    "_canShowFeedback": true,
+    "_canShowMarking": true,
+    "_recordInteraction": true,
+    "_items": [
+      {
+        "text": "Garantizar 100% de precisión",
+        "altText": "",
+        "_shouldBeSelected": false,
+        "_isPartlyCorrect": false
+      },
+      {
+        "text": "Generar una cifra o fecha inventada que parece correcta",
+        "altText": "",
+        "_shouldBeSelected": true,
+        "_isPartlyCorrect": false
+      },
+      {
+        "text": "Reemplazar completamente el criterio humano",
+        "altText": "",
+        "_shouldBeSelected": false,
+        "_isPartlyCorrect": false
+      },
+      {
+        "text": "Funcionar sin ninguna instrucción",
+        "altText": "",
+        "_shouldBeSelected": false,
+        "_isPartlyCorrect": false
+      }
+    ],
+    "_feedback": {
+      "title": "Retroalimentación",
+      "altTitle": "",
+      "correct": "¡Correcto!",
+      "_incorrect": {
+        "notFinal": "",
+        "final": "No es correcto — revisa el bloque anterior y vuelve a intentar."
+      },
+      "_partlyCorrect": {
+        "notFinal": "",
+        "final": ""
+      }
+    },
+    "_pageLevelProgress": {
+      "_isEnabled": true,
+      "_isCompletionIndicatorEnabled": false
+    },
+    "_isAvailable": false
+  },
+  {
+    "_id": "c-refuerzo-conceptos-basicos",
+    "_parentId": "b-refuerzo-conceptos-basicos",
+    "_type": "component",
+    "_component": "text",
+    "_classes": "",
+    "_layout": "full",
+    "title": "Repasemos",
+    "displayTitle": "Repasemos",
+    "body": "Repasemos los puntos con más dudas: un prompt es la instrucción que TÚ le das a la IA (no un tipo de archivo); la IA generativa CREA contenido nuevo (no busca información existente); siempre revisa la política de privacidad antes de ingresar datos sensibles. Aquí tienes 2 ejemplos resueltos antes de tu siguiente intento.",
+    "instruction": "",
+    "_pageLevelProgress": {
+      "_isEnabled": true,
+      "_isCompletionIndicatorEnabled": false
+    }
+  },
+  {
+    "_id": "c-sintesis-avanzada",
+    "_parentId": "b-sintesis-avanzada",
+    "_type": "component",
+    "_component": "text",
+    "_classes": "",
+    "_layout": "full",
+    "title": "Reto de síntesis",
+    "displayTitle": "Reto de síntesis",
+    "body": "Reto de síntesis: tu equipo necesita un post para redes sociales, una imagen de producto y una idea de video en 20 minutos, con una herramienta gratuita. Explica en 3-4 líneas qué herramienta usarías, qué prompt escribirías para cada tipo de contenido, y qué precaución de privacidad aplicarías antes de empezar.",
+    "instruction": "",
+    "_pageLevelProgress": {
+      "_isEnabled": true,
+      "_isCompletionIndicatorEnabled": false
+    }
+  },
+  {
+    "_id": "c-reflexion-guiada-privacidad",
+    "_parentId": "b-reflexion-guiada-privacidad",
+    "_type": "component",
+    "_component": "text",
+    "_classes": "",
+    "_layout": "full",
+    "title": "Reflexión guiada",
+    "displayTitle": "Reflexión guiada",
+    "body": "Piensa en tu trabajo o un caso que conozcas. ¿Qué tipo de información NO deberías ingresar a una herramienta de IA generativa sin verificar antes su política de privacidad? Da un ejemplo concreto (máximo 150 palabras).",
+    "instruction": "",
+    "_pageLevelProgress": {
+      "_isEnabled": true,
+      "_isCompletionIndicatorEnabled": false
+    }
+  },
+  {
+    "_id": "c-integracion-final",
+    "_parentId": "b-integracion-final",
+    "_type": "component",
+    "_component": "mcq",
+    "_classes": "",
+    "_layout": "full",
+    "_attempts": 2,
+    "_questionWeight": 1,
+    "_shouldDisplayAttempts": false,
+    "_isRandom": false,
+    "_selectable": 6,
+    "title": "Checklist de trazabilidad de interfaz",
+    "displayTitle": "Checklist de trazabilidad de interfaz",
+    "body": "Abre una herramienta de IA generativa y marca que identificaste cada uno de estos elementos. Esta es la misma evidencia que se te pedirá en tu evaluación de certificación EC1705.",
+    "instruction": "Marca todos los elementos que identificaste y selecciona Enviar.",
+    "ariaQuestion": "",
+    "_hasItemScoring": false,
+    "_canShowModelAnswer": true,
+    "_canShowCorrectness": true,
+    "_canShowFeedback": true,
+    "_canShowMarking": true,
+    "_recordInteraction": true,
+    "_items": [
+      {
+        "text": "Cuenta/acceso",
+        "altText": "",
+        "_shouldBeSelected": true,
+        "_isPartlyCorrect": false
+      },
+      {
+        "text": "Condiciones de uso",
+        "altText": "",
+        "_shouldBeSelected": true,
+        "_isPartlyCorrect": false
+      },
+      {
+        "text": "Diferencia gratis/pago",
+        "altText": "",
+        "_shouldBeSelected": true,
+        "_isPartlyCorrect": false
+      },
+      {
+        "text": "Campo de prompt",
+        "altText": "",
+        "_shouldBeSelected": true,
+        "_isPartlyCorrect": false
+      },
+      {
+        "text": "Botón de generación",
+        "altText": "",
+        "_shouldBeSelected": true,
+        "_isPartlyCorrect": false
+      },
+      {
+        "text": "Secciones de texto/imagen/video",
+        "altText": "",
+        "_shouldBeSelected": true,
+        "_isPartlyCorrect": false
+      }
+    ],
+    "_feedback": {
+      "title": "Retroalimentación",
+      "altTitle": "",
+      "correct": "Checklist completo — evidencia central del Elemento E5336.",
+      "_incorrect": {
+        "notFinal": "",
+        "final": "Revisa qué elementos te faltó marcar."
+      },
+      "_partlyCorrect": {
+        "notFinal": "",
+        "final": ""
+      }
+    },
+    "_pageLevelProgress": {
+      "_isEnabled": true,
+      "_isCompletionIndicatorEnabled": false
+    }
+  },
+  {
+    "_id": "c-eval-q1",
+    "_parentId": "b-evaluacion-modulo1",
+    "_type": "component",
+    "_component": "mcq",
+    "_classes": "",
+    "_layout": "full",
+    "_attempts": 2,
+    "_questionWeight": 1,
+    "_shouldDisplayAttempts": false,
+    "_isRandom": false,
+    "_selectable": 1,
+    "title": "Q1",
+    "displayTitle": "Q1",
+    "body": "¿Cuál opción describe mejor a la IA Generativa?",
+    "instruction": "Elige una opción y selecciona Enviar.",
+    "ariaQuestion": "",
+    "_hasItemScoring": false,
+    "_canShowModelAnswer": true,
+    "_canShowCorrectness": true,
+    "_canShowFeedback": true,
+    "_canShowMarking": true,
+    "_recordInteraction": true,
+    "_items": [
+      {
+        "text": "Un buscador de info existente",
+        "altText": "",
+        "_shouldBeSelected": false,
+        "_isPartlyCorrect": false
+      },
+      {
+        "text": "Crea contenido nuevo y original que no existía antes",
+        "altText": "",
+        "_shouldBeSelected": true,
+        "_isPartlyCorrect": false
+      },
+      {
+        "text": "Un corrector ortográfico",
+        "altText": "",
+        "_shouldBeSelected": false,
+        "_isPartlyCorrect": false
+      },
+      {
+        "text": "Un dispositivo de hardware",
+        "altText": "",
+        "_shouldBeSelected": false,
+        "_isPartlyCorrect": false
+      }
+    ],
+    "_feedback": {
+      "title": "Retroalimentación",
+      "altTitle": "",
+      "correct": "Correcto.",
+      "_incorrect": {
+        "notFinal": "",
+        "final": "Incorrecto."
+      },
+      "_partlyCorrect": {
+        "notFinal": "",
+        "final": ""
+      }
+    },
+    "_pageLevelProgress": {
+      "_isEnabled": true,
+      "_isCompletionIndicatorEnabled": false
+    }
+  },
+  {
+    "_id": "c-eval-q2",
+    "_parentId": "b-evaluacion-modulo1",
+    "_type": "component",
+    "_component": "mcq",
+    "_classes": "",
+    "_layout": "full",
+    "_attempts": 2,
+    "_questionWeight": 1,
+    "_shouldDisplayAttempts": false,
+    "_isRandom": false,
+    "_selectable": 1,
+    "title": "Q2",
+    "displayTitle": "Q2",
+    "body": "Un prompt es:",
+    "instruction": "Elige una opción y selecciona Enviar.",
+    "ariaQuestion": "",
+    "_hasItemScoring": false,
+    "_canShowModelAnswer": true,
+    "_canShowCorrectness": true,
+    "_canShowFeedback": true,
+    "_canShowMarking": true,
+    "_recordInteraction": true,
+    "_items": [
+      {
+        "text": "Un archivo de imagen",
+        "altText": "",
+        "_shouldBeSelected": false,
+        "_isPartlyCorrect": false
+      },
+      {
+        "text": "Un error de la herramienta",
+        "altText": "",
+        "_shouldBeSelected": false,
+        "_isPartlyCorrect": false
+      },
+      {
+        "text": "La instrucción que el usuario da a la IA para indicar qué generar",
+        "altText": "",
+        "_shouldBeSelected": true,
+        "_isPartlyCorrect": false
+      },
+      {
+        "text": "Un tipo de licencia",
+        "altText": "",
+        "_shouldBeSelected": false,
+        "_isPartlyCorrect": false
+      }
+    ],
+    "_feedback": {
+      "title": "Retroalimentación",
+      "altTitle": "",
+      "correct": "Correcto.",
+      "_incorrect": {
+        "notFinal": "",
+        "final": "Incorrecto."
+      },
+      "_partlyCorrect": {
+        "notFinal": "",
+        "final": ""
+      }
+    },
+    "_pageLevelProgress": {
+      "_isEnabled": true,
+      "_isCompletionIndicatorEnabled": false
+    }
+  },
+  {
+    "_id": "c-eval-q3",
+    "_parentId": "b-evaluacion-modulo1",
+    "_type": "component",
+    "_component": "mcq",
+    "_classes": "",
+    "_layout": "full",
+    "_attempts": 2,
+    "_questionWeight": 1,
+    "_shouldDisplayAttempts": false,
+    "_isRandom": false,
+    "_selectable": 1,
+    "title": "Q3",
+    "displayTitle": "Q3",
+    "body": "¿Cuáles son los tres tipos de contenido digital básico de este módulo?",
+    "instruction": "Elige una opción y selecciona Enviar.",
+    "ariaQuestion": "",
+    "_hasItemScoring": false,
+    "_canShowModelAnswer": true,
+    "_canShowCorrectness": true,
+    "_canShowFeedback": true,
+    "_canShowMarking": true,
+    "_recordInteraction": true,
+    "_items": [
+      {
+        "text": "Texto, imagen y video",
+        "altText": "",
+        "_shouldBeSelected": true,
+        "_isPartlyCorrect": false
+      },
+      {
+        "text": "Texto, hoja de cálculo y base de datos",
+        "altText": "",
+        "_shouldBeSelected": false,
+        "_isPartlyCorrect": false
+      },
+      {
+        "text": "Imagen, código y sonido",
+        "altText": "",
+        "_shouldBeSelected": false,
+        "_isPartlyCorrect": false
+      },
+      {
+        "text": "Video, presentación y correo",
+        "altText": "",
+        "_shouldBeSelected": false,
+        "_isPartlyCorrect": false
+      }
+    ],
+    "_feedback": {
+      "title": "Retroalimentación",
+      "altTitle": "",
+      "correct": "Correcto.",
+      "_incorrect": {
+        "notFinal": "",
+        "final": "Incorrecto."
+      },
+      "_partlyCorrect": {
+        "notFinal": "",
+        "final": ""
+      }
+    },
+    "_pageLevelProgress": {
+      "_isEnabled": true,
+      "_isCompletionIndicatorEnabled": false
+    }
+  },
+  {
+    "_id": "c-eval-q4",
+    "_parentId": "b-evaluacion-modulo1",
+    "_type": "component",
+    "_component": "mcq",
+    "_classes": "",
+    "_layout": "full",
+    "_attempts": 2,
+    "_questionWeight": 1,
+    "_shouldDisplayAttempts": false,
+    "_isRandom": false,
+    "_selectable": 1,
+    "title": "Q4",
+    "displayTitle": "Q4",
+    "body": "Antes de ingresar info de tu trabajo a una IA generativa en línea, ¿qué deberías hacer primero?",
+    "instruction": "Elige una opción y selecciona Enviar.",
+    "ariaQuestion": "",
+    "_hasItemScoring": false,
+    "_canShowModelAnswer": true,
+    "_canShowCorrectness": true,
+    "_canShowFeedback": true,
+    "_canShowMarking": true,
+    "_recordInteraction": true,
+    "_items": [
+      {
+        "text": "Nada, todas son seguras",
+        "altText": "",
+        "_shouldBeSelected": false,
+        "_isPartlyCorrect": false
+      },
+      {
+        "text": "Revisar su política de privacidad",
+        "altText": "",
+        "_shouldBeSelected": true,
+        "_isPartlyCorrect": false
+      },
+      {
+        "text": "Compartirla solo en inglés",
+        "altText": "",
+        "_shouldBeSelected": false,
+        "_isPartlyCorrect": false
+      },
+      {
+        "text": "Preguntarle a la IA si es segura",
+        "altText": "",
+        "_shouldBeSelected": false,
+        "_isPartlyCorrect": false
+      }
+    ],
+    "_feedback": {
+      "title": "Retroalimentación",
+      "altTitle": "",
+      "correct": "Correcto.",
+      "_incorrect": {
+        "notFinal": "",
+        "final": "Incorrecto."
+      },
+      "_partlyCorrect": {
+        "notFinal": "",
+        "final": ""
+      }
+    },
+    "_pageLevelProgress": {
+      "_isEnabled": true,
+      "_isCompletionIndicatorEnabled": false
+    }
+  },
+  {
+    "_id": "c-eval-q5",
+    "_parentId": "b-evaluacion-modulo1",
+    "_type": "component",
+    "_component": "mcq",
+    "_classes": "",
+    "_layout": "full",
+    "_attempts": 2,
+    "_questionWeight": 1,
+    "_shouldDisplayAttempts": false,
+    "_isRandom": false,
+    "_selectable": 1,
+    "title": "Q5",
+    "displayTitle": "Q5",
+    "body": "¿Cuál es un ejemplo de limitación común de la IA generativa a nivel básico?",
+    "instruction": "Elige una opción y selecciona Enviar.",
+    "ariaQuestion": "",
+    "_hasItemScoring": false,
+    "_canShowModelAnswer": true,
+    "_canShowCorrectness": true,
+    "_canShowFeedback": true,
+    "_canShowMarking": true,
+    "_recordInteraction": true,
+    "_items": [
+      {
+        "text": "Nunca comete errores",
+        "altText": "",
+        "_shouldBeSelected": false,
+        "_isPartlyCorrect": false
+      },
+      {
+        "text": "Puede generar información creíble pero incorrecta",
+        "altText": "",
+        "_shouldBeSelected": true,
+        "_isPartlyCorrect": false
+      },
+      {
+        "text": "Solo funciona sin Internet",
+        "altText": "",
+        "_shouldBeSelected": false,
+        "_isPartlyCorrect": false
+      },
+      {
+        "text": "No puede generar texto",
+        "altText": "",
+        "_shouldBeSelected": false,
+        "_isPartlyCorrect": false
+      }
+    ],
+    "_feedback": {
+      "title": "Retroalimentación",
+      "altTitle": "",
+      "correct": "Correcto.",
+      "_incorrect": {
+        "notFinal": "",
+        "final": "Incorrecto."
+      },
+      "_partlyCorrect": {
+        "notFinal": "",
+        "final": ""
+      }
+    },
+    "_pageLevelProgress": {
+      "_isEnabled": true,
+      "_isCompletionIndicatorEnabled": false
+    }
+  },
+  {
+    "_id": "c-eval-q6",
+    "_parentId": "b-evaluacion-modulo1",
+    "_type": "component",
+    "_component": "mcq",
+    "_classes": "",
+    "_layout": "full",
+    "_attempts": 2,
+    "_questionWeight": 1,
+    "_shouldDisplayAttempts": false,
+    "_isRandom": false,
+    "_selectable": 1,
+    "title": "Q6",
+    "displayTitle": "Q6",
+    "body": "En la interfaz de una herramienta de IA generativa, el campo de prompt es:",
+    "instruction": "Elige una opción y selecciona Enviar.",
+    "ariaQuestion": "",
+    "_hasItemScoring": false,
+    "_canShowModelAnswer": true,
+    "_canShowCorrectness": true,
+    "_canShowFeedback": true,
+    "_canShowMarking": true,
+    "_recordInteraction": true,
+    "_items": [
+      {
+        "text": "El botón de cerrar sesión",
+        "altText": "",
+        "_shouldBeSelected": false,
+        "_isPartlyCorrect": false
+      },
+      {
+        "text": "El recuadro donde escribes tu instrucción para la IA",
+        "altText": "",
+        "_shouldBeSelected": true,
+        "_isPartlyCorrect": false
+      },
+      {
+        "text": "El menú de idioma",
+        "altText": "",
+        "_shouldBeSelected": false,
+        "_isPartlyCorrect": false
+      },
+      {
+        "text": "El historial de pagos",
+        "altText": "",
+        "_shouldBeSelected": false,
+        "_isPartlyCorrect": false
+      }
+    ],
+    "_feedback": {
+      "title": "Retroalimentación",
+      "altTitle": "",
+      "correct": "Correcto.",
+      "_incorrect": {
+        "notFinal": "",
+        "final": "Incorrecto."
+      },
+      "_partlyCorrect": {
+        "notFinal": "",
+        "final": ""
+      }
+    },
+    "_pageLevelProgress": {
+      "_isEnabled": true,
+      "_isCompletionIndicatorEnabled": false
+    }
+  },
+  {
+    "_id": "c-eval-q7",
+    "_parentId": "b-evaluacion-modulo1",
+    "_type": "component",
+    "_component": "mcq",
+    "_classes": "",
+    "_layout": "full",
+    "_attempts": 2,
+    "_questionWeight": 1,
+    "_shouldDisplayAttempts": false,
+    "_isRandom": false,
+    "_selectable": 1,
+    "title": "Q7",
+    "displayTitle": "Q7",
+    "body": "¿Qué distingue típicamente a una versión gratuita de una de pago?",
+    "instruction": "Elige una opción y selecciona Enviar.",
+    "ariaQuestion": "",
+    "_hasItemScoring": false,
+    "_canShowModelAnswer": true,
+    "_canShowCorrectness": true,
+    "_canShowFeedback": true,
+    "_canShowMarking": true,
+    "_recordInteraction": true,
+    "_items": [
+      {
+        "text": "Nada, son idénticas",
+        "altText": "",
+        "_shouldBeSelected": false,
+        "_isPartlyCorrect": false
+      },
+      {
+        "text": "La de pago suele ofrecer más funciones, límites más altos o mayor velocidad",
+        "altText": "",
+        "_shouldBeSelected": true,
+        "_isPartlyCorrect": false
+      },
+      {
+        "text": "La gratuita genera mejor calidad siempre",
+        "altText": "",
+        "_shouldBeSelected": false,
+        "_isPartlyCorrect": false
+      },
+      {
+        "text": "La de pago no requiere cuenta",
+        "altText": "",
+        "_shouldBeSelected": false,
+        "_isPartlyCorrect": false
+      }
+    ],
+    "_feedback": {
+      "title": "Retroalimentación",
+      "altTitle": "",
+      "correct": "Correcto.",
+      "_incorrect": {
+        "notFinal": "",
+        "final": "Incorrecto."
+      },
+      "_partlyCorrect": {
+        "notFinal": "",
+        "final": ""
+      }
+    },
+    "_pageLevelProgress": {
+      "_isEnabled": true,
+      "_isCompletionIndicatorEnabled": false
+    }
+  },
+  {
+    "_id": "c-eval-q8",
+    "_parentId": "b-evaluacion-modulo1",
+    "_type": "component",
+    "_component": "mcq",
+    "_classes": "",
+    "_layout": "full",
+    "_attempts": 2,
+    "_questionWeight": 1,
+    "_shouldDisplayAttempts": false,
+    "_isRandom": false,
+    "_selectable": 1,
+    "title": "Q8",
+    "displayTitle": "Q8",
+    "body": "Si no encuentras el botón para generar contenido, ¿qué deberías revisar primero?",
+    "instruction": "Elige una opción y selecciona Enviar.",
+    "ariaQuestion": "",
+    "_hasItemScoring": false,
+    "_canShowModelAnswer": true,
+    "_canShowCorrectness": true,
+    "_canShowFeedback": true,
+    "_canShowMarking": true,
+    "_recordInteraction": true,
+    "_items": [
+      {
+        "text": "Cambiar de computadora",
+        "altText": "",
+        "_shouldBeSelected": false,
+        "_isPartlyCorrect": false
+      },
+      {
+        "text": "Las secciones/menús específicos para el tipo de contenido que buscas generar",
+        "altText": "",
+        "_shouldBeSelected": true,
+        "_isPartlyCorrect": false
+      },
+      {
+        "text": "No volver a intentar",
+        "altText": "",
+        "_shouldBeSelected": false,
+        "_isPartlyCorrect": false
+      },
+      {
+        "text": "Pedir a la IA que se genere sola",
+        "altText": "",
+        "_shouldBeSelected": false,
+        "_isPartlyCorrect": false
+      }
+    ],
+    "_feedback": {
+      "title": "Retroalimentación",
+      "altTitle": "",
+      "correct": "Correcto.",
+      "_incorrect": {
+        "notFinal": "",
+        "final": "Incorrecto."
+      },
+      "_partlyCorrect": {
+        "notFinal": "",
+        "final": ""
+      }
+    },
+    "_pageLevelProgress": {
+      "_isEnabled": true,
+      "_isCompletionIndicatorEnabled": false
+    }
+  }
+]
