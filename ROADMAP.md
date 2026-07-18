@@ -21,20 +21,22 @@ cuántas variantes necesitas duplica trabajo.
 
 ## Iteración 0 — Fundación (antes de diseñar nada de contenido)
 
-- [ ] `lxd/00-glosario-ids.json` — al menos un borrador: `courseId`, lista
+- [x] `lxd/00-glosario-ids.json` — al menos un borrador: `courseId`, lista
   provisional de `checkpointId` (2-3, ya acordado con desarrollo), IDs de
   `contentObject`/bloque aunque cambien después. Esto desbloquea todo lo
   demás.
 
 ## Iteración 1 — Análisis y la decisión adaptativa (el núcleo del proyecto)
 
-- [ ] Fase 1 → `lxd/01-analisis-objetivos.md`: público, prerrequisitos,
+- [x] Fase 1 → `lxd/01-analisis-objetivos.md`: público, prerrequisitos,
   duración, objetivos con Bloom, mapa de evidencia.
 - [ ] Fase 2 → `lxd/02-especificacion-decision-checkpoints.json`: por cada
   checkpoint, señales evaluadas, rutas posibles, criterio de selección, caso
-  "sin historial previo". **Este es el entregable más crítico del proyecto**
-  — es lo que cierra la brecha #1 (ver `docs/riesgos.md`) y lo que desarrollo
-  usa para poner guardrails reales en `middleware/src/claude.js`.
+  "sin historial previo" (rutas y criterios de selección completos;
+  `espacioDeHipotesis`/`configMotor` sin calibrar — ver `lxd/02`). **Este es
+  el entregable más crítico del proyecto** — es lo que cierra la brecha #1
+  (ver `docs/riesgos.md`) y lo que desarrollo usa para poner guardrails
+  reales en `middleware/src/claude.js`.
 
 Gate de esta iteración: todo objetivo de la Fase 1 debe poder trazarse a al
 menos un checkpoint de la Fase 2. Si un objetivo no se puede evaluar en
@@ -42,10 +44,12 @@ ningún checkpoint, o el objetivo está mal planteado o falta un checkpoint.
 
 ## Iteración 2 — Contenido y tracking
 
-- [ ] Fase 3 → `lxd/03-storyboard.md`: bloque por bloque, usando Merrill's
+- [x] Fase 3 → `lxd/03-storyboard.md`: bloque por bloque, usando Merrill's
   First Principles como estructura interna de cada `contentObject`
   (problema real → activación → demostración → aplicación → integración).
-- [ ] Fase 4 → `lxd/04-diccionario-xapi.md`: completa/ajusta
+  (17 bloques de Módulo 1 completos; 3 bloques reservados de apertura/cierre
+  de curso con contenido pendiente).
+- [x] Fase 4 → `lxd/04-diccionario-xapi.md`: completa/ajusta
   `docs/xapi-verbs.md` con cada interacción real que el storyboard terminó
   definiendo. Preferir verbos ADL estándar sobre los 3 custom ya definidos.
 
@@ -54,9 +58,9 @@ como fila en el storyboard (Definition of Done del proyecto completo).
 
 ## Iteración 3 — Producción y validación
 
-- [ ] Fase 5 → `lxd/05-banco-evaluacion.md` + `lxd/06-assets.md`: ítems de
+- [x] Fase 5 → `lxd/05-banco-evaluacion.md` + `lxd/06-assets.md`: ítems de
   evaluación con rúbrica, lista de medios con specs técnicas.
-- [ ] Fase 6 → `lxd/07-checklist-udl.md`: aplicado a cada variante de ruta
+- [x] Fase 6 → `lxd/07-checklist-udl.md`: aplicado a cada variante de ruta
   adaptativa, no solo a la ruta default — cada rama es una obligación de
   accesibilidad aparte, no un extra opcional.
 

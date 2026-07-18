@@ -44,10 +44,7 @@ de forma determinista vía `resolveNextBlockId()`, con guardrails estructurales
 o `casoSinHistorialPrevio` — no hay superficie para que devuelva algo fuera de
 esa lista). Claude queda solo para redactar feedback (`POST /api/item-response`).
 
-Pendiente real: no hay banco de ítems ni checkpoints reales todavía (`lxd/`
-sigue en plantilla), así que esto no se ha probado con datos de un alumno
-real — sigue bloqueado hasta que exista `lxd/02` + `lxd/08` completos y pase
-la validación Monte Carlo (ver `ROADMAP.md`, "Gate del motor bayesiano").
+Pendiente real (actualizado en este PR): `lxd/00`, `01`, `03`, `04`, `05`, `06` y `07` ya están completos para el Módulo 1 (EC1705/E5336) y los checkpoints de apertura/cierre de curso. `lxd/02` tiene los 4 checkpoints reales con rutas y `criterioDeSeleccion` documentado (fallback funcional sin el motor), pero `espacioDeHipotesis`, `configMotor` (valores de arranque sin validar), `hipotesisAsociadas`/`factorAsociado` por ruta y `rutaPorDefectoSiAmbiguo` siguen sin calibrar. `lxd/08` sigue vacío (solo con las claves de checkpoint reservadas). Sigue bloqueado hasta que exista esa calibración y pase `npm run monte-carlo -- <checkpointId>` con exactitud equilibrada ≥ 0.70 (ver `ROADMAP.md`, "Gate del motor bayesiano").
 
 ## Brecha #2 — persistencia del estado bayesiano no probada contra uso real
 
