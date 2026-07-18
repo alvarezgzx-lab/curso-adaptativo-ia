@@ -1,38 +1,71 @@
 {
-  "_readme": "Fuente única de verdad de IDs. Estos strings deben coincidir LITERALMENTE con course.json (Adapt), con el checkpointId que envía la extensión decisionEngine.js, y con el nextBlockId que devuelve middleware/src/claude.js. No dupliques IDs entre listas. Completa tú los valores reales — aquí solo hay placeholders de ejemplo con el formato esperado.",
+  "_readme": "Fuente única de verdad de IDs para TODO EL CURSO (diagnóstico inicial + Módulos 1-3 + evaluación final), no solo para un módulo. Todo checkpointId/blockId nuevo, sin importar en qué momento se diseñe cada módulo, se agrega AQUÍ antes de usarse en course.json, decisionEngine.js o middleware/src/claude.js. Es append-only: nunca se reescribe ni se elimina un ID ya usado en producción, solo se agregan nuevos.",
 
   "courseId": "curso-adaptativo-ia",
 
+  "convencionDeActorYContexto": "El actor xAPI (alumno) usa un identificador ÚNICO Y ESTABLE para todo el curso (ej. account.name = ID del alumno en el LMS), nunca un ID distinto por módulo. Todo statement de cualquier módulo/checkpoint debe incluir context.contextActivities.grouping = courseId (este valor) Y context.contextActivities.parent = el moduleId del bloque donde ocurrió. Esto permite que una consulta a la LRS filtre 'todo el histórico del alumno en este curso' o 'solo este módulo' con el mismo dato, sin necesidad de una tabla de mapeo aparte.",
+
+  "modulosRegistrados": [
+    { "moduleId": "m0-linea-base-curso", "descripcion": "Diagnóstico inicial de apertura de todo el curso (bookend de entrada).", "estado": "diseñado en esta iteración", "fuente": "checkpoints-decision-curso.json" },
+    { "moduleId": "m1-fundamentos-iagen", "descripcion": "Módulo 1 — Fundamentos, ética y marco regulatorio (Elemento E5336 de EC1705).", "estado": "diseñado", "fuente": "guion-instruccional-modulo-1-EC1705.md" },
+    { "moduleId": "m2-produccion-texto-imagen", "descripcion": "Módulo 2 — Producción práctica: Texto e Imagen.", "estado": "pendiente de diseño", "fuente": null },
+    { "moduleId": "m3-produccion-audio-video-uso-responsable", "descripcion": "Módulo 3 — Producción práctica: Audio, Video y uso responsable.", "estado": "pendiente de diseño", "fuente": null },
+    { "moduleId": "m4-cierre-curso", "descripcion": "Evaluación final del curso (bookend de cierre); agrega el histórico de m0-m3.", "estado": "checkpoint diseñado en esta iteración; bloques de contenido de la ruta 'repaso dirigido' pendientes hasta que M2/M3 existan y se sepa sobre qué objetivos repasar", "fuente": "checkpoints-decision-curso.json" }
+  ],
+
   "checkpoints": [
     {
-      "checkpointId": "TU-CHECKPOINT-1-AQUI",
-      "descripcionCorta": "",
-      "ubicacionEnCurso": ""
+      "checkpointId": "chk-diagnostico-curso-inicial",
+      "moduleId": "m0-linea-base-curso",
+      "descripcionCorta": "Línea base de todo el curso (conocimientos/actitudes previas sobre IA generativa). No exime desempeños de certificación; se compara contra chk-evaluacion-final-curso para medir avance.",
+      "ubicacionEnCurso": "Primer punto de contacto del curso, antes de b-bienvenida-m1."
     },
     {
-      "checkpointId": "TU-CHECKPOINT-2-AQUI",
-      "descripcionCorta": "",
-      "ubicacionEnCurso": ""
+      "checkpointId": "chk-diagnostico-inicial",
+      "moduleId": "m1-fundamentos-iagen",
+      "descripcionCorta": "Diagnóstico local de experiencia previa; determina andamiaje de la exploración de interfaz dentro de M1.",
+      "ubicacionEnCurso": "Dentro de M1, después de la introducción conceptual y antes de la exploración práctica de interfaz."
+    },
+    {
+      "checkpointId": "chk-conceptos-basicos",
+      "moduleId": "m1-fundamentos-iagen",
+      "descripcionCorta": "Verificación formativa de conceptos básicos de M1 antes de la síntesis final del módulo.",
+      "ubicacionEnCurso": "Dentro de M1, después de precauciones de seguridad/privacidad y capacidades/limitaciones."
+    },
+    {
+      "checkpointId": "chk-evaluacion-final-curso",
+      "moduleId": "m4-cierre-curso",
+      "descripcionCorta": "Checkpoint de cierre: agrega TODO el histórico xAPI del alumno (todos los módulos lanzados hasta la fecha + retroalimentación) para enrutar la evaluación final de certificación.",
+      "ubicacionEnCurso": "Al final del Módulo 3 / bloque de cierre del curso."
     }
   ],
 
   "contentObjects": [
-    {
-      "blockId": "TU-BLOCK-ID-AQUI",
-      "tipo": "contentObject | article | block | component",
-      "descripcionCorta": "",
-      "esCandidatoDeRuta": false
-    }
+    { "blockId": "b-diagnostico-curso-inicial", "moduleId": "m0-linea-base-curso", "tipo": "component", "descripcionCorta": "Prueba diagnóstica de línea base de todo el curso.", "esCandidatoDeRuta": false },
+
+    { "blockId": "b-bienvenida-m1", "moduleId": "m1-fundamentos-iagen", "tipo": "article", "descripcionCorta": "Bienvenida y escenario laboral que activa el interés por el módulo.", "esCandidatoDeRuta": false },
+    { "blockId": "b-que-es-iagen", "moduleId": "m1-fundamentos-iagen", "tipo": "block", "descripcionCorta": "Concepto y propósito de la IA generativa.", "esCandidatoDeRuta": false },
+    { "blockId": "b-terminologia-basica", "moduleId": "m1-fundamentos-iagen", "tipo": "component", "descripcionCorta": "Terminología: prompt y generación, actividad de emparejar.", "esCandidatoDeRuta": false },
+    { "blockId": "b-tipos-contenido", "moduleId": "m1-fundamentos-iagen", "tipo": "block", "descripcionCorta": "Tipos de contenido digital: texto, imagen, video.", "esCandidatoDeRuta": false },
+    { "blockId": "b-diagnostico-previo", "moduleId": "m1-fundamentos-iagen", "tipo": "component", "descripcionCorta": "Autodiagnóstico local de experiencia previa; alimenta chk-diagnostico-inicial.", "esCandidatoDeRuta": false },
+    { "blockId": "b-exploracion-guiada-principiante", "moduleId": "m1-fundamentos-iagen", "tipo": "block", "descripcionCorta": "Exploración de interfaz paso a paso con andamiaje alto.", "esCandidatoDeRuta": true },
+    { "blockId": "b-practica-exploracion-principiante", "moduleId": "m1-fundamentos-iagen", "tipo": "component", "descripcionCorta": "Práctica de identificación de elementos de interfaz sobre captura anotada.", "esCandidatoDeRuta": false },
+    { "blockId": "b-exploracion-directa-experiencia", "moduleId": "m1-fundamentos-iagen", "tipo": "block", "descripcionCorta": "Exploración de interfaz por reto comparativo (2 herramientas), menor andamiaje.", "esCandidatoDeRuta": true },
+    { "blockId": "b-practica-exploracion-avanzada", "moduleId": "m1-fundamentos-iagen", "tipo": "component", "descripcionCorta": "Autoevaluación de la tabla comparativa de herramientas.", "esCandidatoDeRuta": false },
+    { "blockId": "b-precauciones-seguridad", "moduleId": "m1-fundamentos-iagen", "tipo": "block", "descripcionCorta": "Precauciones básicas de seguridad y privacidad al usar IA en línea.", "esCandidatoDeRuta": false },
+    { "blockId": "b-capacidades-limitaciones", "moduleId": "m1-fundamentos-iagen", "tipo": "block", "descripcionCorta": "Capacidades generales y limitaciones comunes de la IA generativa.", "esCandidatoDeRuta": false },
+    { "blockId": "b-quiz-conceptos", "moduleId": "m1-fundamentos-iagen", "tipo": "component", "descripcionCorta": "Quiz formativo de 5 ítems; alimenta chk-conceptos-basicos.", "esCandidatoDeRuta": false },
+    { "blockId": "b-refuerzo-conceptos-basicos", "moduleId": "m1-fundamentos-iagen", "tipo": "block", "descripcionCorta": "Repaso reforzado de conceptos con ejemplos resueltos adicionales.", "esCandidatoDeRuta": true },
+    { "blockId": "b-sintesis-avanzada", "moduleId": "m1-fundamentos-iagen", "tipo": "block", "descripcionCorta": "Reto de síntesis integrador para quien aprobó el quiz formativo.", "esCandidatoDeRuta": true },
+    { "blockId": "b-reflexion-guiada-privacidad", "moduleId": "m1-fundamentos-iagen", "tipo": "component", "descripcionCorta": "Reflexión guiada breve (≤150 palabras) sobre datos sensibles y privacidad.", "esCandidatoDeRuta": false },
+    { "blockId": "b-integracion-final", "moduleId": "m1-fundamentos-iagen", "tipo": "block", "descripcionCorta": "Checklist de trazabilidad de interfaz en herramienta real; evidencia central de E5336.", "esCandidatoDeRuta": false },
+    { "blockId": "b-evaluacion-modulo1", "moduleId": "m1-fundamentos-iagen", "tipo": "component", "descripcionCorta": "Evaluación sumativa (prueba objetiva, 30 min) del Módulo 1.", "esCandidatoDeRuta": false },
+
+    { "blockId": "b-evaluacion-final-estandar", "moduleId": "m4-cierre-curso", "tipo": "component", "descripcionCorta": "Examen de certificación EC1705 estándar, sin repaso previo (ruta directa).", "esCandidatoDeRuta": true },
+    { "blockId": "b-evaluacion-final-repaso-dirigido", "moduleId": "m4-cierre-curso", "tipo": "block", "descripcionCorta": "Repaso dirigido a los objetivos con más señales de dificultad acumuladas en el curso, antes del examen de certificación.", "esCandidatoDeRuta": true }
   ],
 
-  "itemIds": [
-    {
-      "itemId": "TU-ITEM-ID-AQUI",
-      "checkpointId": "TU-CHECKPOINT-1-AQUI",
-      "categoria": "",
-      "esItemDeSalida": false
-    }
-  ],
+  "itemIds": [],
 
-  "notaSobreConvencionDeNombres": "Sugerencia (ajústala si ya tienes otra convención): checkpointId en kebab-case descriptivo, ej. 'chk-conceptos-basicos'; blockId igual, ej. 'b-refuerzo-conceptos-basicos', 'b-avanzado-conceptos-basicos' — que el nombre ya sugiera si es ruta de refuerzo o avance ayuda a leer la Fase 2 sin tener que saltar de documento."
+  "notaSobreConvencionDeNombres": "checkpointId en kebab-case descriptivo, ej. 'chk-conceptos-basicos'; blockId igual, ej. 'b-refuerzo-conceptos-basicos', 'b-evaluacion-final-repaso-dirigido' — el nombre sugiere si es ruta de refuerzo/andamiaje alto o de avance/menor andamiaje. Los IDs de bloques y checkpoints NO se prefijan con el moduleId (ej. no 'm1-b-bienvenida-m1'): la pertenencia a un módulo se resuelve por el campo 'moduleId' de este registro y por context.contextActivities.parent en xAPI, no por el string del ID. Esto evita tener que renombrar IDs si algún día se reordenan los módulos."
 }
