@@ -7,7 +7,7 @@
 
   "modulosRegistrados": [
     { "moduleId": "m0-linea-base-curso", "descripcion": "Diagnóstico inicial de apertura de todo el curso (bookend de entrada).", "estado": "diseñado en esta iteración", "fuente": "checkpoints-decision-curso.json" },
-    { "moduleId": "m1-fundamentos-iagen", "descripcion": "Módulo 1 — Fundamentos, ética y marco regulatorio (Elemento E5336 de EC1705).", "estado": "diseñado", "fuente": "guion-instruccional-modulo-1-EC1705.md" },
+    { "moduleId": "m1-fundamentos-iagen", "descripcion": "Módulo 1 — Fundamentos, ética y marco regulatorio (Elemento E5336 de EC1705). Corregido para incluir espectro básico↔avanzado en sus rutas adaptativas (mismo principio que M2).", "estado": "diseñado (corregido)", "fuente": "guion-instruccional-modulo-1-EC1705.md" },
     { "moduleId": "m2-produccion-texto-imagen", "descripcion": "Módulo 2 — Producción práctica: Texto e Imagen.", "estado": "pendiente de diseño", "fuente": null },
     { "moduleId": "m3-produccion-audio-video-uso-responsable", "descripcion": "Módulo 3 — Producción práctica: Audio, Video y uso responsable.", "estado": "pendiente de diseño", "fuente": null },
     { "moduleId": "m4-cierre-curso", "descripcion": "Evaluación final del curso (bookend de cierre); agrega el histórico de m0-m3.", "estado": "checkpoint diseñado en esta iteración; bloques de contenido de la ruta 'repaso dirigido' pendientes hasta que M2/M3 existan y se sepa sobre qué objetivos repasar", "fuente": "checkpoints-decision-curso.json" }
@@ -37,6 +37,12 @@
       "moduleId": "m4-cierre-curso",
       "descripcionCorta": "Checkpoint de cierre: agrega TODO el histórico xAPI del alumno (todos los módulos lanzados hasta la fecha + retroalimentación) para enrutar la evaluación final de certificación.",
       "ubicacionEnCurso": "Al final del Módulo 3 / bloque de cierre del curso."
+    },
+    {
+      "checkpointId": "chk-avance-fundamentos",
+      "moduleId": "m1-fundamentos-iagen",
+      "descripcionCorta": "Punto del espectro básico↔avanzado en M1 (agregado en la corrección de esta iteración, mismo patrón que chk-avance-texto/chk-avance-imagen de M2): si el alumno domina el piso de E5336 en su primer intento y muestra interés explícito, desbloquea la rama de enriquecimiento opcional (arquitecturas, límites técnicos, Clasificación de Niza, ética institucional); si no, continúa directo, sin penalización.",
+      "ubicacionEnCurso": "Dentro de M1, inmediatamente después de chk-conceptos-basicos, al final de b-sintesis-avanzada."
     }
   ],
 
@@ -60,6 +66,8 @@
     { "blockId": "b-reflexion-guiada-privacidad", "moduleId": "m1-fundamentos-iagen", "tipo": "component", "descripcionCorta": "Reflexión guiada breve (≤150 palabras) sobre datos sensibles y privacidad.", "esCandidatoDeRuta": false },
     { "blockId": "b-integracion-final", "moduleId": "m1-fundamentos-iagen", "tipo": "block", "descripcionCorta": "Checklist de trazabilidad de interfaz en herramienta real; evidencia central de E5336.", "esCandidatoDeRuta": false },
     { "blockId": "b-evaluacion-modulo1", "moduleId": "m1-fundamentos-iagen", "tipo": "component", "descripcionCorta": "Evaluación sumativa (prueba objetiva, 30 min) del Módulo 1.", "esCandidatoDeRuta": false },
+    { "blockId": "b-fundamentos-avanzados", "moduleId": "m1-fundamentos-iagen", "tipo": "block", "descripcionCorta": "Ruta avanzada opcional (agregada en corrección): arquitecturas autoregresiva/difusión, ventana de contexto, comercial vs. self-hosted. Alimenta chk-avance-fundamentos como destino.", "esCandidatoDeRuta": true },
+    { "blockId": "b-etica-legal-avanzado", "moduleId": "m1-fundamentos-iagen", "tipo": "block", "descripcionCorta": "Ruta avanzada opcional (agregada en corrección), sigue a b-fundamentos-avanzados: Clasificación de Niza y ética institucional (UNESCO).", "esCandidatoDeRuta": true },
 
     { "blockId": "b-evaluacion-final-estandar", "moduleId": "m4-cierre-curso", "tipo": "component", "descripcionCorta": "Examen de certificación EC1705 estándar, sin repaso previo (ruta directa).", "esCandidatoDeRuta": true },
     { "blockId": "b-evaluacion-final-repaso-dirigido", "moduleId": "m4-cierre-curso", "tipo": "block", "descripcionCorta": "Repaso dirigido a los objetivos con más señales de dificultad acumuladas en el curso, antes del examen de certificación.", "esCandidatoDeRuta": true }

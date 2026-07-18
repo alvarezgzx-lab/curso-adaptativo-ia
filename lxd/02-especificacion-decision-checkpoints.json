@@ -2,7 +2,7 @@
   "_readme": "Extiende plantilla-checkpoints-decision.json (guion-instruccional-adaptativo). El campo 'criterioDeSeleccion' en lenguaje claro SE CONSERVA como documentación para humanos y como fallback si bayesEngine.resolveNextBlockId devuelve null por falta de parámetros — pero la decisión real la calcula el motor, no Claude. Cada checkpointId existe en lxd/00-glosario-ids.json. Cada nextBlockId candidato existe como fila en lxd/03-storyboard.md.",
 
   "espacioDeHipotesis": {
-    "_comentario": "SIN CALIBRAR — copiado del template sin modificar valores. Pendiente: anclar nivelBloomAsociado y definir factoresDeError reales del curso EC1705/E5336 (ver docs/arquitectura-motor-bayesiano-adaptativo.md, sección 6 — 'trabajo de Ángel, no de esta integración técnica'). No usar en producción hasta calibrar y correr npm run monte-carlo.",
+    "_comentario": "SIN CALIBRAR — copiado del template sin modificar valores. Pendiente: anclar nivelBloomAsociado y definir factoresDeError reales del curso EC1705/E5336 (ver docs/arquitectura-motor-bayesiano-adaptativo.md, sección 6 — 'trabajo de Ángel, no de esta integración técnica'). No usar en producción hasta calibrar y correr npm run monte-carlo. chk-avance-fundamentos (agregado en la corrección de Módulo 1) es, junto con chk-avance-texto/chk-avance-imagen de Módulo 2, un checkpoint donde el criterioDeSeleccion depende de una señal de PREFERENCIA del alumno (interesAvanzado), no solo de desempeño — al calibrar, la rama H_avanzado debe modelarse para que la preferencia explícita pese en la decisión y no solo la evidencia de dominio, para no violar la regla de nunca penalizar por no tomar la ruta avanzada.",
     "nivel": {
       "ids": ["H_basico", "H_medio", "H_avanzado"],
       "nivelBloomAsociado": ["", "", ""],
@@ -118,6 +118,35 @@
       ],
       "rutaPorDefectoSiAmbiguo": "TODO",
       "casoSinHistorialPrevio": "b-evaluacion-final-estandar — si por una falla técnica no se puede recuperar histórico alguno, NO se bloquea al alumno del examen de certificación: se le envía a la ruta estándar y el caso se marca para revisión manual. Regla dura: ausencia de evidencia nunca se trata como evidencia de dificultad."
+    },
+    {
+      "checkpointId": "chk-avance-fundamentos",
+      "modo": "itinerario_con_practica_interna",
+      "queSeEvaluaAntesDeEsePunto": {
+        "actividadesPrevias": ["b-quiz-conceptos", "b-sintesis-avanzada"],
+        "senalesXapi": [
+          "passed sobre b-quiz-conceptos, con result.extensions.intentos = 1 (mismo dato que usa chk-conceptos-basicos)",
+          "answered sobre b-sintesis-avanzada, con result.extensions.interesAvanzado (Sí/No) — pregunta opcional añadida al final del reto de síntesis"
+        ]
+      },
+      "configMotor": { "lambda": 0.9, "pmin": 0.8, "minAttemptsPerCategory": 2, "alphaUtility": 0.5 },
+      "itemsDeSalida": { "itemIds": [] },
+      "rutasPosibles": [
+        {
+          "nextBlockId": "b-fundamentos-avanzados",
+          "hipotesisAsociadas": null,
+          "factorAsociado": null,
+          "criterioDeSeleccion": "Si intentos = 1 en b-quiz-conceptos Y result.extensions.interesAvanzado = 'Sí' en b-sintesis-avanzada, ir aquí (ruta avanzada: arquitectura autoregresiva/difusión, ventana de contexto, comercial vs. self-hosted, luego b-etica-legal-avanzado)."
+        },
+        {
+          "nextBlockId": "b-reflexion-guiada-privacidad",
+          "hipotesisAsociadas": null,
+          "factorAsociado": null,
+          "criterioDeSeleccion": "En cualquier otro caso (intentos > 1, o interesAvanzado = 'No' o sin respuesta), ir aquí directo. Regla dura, igual que chk-avance-texto/chk-avance-imagen en Módulo 2: nunca se penaliza ni se retiene al alumno por no tomar la ruta avanzada — es enriquecimiento, no un obstáculo ni un requisito oculto."
+        }
+      ],
+      "rutaPorDefectoSiAmbiguo": "TODO",
+      "casoSinHistorialPrevio": "b-reflexion-guiada-privacidad — por defecto nunca se fuerza contenido avanzado no solicitado explícitamente por el alumno, mismo criterio conservador que los checkpoints de avance de Módulo 2."
     }
   ],
 
