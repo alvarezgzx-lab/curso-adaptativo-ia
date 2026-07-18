@@ -29,11 +29,21 @@ levanta esa parte del stack, y actualizar este archivo con lo que resulte.
   `admin/cli/install.php` a mano dentro del contenedor). Corregido agregando
   `command: --character-set-server=utf8mb4
   --collation-server=utf8mb4_unicode_ci` al servicio `moodle-db`.
-- ~~`MONGO_URI`/`REDIS_URL` con hostnames que no existen~~ — `.env.example`
-  apuntaba a `learninglocker-mongo`/`learninglocker-redis`, pero los
-  servicios en `docker-compose.yml` se llaman `ll-mongo`/`ll-redis` — con
-  esos hostnames `ll-app` no habría podido resolver DNS dentro de la red de
-  Docker. Corregido en `.env`/`.env.example`.
+- ~~`MONGO_URI`/`REDIS_URL` con hostnames que no existen~~ — hallazgo del
+  stack de Learning Locker original; ya no aplica, ver el punto siguiente.
+- ~~Learning Locker no se puede desplegar~~ — confirmado: la imagen
+  `learninglocker/learninglocker2-app` no existe como paquete descargable
+  (`pull access denied`, repo inexistente), y el despliegue oficial actual
+  (`adlnet/learninglocker-docker`) son 7 contenedores compilados desde
+  código fuente con `node:10` (EOL) — build largo y con riesgo real de
+  romperse. **Reemplazado por LRSQL** (`yetanalytics/lrsql`, Yet Analytics):
+  un solo contenedor, código abierto (Apache 2.0), mantenido activamente,
+  SQLite por defecto. El endpoint de statements es `/xapi/` (antes se
+  asumía `/data/xAPI/` de Learning Locker) y la autenticación sigue siendo
+  Base64 de `LRS_KEY:LRS_SECRET` en el header `Authorization` — el
+  middleware no necesitó ningún cambio de código. Ver `lrs/README.md`
+  (antes `learninglocker/README.md`) y el servicio `lrs` en
+  `docker-compose.yml`.
 
 ## Brecha #1 — Claude no conoce las rutas válidas (RESUELTA ARQUITECTÓNICAMENTE, pendiente de datos reales)
 
@@ -65,19 +75,12 @@ al primer build real, no antes.
 
 ## Pendientes (confirmar contra código real)
 
-- **`learninglocker/learninglocker2-app` no existe como imagen descargable**
-  (confirmado: `pull access denied`, repo inexistente). Learning Locker no
-  publica un contenedor todo-en-uno; el despliegue oficial actual
-  (`adlnet/learninglocker-docker`) son 7 contenedores (api/ui/worker/xapi/
-  mongo/redis/nginx) que se compilan desde código fuente con `node:10`
-  (EOL) sobre `LearningLocker/learninglocker@v7.1.1` — build largo y con
-  riesgo de romper por deriva de dependencias. `ll-mongo`/`ll-redis`/`ll-app`
-  quedan abajo hasta decidir e implementar ese stack (o una alternativa);
-  mientras tanto el resto del compose se levanta con `docker compose up
-  --no-deps moodle-db moodle middleware`.
-- **Endpoint exacto de statements de Learning Locker**: se asume
-  `/data/xAPI/` como en versiones documentadas públicamente; confirmar en la
-  UI de administración del LRS una vez levantado.
+- **`lrs` (LRSQL) sin probar contra un `docker compose up` real todavía**:
+  el servicio se agregó y configuró contra la documentación oficial de
+  `yetanalytics/lrsql`, pero no se ha levantado en esta máquina. Confirmar
+  el primer arranque: que el contenedor inicie con las credenciales por
+  defecto, que `http://localhost:8081/admin` responda, y que el middleware
+  pueda escribir/leer statements contra `LRS_ENDPOINT` real.
 - **Superficie real de `Adapt.blocks` / eventos en `decisionEngine.js`**: el
   extension skeleton en `course/src/extensions/adapt-contrib-decisionEngine/`
   asume una API de Backbone/Adapt razonable pero no se probó contra una
@@ -88,14 +91,11 @@ al primer build real, no antes.
   extensión usa un placeholder; spoor expone el actor de otra forma internamente
   — confirmar el método correcto al integrar.
 - **Envío de statements xAPI en paralelo al SCORM**: el objetivo es que Adapt
-  mande statements xAPI *directo* a Learning Locker (para capturar detalle de
+  mande statements xAPI *directo* al LRS (para capturar detalle de
   interacción) mientras Moodle solo trackea finalización vía SCORM. Confirmar
   que ambos flujos no chocan.
-- **Compatibilidad de versión de Node dentro de la imagen de Learning Locker**:
-  es un proyecto Node separado del middleware; no debería haber conflicto de
-  versiones entre contenedores, pero se confirma al levantar el compose.
 
 `docker-compose up` de `moodle-db`, `moodle` y `middleware` sí se probó de
 punta a punta (Docker Desktop en Windows) — de ahí salieron los tres
-hallazgos ya marcados como resueltos arriba. `ll-mongo`/`ll-redis`/`ll-app`
-quedan sin probar hasta resolver la brecha de la imagen de Learning Locker.
+hallazgos ya marcados como resueltos arriba. El servicio `lrs` (LRSQL) es
+nuevo en este cambio y todavía no se ha probado levantado.

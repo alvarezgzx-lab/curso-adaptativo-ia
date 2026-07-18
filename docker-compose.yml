@@ -1,12 +1,12 @@
 # docker-compose.yml — curso-adaptativo-ia
 #
 # Servicios:
-#   moodle-db, moodle          -> LMS que aloja el curso Adapt como paquete SCORM
-#   ll-mongo, ll-redis, ll-app -> Learning Locker (LRS) que recibe los statements xAPI
-#   middleware                 -> API Node.js que consulta el LRS y llama a Claude
+#   moodle-db, moodle -> LMS que aloja el curso Adapt como paquete SCORM
+#   lrs               -> LRS (Learning Record Store) que recibe los statements xAPI
+#   middleware         -> API Node.js que consulta el LRS y llama a Claude
 #
-# NOTA: las versiones/tags exactas de las imágenes de Moodle y Learning Locker
-# se confirman y fijan la primera vez que se levanta el stack (ver docs/riesgos.md).
+# NOTA: las versiones/tags exactas de las imágenes de Moodle se confirman y
+# fijan la primera vez que se levanta el stack (ver docs/riesgos.md).
 # Este archivo es el punto de partida, no un despliegue ya probado en producción.
 
 version: "3.9"
@@ -45,34 +45,24 @@ services:
       - moodle-data:/bitnami/moodle
       - moodle-moodledata:/bitnami/moodledata
 
-  ll-mongo:
-    image: mongo:7
-    container_name: curso-adaptativo-ia-ll-mongo
+  lrs:
+    # LRSQL (Yet Analytics) — un solo contenedor, mantenido activamente,
+    # SQLite por defecto (sin Mongo/Redis separados). Reemplaza a Learning
+    # Locker: esa imagen no existe como paquete descargable y su despliegue
+    # oficial son 7 contenedores compilados con Node EOL (ver docs/riesgos.md).
+    image: yetanalytics/lrsql:latest
+    container_name: curso-adaptativo-ia-lrs
     restart: unless-stopped
-    volumes:
-      - ll-mongo-data:/data/db
-
-  ll-redis:
-    image: redis:7-alpine
-    container_name: curso-adaptativo-ia-ll-redis
-    restart: unless-stopped
-
-  ll-app:
-    # Imagen comunitaria de Learning Locker (confirmar tag vigente al hacer el primer build,
-    # ver docs/riesgos.md). Alternativa: seguir el deploy script oficial si esta imagen
-    # queda desactualizada.
-    image: learninglocker/learninglocker2-app:latest
-    container_name: curso-adaptativo-ia-ll-app
-    restart: unless-stopped
-    depends_on:
-      - ll-mongo
-      - ll-redis
     environment:
-      APP_SECRET: ${LEARNINGLOCKER_APP_SECRET}
-      MONGO_URL: ${MONGO_URI}
-      REDIS_URL: ${REDIS_URL}
+      LRSQL_API_KEY_DEFAULT: ${LRS_KEY}
+      LRSQL_API_SECRET_DEFAULT: ${LRS_SECRET}
+      LRSQL_ADMIN_USER_DEFAULT: ${LRS_ADMIN_USER}
+      LRSQL_ADMIN_PASS_DEFAULT: ${LRS_ADMIN_PASSWORD}
+      LRSQL_DB_NAME: db/lrsql.sqlite.db
     ports:
-      - "8081:8081"
+      - "8081:8080"
+    volumes:
+      - lrs-data:/lrsql/db
 
   middleware:
     build:
@@ -80,7 +70,7 @@ services:
     container_name: curso-adaptativo-ia-middleware
     restart: unless-stopped
     depends_on:
-      - ll-app
+      - lrs
     environment:
       ANTHROPIC_API_KEY: ${ANTHROPIC_API_KEY}
       CLAUDE_MODEL: ${CLAUDE_MODEL}
@@ -98,5 +88,5 @@ volumes:
   moodle-db-data:
   moodle-data:
   moodle-moodledata:
-  ll-mongo-data:
+  lrs-data:
   middleware-data:

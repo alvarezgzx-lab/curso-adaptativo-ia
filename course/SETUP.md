@@ -12,7 +12,7 @@ releases) — se inicializa localmente siguiendo estos pasos:
    viene incluido por defecto en la mayoría de builds recientes del framework;
    verificar en `adapt.json`.
 4. Configurar en `course/course.json` (o el config de spoor correspondiente) el
-   endpoint xAPI apuntando a Learning Locker:
+   endpoint xAPI apuntando al LRS (LRSQL):
    - `_endpoint`: valor de `LRS_ENDPOINT` (ver `.env` en la raíz del repo)
    - `_user` / `_password`: `LRS_KEY` / `LRS_SECRET`
 5. Definir los 2-3 puntos de decisión adaptativa del MVP como componentes/bloques

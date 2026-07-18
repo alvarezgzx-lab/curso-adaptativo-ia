@@ -1,9 +1,9 @@
 # curso-adaptativo-ia
 
 Curso adaptativo construido en **Adapt Framework**, alojado/lanzado desde
-**Moodle**, con métricas registradas como statements **xAPI** en **Learning
-Locker**, y un motor de personalización basado en la **API de Claude**.
-Proyecto base del video showcase técnico.
+**Moodle**, con métricas registradas como statements **xAPI** en un **LRS**
+(Learning Record Store, vía LRSQL), y un motor de personalización basado en
+la **API de Claude**. Proyecto base del video showcase técnico.
 
 ## Empieza aquí
 
@@ -16,7 +16,7 @@ Si vienes a tocar código/infraestructura: sigue leyendo este README.
 ```
 Alumno → Curso Adapt (embebido/lanzado desde Moodle como paquete SCORM)
             │
-            ├─ interacciones del alumno → statements xAPI → Learning Locker (LRS)
+            ├─ interacciones del alumno → statements xAPI → LRS (LRSQL)
             │
             ├─ por cada ítem → POST /api/item-response (Middleware)
             │                       │
@@ -43,14 +43,14 @@ Especificación pedagógica (LXD) que le da contenido al stack: [`lxd/`](lxd/), 
 ```
 curso-adaptativo-ia/
 ├── ROADMAP.md               # secuencia de trabajo para el diseño LXD (solo operador)
-├── docker-compose.yml        # Moodle + Learning Locker + middleware
+├── docker-compose.yml        # Moodle + LRS (LRSQL) + middleware
 ├── .env.example
 ├── .gitattributes            # normaliza line endings a LF (evita el problema CRLF al clonar en Windows)
 ├── course/                   # curso Adapt Framework (ver course/SETUP.md)
 │   └── src/extensions/adapt-contrib-decisionEngine/  # llama al middleware en cada punto de decisión
 ├── middleware/                # API Node.js: decisión adaptativa vía Claude
 ├── moodle/                    # notas de config específicas de Moodle
-├── learninglocker/             # notas de config específicas del LRS
+├── lrs/                        # notas de config específicas del LRS (LRSQL)
 ├── scripts/package-scorm.sh    # empaqueta course/build/ como .zip SCORM para Moodle
 ├── lxd/                        # especificación pedagógica: objetivos, checkpoints, storyboard, xAPI, evaluación, UDL
 ├── docs/                       # briefs, verbos xAPI y riesgos técnicos
@@ -64,7 +64,7 @@ curso-adaptativo-ia/
 | Node.js | 24 (Active LTS) |
 | Moodle | 4.5 (LTS) |
 | Adapt Framework | última estable del repo oficial |
-| Learning Locker | Community Edition (Docker) |
+| LRS | LRSQL (Yet Analytics), Docker, código abierto |
 
 ## Cómo levantar el entorno local
 
@@ -72,12 +72,12 @@ curso-adaptativo-ia/
 cp .env.example .env
 # completar ANTHROPIC_API_KEY y el resto de credenciales en .env
 
-docker-compose up -d moodle-db moodle ll-mongo ll-redis ll-app
+docker-compose up -d moodle-db moodle lrs
 ```
 
 Luego seguir, en orden:
 
-1. [`learninglocker/README.md`](learninglocker/README.md) — crear organización/usuario del LRS y obtener `LRS_KEY`/`LRS_SECRET`.
+1. [`lrs/README.md`](lrs/README.md) — completar `LRS_KEY`/`LRS_SECRET`/credenciales de admin en `.env` y confirmar que el LRS levantó.
 2. [`course/SETUP.md`](course/SETUP.md) — inicializar el curso Adapt, instalar la extensión `decisionEngine`, configurar el endpoint xAPI, definir los puntos de decisión.
 3. `./scripts/package-scorm.sh` — empaquetar el build del curso como `.zip` SCORM.
 4. [`moodle/README.md`](moodle/README.md) — subir ese paquete a Moodle.
