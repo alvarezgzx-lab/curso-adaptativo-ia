@@ -9,3 +9,5 @@
 | Plantilla "Tabla comparativa de herramientas" | documento | `b-exploracion-directa-experiencia` | PDF accesible + DOCX editable | — | — | pendiente |
 | Checklist de trazabilidad de interfaz | documento/interactivo | `b-integracion-final` | PDF accesible + componente Adapt | — | — | pendiente |
 | Audio de narración de bienvenida | audio | `b-bienvenida-m1` | MP3 + transcripción TXT | — | 2 min | pendiente |
+| Diagrama "Autoregresivo vs. difusión" (con ejemplo de 3 pasos de refinado) | imagen | `b-fundamentos-avanzados` | PNG/SVG con alt-text | 1200×800 px | — | pendiente |
+| Infografía "Cómo identificar tu clase Niza" (ejemplo con un logotipo generado por IA) | imagen | `b-etica-legal-avanzado` | PNG/SVG con alt-text | 1200×800 px | — | pendiente |
