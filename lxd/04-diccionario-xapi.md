@@ -10,9 +10,28 @@
 
 | Interacción (bloque/componente) | Verbo (ADL estándar preferido) | Objeto/actividad | Resultado (`result.success`/`score`/`completion`) | Extensiones necesarias |
 |---|---|---|---|---|
-| | | | | |
+| Ver bloque de contenido (`narrative`/`text`/`graphic`/`video`) | `experienced` | `activityId` = blockId | `completion: true` | — |
+| Completar actividad interactiva no evaluable (matching, checklist de práctica) | `completed` | `activityId` = blockId | `completion: true` | — |
+| Responder autodiagnóstico (`b-diagnostico-previo`) | `answered` | `activityId` = `b-diagnostico-previo` | `response`; sin `success` (no evaluado) | `usadoParaBranching: true` |
+| Intentar quiz formativo (`b-quiz-conceptos`) | `attempted` | `activityId` = `b-quiz-conceptos` | `score.scaled`, número de intento | `checkpointAsociado: "chk-conceptos-basicos"` |
+| Aprobar/reprobar quiz formativo | `passed` / `failed` | `activityId` = `b-quiz-conceptos` | `score.scaled` ≥/< 0.70 | — |
+| Completar checklist de integración (`b-integracion-final`) | `completed` → `mastered` | `activityId` = `b-integracion-final` | `completion: true`; `success: true` si 100% marcado | — |
+| Aprobar/reprobar evaluación sumativa | `passed` / `failed` | `activityId` = `b-evaluacion-modulo1` | `score.raw`, `score.max`, `score.scaled` | Criterio de aprobación del curso (rúbrica general) |
+| Alumno llega a un checkpoint | `checkpoint-reached` *(custom)* | `activityId` = checkpointId | `context.extensions`: historial relevante enviado al middleware | Verbo custom — sin equivalente ADL para "llegada a punto de decisión" |
+| Middleware solicita decisión a Claude | `decision-requested` *(custom)* | `activityId` = checkpointId | `context.extensions`: lista de `nextBlockId` candidatos | Verbo custom — evento interno de infraestructura, no de aprendizaje pedagógico estándar |
+| Middleware asigna ruta | `route-assigned` *(custom)* | `activityId` = `nextBlockId` asignado | `result.response` = `nextBlockId` elegido | Verbo custom — auditoría de la decisión de branching |
+| Retroalimentación recibida (automática o de un facilitador humano) sobre un bloque abierto, ej. `b-reflexion-guiada-privacidad` | `commented` *(ADL estándar)* | `activityId` = blockId revisado | `result.response` = texto de la retro | `context.extensions.autor`: "sistema" \| "facilitador"; ver nota de arquitectura multi-módulo en `guion-instruccional-modulo-1-EC1705.md`, sección 11 |
+
+**Convención obligatoria** (para que la evaluación final de curso funcione
+sin reescribirse cuando se agreguen módulos): todo statement de este módulo
+(y de cualquier módulo futuro) debe incluir
+`context.contextActivities.grouping = courseId` (`curso-adaptativo-ia`)
+además de `context.contextActivities.parent = moduleId` (`m1-fundamentos-iagen`
+para este módulo). El `grouping` a nivel de curso es lo que permite que
+`chk-evaluacion-final-curso` agregue todo el histórico sin importar cuándo
+se lanzó cada módulo.
 
 ## Checklist antes de pasar a Fase 5
 
-- [ ] Todo verbo usado es ADL estándar, o está justificado como custom (¿por qué ningún verbo ADL cubre el caso?).
-- [ ] Toda interacción trackeable del storyboard (Fase 3) tiene fila aquí.
+- [x] Todo verbo usado es ADL estándar, o está justificado como custom (¿por qué ningún verbo ADL cubre el caso?).
+- [x] Toda interacción trackeable del storyboard (Fase 3) tiene fila aquí.
