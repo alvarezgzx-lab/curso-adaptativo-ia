@@ -1,0 +1,283 @@
+[
+  {
+    "_id": "b-bienvenida-m1",
+    "_parentId": "a-bienvenida",
+    "_type": "block",
+    "_classes": "",
+    "title": "Bienvenida",
+    "displayTitle": "",
+    "body": "",
+    "instruction": "",
+    "_onScreen": {
+      "_isEnabled": true,
+      "_classes": "fade-in-bottom",
+      "_percentInviewVertical": 50
+    },
+    "_trackingId": 20
+  },
+  {
+    "_id": "b-que-es-iagen",
+    "_parentId": "a-fundamentos",
+    "_type": "block",
+    "_classes": "",
+    "title": "¿Qué es la IA generativa?",
+    "displayTitle": "",
+    "body": "",
+    "instruction": "",
+    "_onScreen": {
+      "_isEnabled": true,
+      "_classes": "fade-in-bottom",
+      "_percentInviewVertical": 50
+    },
+    "_trackingId": 21
+  },
+  {
+    "_id": "b-terminologia-basica",
+    "_parentId": "a-fundamentos",
+    "_type": "block",
+    "_classes": "",
+    "title": "Terminología básica",
+    "displayTitle": "",
+    "body": "",
+    "instruction": "",
+    "_onScreen": {
+      "_isEnabled": true,
+      "_classes": "fade-in-bottom",
+      "_percentInviewVertical": 50
+    },
+    "_trackingId": 22
+  },
+  {
+    "_id": "b-tipos-contenido",
+    "_parentId": "a-fundamentos",
+    "_type": "block",
+    "_classes": "",
+    "title": "Tipos de contenido digital",
+    "displayTitle": "",
+    "body": "",
+    "instruction": "",
+    "_onScreen": {
+      "_isEnabled": true,
+      "_classes": "fade-in-bottom",
+      "_percentInviewVertical": 50
+    },
+    "_trackingId": 23
+  },
+  {
+    "_id": "b-diagnostico-previo",
+    "_parentId": "a-diagnostico-previo",
+    "_type": "block",
+    "_classes": "",
+    "title": "Autodiagnóstico de experiencia previa",
+    "displayTitle": "",
+    "body": "",
+    "instruction": "",
+    "_onScreen": {
+      "_isEnabled": true,
+      "_classes": "fade-in-bottom",
+      "_percentInviewVertical": 50
+    },
+    "_trackingId": 24
+  },
+  {
+    "_id": "b-exploracion-guiada-principiante",
+    "_parentId": "a-exploracion-guiada",
+    "_type": "block",
+    "_classes": "",
+    "title": "Exploración guiada de la interfaz",
+    "displayTitle": "",
+    "body": "",
+    "instruction": "",
+    "_onScreen": {
+      "_isEnabled": true,
+      "_classes": "fade-in-bottom",
+      "_percentInviewVertical": 50
+    },
+    "_isAvailable": false,
+    "_trackingId": 25
+  },
+  {
+    "_id": "b-practica-exploracion-principiante",
+    "_parentId": "a-exploracion-guiada",
+    "_type": "block",
+    "_classes": "",
+    "title": "Práctica: identificar la interfaz",
+    "displayTitle": "",
+    "body": "",
+    "instruction": "",
+    "_onScreen": {
+      "_isEnabled": true,
+      "_classes": "fade-in-bottom",
+      "_percentInviewVertical": 50
+    },
+    "_isAvailable": false,
+    "_trackingId": 26
+  },
+  {
+    "_id": "b-exploracion-directa-experiencia",
+    "_parentId": "a-exploracion-directa",
+    "_type": "block",
+    "_classes": "",
+    "title": "Reto: comparar dos herramientas",
+    "displayTitle": "",
+    "body": "",
+    "instruction": "",
+    "_onScreen": {
+      "_isEnabled": true,
+      "_classes": "fade-in-bottom",
+      "_percentInviewVertical": 50
+    },
+    "_isAvailable": false,
+    "_trackingId": 27
+  },
+  {
+    "_id": "b-practica-exploracion-avanzada",
+    "_parentId": "a-exploracion-directa",
+    "_type": "block",
+    "_classes": "",
+    "title": "Autoevaluación de la comparación",
+    "displayTitle": "",
+    "body": "",
+    "instruction": "",
+    "_onScreen": {
+      "_isEnabled": true,
+      "_classes": "fade-in-bottom",
+      "_percentInviewVertical": 50
+    },
+    "_isAvailable": false,
+    "_trackingId": 28
+  },
+  {
+    "_id": "b-precauciones-seguridad",
+    "_parentId": "a-precauciones-capacidades",
+    "_type": "block",
+    "_classes": "",
+    "title": "Precauciones de seguridad y privacidad",
+    "displayTitle": "",
+    "body": "",
+    "instruction": "",
+    "_onScreen": {
+      "_isEnabled": true,
+      "_classes": "fade-in-bottom",
+      "_percentInviewVertical": 50
+    },
+    "_trackingId": 29
+  },
+  {
+    "_id": "b-capacidades-limitaciones",
+    "_parentId": "a-precauciones-capacidades",
+    "_type": "block",
+    "_classes": "",
+    "title": "Capacidades y limitaciones",
+    "displayTitle": "",
+    "body": "",
+    "instruction": "",
+    "_onScreen": {
+      "_isEnabled": true,
+      "_classes": "fade-in-bottom",
+      "_percentInviewVertical": 50
+    },
+    "_trackingId": 30
+  },
+  {
+    "_id": "b-quiz-conceptos",
+    "_parentId": "a-quiz-conceptos",
+    "_type": "block",
+    "_classes": "",
+    "title": "Quiz de conceptos básicos",
+    "displayTitle": "",
+    "body": "",
+    "instruction": "",
+    "_onScreen": {
+      "_isEnabled": true,
+      "_classes": "fade-in-bottom",
+      "_percentInviewVertical": 50
+    },
+    "_trackingId": 31
+  },
+  {
+    "_id": "b-refuerzo-conceptos-basicos",
+    "_parentId": "a-refuerzo",
+    "_type": "block",
+    "_classes": "",
+    "title": "Refuerzo de conceptos",
+    "displayTitle": "",
+    "body": "",
+    "instruction": "",
+    "_onScreen": {
+      "_isEnabled": true,
+      "_classes": "fade-in-bottom",
+      "_percentInviewVertical": 50
+    },
+    "_isAvailable": false,
+    "_trackingId": 32
+  },
+  {
+    "_id": "b-sintesis-avanzada",
+    "_parentId": "a-sintesis",
+    "_type": "block",
+    "_classes": "",
+    "title": "Reto de síntesis",
+    "displayTitle": "",
+    "body": "",
+    "instruction": "",
+    "_onScreen": {
+      "_isEnabled": true,
+      "_classes": "fade-in-bottom",
+      "_percentInviewVertical": 50
+    },
+    "_isAvailable": false,
+    "_trackingId": 33
+  },
+  {
+    "_id": "b-reflexion-guiada-privacidad",
+    "_parentId": "a-cierre",
+    "_type": "block",
+    "_classes": "",
+    "title": "Reflexión guiada sobre privacidad",
+    "displayTitle": "",
+    "body": "",
+    "instruction": "",
+    "_onScreen": {
+      "_isEnabled": true,
+      "_classes": "fade-in-bottom",
+      "_percentInviewVertical": 50
+    },
+    "_trackingId": 34
+  },
+  {
+    "_id": "b-integracion-final",
+    "_parentId": "a-cierre",
+    "_type": "block",
+    "_classes": "",
+    "title": "Checklist de integración final",
+    "displayTitle": "",
+    "body": "",
+    "instruction": "",
+    "_onScreen": {
+      "_isEnabled": true,
+      "_classes": "fade-in-bottom",
+      "_percentInviewVertical": 50
+    },
+    "_trackingId": 35
+  },
+  {
+    "_id": "b-evaluacion-modulo1",
+    "_parentId": "a-cierre",
+    "_type": "block",
+    "_classes": "",
+    "title": "Evaluación del Módulo 1",
+    "displayTitle": "",
+    "body": "",
+    "instruction": "",
+    "_onScreen": {
+      "_isEnabled": true,
+      "_classes": "fade-in-bottom",
+      "_percentInviewVertical": 50
+    },
+    "_trickle": {
+      "_onChildren": false
+    },
+    "_trackingId": 36
+  }
+]

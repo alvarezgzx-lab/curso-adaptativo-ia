@@ -1,0 +1,13 @@
+{
+  "name": "adapt-contrib-decisionEngine",
+  "version": "0.1.0",
+  "framework": ">=5.31.11",
+  "extension": "decisionEngine",
+  "displayName": "Decision Engine",
+  "description": "Conecta el curso con el middleware de curso-adaptativo-ia: en checkpoints llama POST /api/decision (bloqueando el avance hasta resolver) y en el quiz de conceptos básicos llama POST /api/item-response pregunta por pregunta (selección adaptativa vía bayesEngine). No es un plugin público de Adapt — es específico de este proyecto, no se publica.",
+  "main": "/js/adapt-contrib-decisionEngine.js",
+  "keywords": ["adapt-plugin", "adapt-extension"],
+  "license": "UNLICENSED",
+  "targetAttribute": "_decisionEngine",
+  "private": true
+}

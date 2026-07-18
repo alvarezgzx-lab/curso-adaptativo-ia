@@ -1,0 +1,22 @@
+[
+  {
+    "_id": "co-modulo-1",
+    "_parentId": "course",
+    "_type": "page",
+    "_classes": "",
+    "_htmlClasses": "",
+    "title": "Módulo 1 — Fundamentos, ética y marco regulatorio",
+    "displayTitle": "Módulo 1 — Fundamentos, ética y marco regulatorio",
+    "body": "Uso básico de herramientas de inteligencia artificial generativa para la creación de contenido digital (EC1705, Elemento E5336).",
+    "pageBody": "",
+    "instruction": "",
+    "linkText": "Ver",
+    "duration": "≈60 min de interacción (más lectura autónoma y práctica adicional)",
+    "_pageLevelProgress": {
+      "_isEnabled": true,
+      "_showPageCompletion": false,
+      "_excludeAssessments": false,
+      "_isCompletionIndicatorEnabled": false
+    }
+  }
+]

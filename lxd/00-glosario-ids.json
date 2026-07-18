@@ -65,7 +65,13 @@
     { "blockId": "b-evaluacion-final-repaso-dirigido", "moduleId": "m4-cierre-curso", "tipo": "block", "descripcionCorta": "Repaso dirigido a los objetivos con más señales de dificultad acumuladas en el curso, antes del examen de certificación.", "esCandidatoDeRuta": true }
   ],
 
-  "itemIds": [],
+  "itemIds": [
+    { "itemId": "CB1", "checkpointId": "chk-conceptos-basicos", "categoria": "conceptos-basicos", "esItemDeSalida": false },
+    { "itemId": "CB2", "checkpointId": "chk-conceptos-basicos", "categoria": "conceptos-basicos", "esItemDeSalida": false },
+    { "itemId": "CB3", "checkpointId": "chk-conceptos-basicos", "categoria": "conceptos-basicos", "esItemDeSalida": false },
+    { "itemId": "CB4", "checkpointId": "chk-conceptos-basicos", "categoria": "conceptos-basicos", "esItemDeSalida": false },
+    { "itemId": "CB5", "checkpointId": "chk-conceptos-basicos", "categoria": "conceptos-basicos", "esItemDeSalida": false }
+  ],
 
   "notaSobreConvencionDeNombres": "checkpointId en kebab-case descriptivo, ej. 'chk-conceptos-basicos'; blockId igual, ej. 'b-refuerzo-conceptos-basicos', 'b-evaluacion-final-repaso-dirigido' — el nombre sugiere si es ruta de refuerzo/andamiaje alto o de avance/menor andamiaje. Los IDs de bloques y checkpoints NO se prefijan con el moduleId (ej. no 'm1-b-bienvenida-m1'): la pertenencia a un módulo se resuelve por el campo 'moduleId' de este registro y por context.contextActivities.parent en xAPI, no por el string del ID. Esto evita tener que renombrar IDs si algún día se reordenan los módulos."
 }

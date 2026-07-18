@@ -2,6 +2,11 @@
 // Llamado por decisionEngine.js tras CADA ítem respondido dentro de un
 // checkpoint (no solo al llegar al checkpoint) — así el motor actualiza el
 // posterior de forma incremental y elige el siguiente ítem del banco.
+//
+// Ante una falla técnica (LRS/SQLite/Claude), nunca se bloquea al alumno: se
+// responde 200 con nextItemId/feedback en null y un status que lo indica, para
+// que decisionEngine.js siga con su propio orden de respaldo — ver
+// docs/riesgos.md.
 
 import { Router } from "express";
 import { getCheckpointSpec, createEngineForCheckpoint, getItemBank, loadSpec } from "../checkpointSpecs.js";
@@ -21,15 +26,26 @@ itemResponseRouter.post("/item-response", async (req, res) => {
     });
   }
 
+  let bank;
+  let item;
+  try {
+    getCheckpointSpec(checkpointId); // valida que el checkpoint existe
+    bank = getItemBank(checkpointId);
+    item = bank.find((it) => it.itemId === itemId);
+  } catch (error) {
+    return res.status(400).json({
+      error: `checkpointId o banco de ítems inválido: ${checkpointId}`,
+      detail: error.message,
+    });
+  }
+  if (!item) {
+    return res.status(404).json({ error: `itemId no encontrado en el banco: ${itemId}` });
+  }
+
+  let diagnostico = null;
+  let nextItem = null;
   try {
     const specGlobal = loadSpec();
-    getCheckpointSpec(checkpointId); // valida que el checkpoint existe
-    const bank = getItemBank(checkpointId);
-    const item = bank.find((it) => it.itemId === itemId);
-    if (!item) {
-      return res.status(404).json({ error: `itemId no encontrado en el banco: ${itemId}` });
-    }
-
     const engine = createEngineForCheckpoint(specGlobal, checkpointId);
     const savedJson = loadState(actorId, checkpointId);
     if (savedJson) hydrateEngine(engine, savedJson);
@@ -44,18 +60,33 @@ itemResponseRouter.post("/item-response", async (req, res) => {
 
     saveState(actorId, checkpointId, engine);
 
-    const nextItem = engine.selectNextItem(bank);
-    const diagnostico = engine.getDecisionPayload();
-
-    let feedback = null;
-    if (wantsFeedback) {
-      const result = await generateFeedback(diagnostico, { itemId, isCorrect, category: item.category });
-      feedback = result.feedback;
-    }
-
-    res.json({ nextItemId: nextItem?.itemId ?? null, diagnostico, feedback });
+    nextItem = engine.selectNextItem(bank);
+    diagnostico = engine.getDecisionPayload();
   } catch (error) {
     req.log?.error?.(error);
-    res.status(502).json({ error: "No se pudo registrar la respuesta", detail: error.message });
+    // Falla técnica registrando el estado: no se pierde el intento del
+    // alumno, solo la selección adaptativa y el feedback de este ítem.
+    return res.json({
+      nextItemId: null,
+      diagnostico: null,
+      feedback: null,
+      status: "fallo_tecnico",
+      error: error.message,
+    });
   }
+
+  let feedback = null;
+  if (wantsFeedback) {
+    try {
+      const result = await generateFeedback(diagnostico, { itemId, isCorrect, category: item.category });
+      feedback = result.feedback;
+    } catch (error) {
+      req.log?.error?.(error);
+      // El estado ya se guardó correctamente — una falla solo de Claude no
+      // debe invalidar el resto de la respuesta.
+      feedback = null;
+    }
+  }
+
+  res.json({ nextItemId: nextItem?.itemId ?? null, diagnostico, feedback, status: "resuelto" });
 });
