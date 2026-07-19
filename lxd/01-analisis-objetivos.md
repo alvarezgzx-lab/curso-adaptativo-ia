@@ -59,3 +59,45 @@ archivo sin esta tabla resuelta primero.
 - [x] Todo objetivo tiene al menos una fila de evidencia.
 - [x] Toda evidencia tiene claro en qué checkpoint (de `00-glosario-ids.json`) se observa.
 - [x] O6 está marcado explícitamente como no obligatorio para certificación, consistente con la corrección de espectro básico↔avanzado (ver blockquote de corrección en `guion-instruccional-modulo-1-EC1705.md`).
+
+## Módulo 2 — Producción práctica: Texto e Imagen (E5337, desempeños 1-3)
+
+### Público objetivo
+
+El mismo de Módulo 1 — profesionales sin requisito de título profesional,
+que ya completaron el Módulo 1 (fundamentos, terminología, exploración de
+interfaz, precauciones básicas).
+
+### Prerrequisito
+
+Haber completado Módulo 1 (en particular, `b-terminologia-basica` y
+`b-integracion-final` — el alumno ya sabe ubicar el campo de prompt y el
+botón de generación).
+
+### Duración total estimada
+
+18 horas (según `OUTLINE.txt`), de las cuales la ruta básica (piso de
+certificación) representa ~9-10 h de interacción directa; las 2 ramas
+avanzadas opcionales agregan ~4-5 h adicionales para quien las toma.
+
+### Objetivos de aprendizaje (Bloom revisado)
+
+| # | Objetivo (verbo + condición + criterio) | Nivel Bloom | Obligatorio para certificación | Checkpoint(s) donde se evalúa |
+|---|---|---|---|---|
+| O1 | Seleccionar la herramienta de IA generativa adecuada según el tipo de contenido a crear (texto o imagen) y acceder a ella desde un dispositivo compatible (computadora/tablet/móvil). | Aplicar | Sí | Evidencia continua en `b-preparar-generacion-texto` y `b-preparar-generacion-imagen`; verificado en integración final |
+| O2 | Generar un texto básico (post, artículo o guion breve) mediante un prompt efectivo, ajustando tono/longitud/estilo cuando la herramienta lo permita y es pertinente, y guardarlo en formato digital. | Aplicar | Sí | `chk-avance-texto`; evaluación sumativa |
+| O3 | Generar una imagen mediante un prompt descriptivo, ajustando tamaño/estilo/nivel de detalle cuando la herramienta lo permita y es pertinente, y guardarla en formato PNG/JPG. | Aplicar | Sí | `chk-avance-imagen`; evaluación sumativa |
+| O4 | Verificar que el texto y la imagen generados correspondan con lo solicitado, no presenten errores evidentes (ortográficos/de redacción en texto; visuales en imagen), y registrar el prompt usado para que el proceso sea repetible. | Analizar | Sí | `b-verificacion-outputs`; integración final; evaluación sumativa |
+| O5 | Explicar el efecto de parámetros de generación más finos (temperature, top-p, pasos/steps, guidance scale, seed) y distinguir, a nivel conceptual, entre herramientas comerciales y alternativas de código abierto/self-hosted. | Comprender | **No** — enriquecimiento de ruta avanzada | Solo si el alumno toma `b-texto-avanzado` y/o `b-imagen-avanzada` |
+
+### Mapa de evidencia
+
+| Objetivo | Evidencia observable | Cómo se captura (interacción Adapt → statement xAPI) |
+|---|---|---|
+| O1 | Alumno accede correctamente a la herramienta elegida y ubica los controles necesarios. | `b-preparar-generacion-texto` / `b-preparar-generacion-imagen` → `experienced`/`completed` |
+| O2 | Alumno entrega un texto que corresponde al prompt, con ajustes reflejados, sin errores evidentes, guardado. | `b-practica-texto-basico` → `attempted`/`completed`; rúbrica en `lxd/05-banco-evaluacion.md` |
+| O3 | Alumno entrega una imagen que corresponde a la descripción, con ajustes reflejados, sin errores visuales evidentes, en PNG/JPG. | `b-practica-imagen-basico` → `attempted`/`completed`; rúbrica en `lxd/05-banco-evaluacion.md` |
+| O4 | Alumno identifica correctamente discrepancias entre lo pedido y lo obtenido, y documenta el prompt exacto usado. | `b-verificacion-outputs` → `attempted`; `b-integracion-final-m2` → `completed` |
+| O5 | Alumno explica correctamente el efecto de un parámetro avanzado o distingue una herramienta self-hosted de una comercial. | `b-texto-avanzado`/`b-imagen-avanzada` → `answered` (solo si toma la ruta) |
+
+**Gate:** ☑ Todo objetivo tiene al menos una fila de evidencia. ☑ O5 está marcado explícitamente como no obligatorio, consistente con el principio de diseño de espectro básico↔avanzado (mismo patrón que O6 de Módulo 1).
