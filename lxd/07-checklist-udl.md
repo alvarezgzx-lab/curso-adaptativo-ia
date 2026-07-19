@@ -78,7 +78,22 @@ default) definido en `02-especificacion-decision-checkpoints.json`.
 - [x] Reto formulado como desafío de aplicación real, con reconocimiento explícito de haber aprobado el quiz.
 - [x] Retroalimentación inmediata al completar.
 
-**Checklist global:** ☑ Las 5 rutas (default + 4 `nextBlockId`) de Módulo 1 tienen su bloque completo arriba.
+## Ruta: `b-fundamentos-avanzados` / `b-etica-legal-avanzado` (rama avanzada opcional, nueva)
+
+**Representación múltiple**
+- [x] Texto con términos técnicos (*transformer*, *difusión*, VRAM, Clasificación de Niza) acompañado de diagrama/infografía de apoyo (`lxd/06-assets.md`) y alt-text.
+- [x] Toda afirmación técnica tiene cita a fuente oficial visible (`docs/fuentes-pedagogicas.md`), no solo texto denso sin respaldo.
+
+**Acción y expresión múltiple**
+- [x] Ítems AV1/AV2 son autoevaluación no calificada (mcq con retroalimentación), no ensayo obligatorio — reduce barrera de entrada a quien solo quiere explorar el tema.
+- [x] Alumno puede detenerse después de `b-fundamentos-avanzados` sin completar `b-etica-legal-avanzado`; ambos bloques quedan registrados como `experienced` de forma independiente.
+
+**Motivación (compromiso) múltiple**
+- [x] Acceso solo por interés explícito (`interesAvanzado = "Sí"`), nunca forzado — refuerza autonomía y evita sobrecarga a quien no lo pidió.
+- [x] Encuadre explícito como "más allá de lo básico de este curso", evitando que se perciba como examen oculto o requisito disfrazado.
+- [x] Cierre de `b-etica-legal-avanzado` conecta explícitamente con `b-precauciones-seguridad` ya visto, reforzando pertenencia al mismo hilo del módulo en vez de sentirse un añadido aislado.
+
+**Checklist global:** ☑ Las 6 rutas (default + 5 `nextBlockId` distintos, contando la rama avanzada de 2 bloques como una sola ruta) de Módulo 1 tienen su bloque completo arriba.
 
 Pendiente: checklist UDL de `b-evaluacion-final-estandar` y
 `b-evaluacion-final-repaso-dirigido` una vez se diseñe su contenido real. La

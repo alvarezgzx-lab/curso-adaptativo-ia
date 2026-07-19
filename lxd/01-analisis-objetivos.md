@@ -18,9 +18,10 @@ Ninguno formal; manejo elemental de computadora e Internet.
 
 ## Duración total estimada
 
-12 horas (Módulo 1), distribuidas en bloques de 10-40 min. La ruta
-interactiva mínima suma ~4.5-5.5 h según la ruta adaptativa tomada; el resto
-corresponde a lectura autónoma y práctica adicional no cronometrada.
+12 horas (Módulo 1), distribuidas en bloques de 10-40 min, más ~1-1.5 h
+adicionales para quien toma la rama avanzada opcional. La ruta interactiva
+mínima suma ~4.5-5.5 h según la ruta adaptativa tomada; el resto corresponde
+a lectura autónoma y práctica adicional no cronometrada.
 
 ## Objetivos de aprendizaje (Bloom revisado)
 
@@ -28,13 +29,14 @@ Formato: **verbo medible + condición + criterio**. Evitar verbos no
 observables ("entender", "conocer") — usar los de la taxonomía revisada
 (recordar, comprender, aplicar, analizar, evaluar, crear).
 
-| # | Objetivo (verbo + condición + criterio) | Nivel Bloom | Checkpoint(s) donde se evalúa |
-|---|---|---|---|
-| O1 | Explicar el concepto de Inteligencia Artificial Generativa y su propósito principal, usando correctamente los términos *prompt* y *generación*, con ≥70% de aciertos en el quiz formativo y ≥70% en la evaluación sumativa. | Comprender | `chk-conceptos-basicos`; evaluación sumativa |
-| O2 | Distinguir los tres tipos de contenido digital creables con IA generativa (texto, imagen, video), clasificando correctamente ejemplos dados. | Comprender | `chk-conceptos-basicos`; evaluación sumativa |
-| O3 | Localizar en la interfaz de una herramienta de IA generativa (ChatGPT/Gemini/Claude/Copilot u otra) el campo de prompt, el botón de generación, las condiciones de uso, la diferencia entre plan gratuito y de pago, y las secciones específicas para texto/imagen/video. | Aplicar | Evidencia práctica en `b-integracion-final`; parcialmente en evaluación sumativa (conocimiento) |
-| O4 | Aplicar precauciones básicas de seguridad y privacidad al explorar herramientas de IA generativa en línea (revisar política de privacidad; evitar ingresar información sensible cuando la política no es clara). | Aplicar | `chk-conceptos-basicos`; `b-reflexion-guiada-privacidad`; evaluación sumativa |
-| O5 | Reconocer las capacidades generales y limitaciones comunes de la IA generativa a nivel básico (qué puede y qué no puede garantizar). | Comprender | `chk-conceptos-basicos`; evaluación sumativa |
+| # | Objetivo (verbo + condición + criterio) | Nivel Bloom | Obligatorio para certificación | Checkpoint(s) donde se evalúa |
+|---|---|---|---|---|
+| O1 | Explicar el concepto de Inteligencia Artificial Generativa y su propósito principal, usando correctamente los términos *prompt* y *generación*, con ≥70% de aciertos en el quiz formativo y ≥70% en la evaluación sumativa. | Comprender | Sí | `chk-conceptos-basicos`; evaluación sumativa |
+| O2 | Distinguir los tres tipos de contenido digital creables con IA generativa (texto, imagen, video), clasificando correctamente ejemplos dados. | Comprender | Sí | `chk-conceptos-basicos`; evaluación sumativa |
+| O3 | Localizar en la interfaz de una herramienta de IA generativa (ChatGPT/Gemini/Claude/Copilot u otra) el campo de prompt, el botón de generación, las condiciones de uso, la diferencia entre plan gratuito y de pago, y las secciones específicas para texto/imagen/video. | Aplicar | Sí | Evidencia práctica en `b-integracion-final`; parcialmente en evaluación sumativa (conocimiento) |
+| O4 | Aplicar precauciones básicas de seguridad y privacidad al explorar herramientas de IA generativa en línea (revisar política de privacidad; evitar ingresar información sensible cuando la política no es clara). | Aplicar | Sí | `chk-conceptos-basicos`; `b-reflexion-guiada-privacidad`; evaluación sumativa |
+| O5 | Reconocer las capacidades generales y limitaciones comunes de la IA generativa a nivel básico (qué puede y qué no puede garantizar). | Comprender | Sí | `chk-conceptos-basicos`; evaluación sumativa |
+| O6 | Explicar, a nivel conceptual, la diferencia entre arquitecturas autoregresivas (texto) y de difusión (imagen), el límite de la ventana de contexto, y la diferencia entre herramientas comerciales y alternativas de código abierto/self-hosted; reconocer la función de la Clasificación de Niza y de los principios éticos de UNESCO antes de publicar contenido generado por IA. | Comprender | **No** — enriquecimiento de ruta avanzada, ver nota de diseño al inicio del documento | Solo si el alumno toma `b-fundamentos-avanzados`/`b-etica-legal-avanzado` (`chk-avance-fundamentos`) |
 
 ## Mapa de evidencia
 
@@ -50,8 +52,10 @@ archivo sin esta tabla resuelta primero.
 | O3 | Alumno marca/localiza correctamente los elementos de interfaz en una herramienta real o en captura anotada. | `b-practica-exploracion-principiante` / `b-practica-exploracion-avanzada` → `attempted`/`completed`; `b-integracion-final` (checklist) → `completed`/`mastered` |
 | O4 | Alumno identifica correctamente qué NO compartir y por qué, y redacta una reflexión coherente. | `b-precauciones-seguridad` → `attempted` (clasificación); `b-reflexion-guiada-privacidad` → `completed`; `b-quiz-conceptos` ítem CB4 → `answered` |
 | O5 | Alumno identifica correctamente un ejemplo de limitación de la IA generativa. | `b-capacidades-limitaciones` → `experienced`; `b-quiz-conceptos` ítem CB5 → `answered`; evaluación sumativa ítem Q5 → `answered` |
+| O6 | Alumno explica correctamente la diferencia autoregresivo/difusión o identifica correctamente la función de la Clasificación de Niza (solo si tomó la ruta avanzada). | `b-fundamentos-avanzados` / `b-etica-legal-avanzado` → `experienced` → `answered` (ítems AV1/AV2) |
 
 ## Gate antes de pasar a Fase 2
 
 - [x] Todo objetivo tiene al menos una fila de evidencia.
 - [x] Toda evidencia tiene claro en qué checkpoint (de `00-glosario-ids.json`) se observa.
+- [x] O6 está marcado explícitamente como no obligatorio para certificación, consistente con la corrección de espectro básico↔avanzado (ver blockquote de corrección en `guion-instruccional-modulo-1-EC1705.md`).

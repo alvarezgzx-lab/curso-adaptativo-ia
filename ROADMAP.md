@@ -36,7 +36,9 @@ cuántas variantes necesitas duplica trabajo.
   `espacioDeHipotesis`/`configMotor` sin calibrar — ver `lxd/02`). **Este es
   el entregable más crítico del proyecto** — es lo que cierra la brecha #1
   (ver `docs/riesgos.md`) y lo que desarrollo usa para poner guardrails
-  reales en `middleware/src/claude.js`.
+  reales en `middleware/src/claude.js`. (corregido: +1 checkpoint de
+  espectro básico↔avanzado — `chk-avance-fundamentos`, mismo patrón que
+  Módulo 2)
 
 Gate de esta iteración: todo objetivo de la Fase 1 debe poder trazarse a al
 menos un checkpoint de la Fase 2. Si un objetivo no se puede evaluar en
@@ -47,8 +49,9 @@ ningún checkpoint, o el objetivo está mal planteado o falta un checkpoint.
 - [x] Fase 3 → `lxd/03-storyboard.md`: bloque por bloque, usando Merrill's
   First Principles como estructura interna de cada `contentObject`
   (problema real → activación → demostración → aplicación → integración).
-  (17 bloques de Módulo 1 completos; 3 bloques reservados de apertura/cierre
-  de curso con contenido pendiente).
+  (19 bloques de Módulo 1 completos; 3 bloques reservados de apertura/cierre
+  de curso con contenido pendiente). (+2 bloques de ruta avanzada opcional
+  en Módulo 1)
 - [x] Fase 4 → `lxd/04-diccionario-xapi.md`: completa/ajusta
   `docs/xapi-verbs.md` con cada interacción real que el storyboard terminó
   definiendo. Preferir verbos ADL estándar sobre los 3 custom ya definidos.
