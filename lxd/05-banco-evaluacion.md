@@ -26,6 +26,40 @@
 | AV1 | `b-fundamentos-avanzados` | mcq (autoevaluación) | ¿Qué diferencia principal existe entre un modelo autoregresivo (texto) y uno de difusión (imagen)? | Autoregresivo predice palabra por palabra a partir del contexto; difusión parte de ruido y lo refina paso a paso | Son exactamente lo mismo; Autoregresivo solo genera imágenes; Difusión no usa IA | No calificado — autoevaluación formativa de enriquecimiento opcional (O6), no cuenta para la certificación ni la evaluación sumativa. | O6 |
 | AV2 | `b-etica-legal-avanzado` | mcq (autoevaluación) | La Clasificación de Niza sirve para: | Agrupar productos y servicios en clases para el registro internacional de marcas | Clasificar modelos de IA por tamaño; Medir la calidad de una imagen generada; Asignar licencias de código abierto | No calificado — autoevaluación formativa de enriquecimiento opcional (O6), no cuenta para la certificación ni la evaluación sumativa. | O6 |
 
+### Módulo 2 — Diagnóstico (`b-diagnostico-m2`) — no calificado
+
+| ID pregunta | Bloque (contentObject) al que pertenece | Tipo (mcq / short-answer / etc.) | Enunciado | Respuesta correcta | Distractores | Rúbrica de puntaje | Objetivo Bloom |
+|---|---|---|---|---|---|---|---|
+| D1 (M2) | `b-diagnostico-m2` | diagnóstico | ¿Ya has generado texto o imágenes con una herramienta de IA generativa antes de este curso? (Nunca / Algunas veces / Sí, con frecuencia) | N/A (no calificado) | — | Señal de branding para `chk-diagnostico-m2`, no cuenta para la nota | — |
+
+### Módulo 2 — Rúbrica de evidencia práctica: `b-practica-texto-basico` (E5337, Producto 1)
+
+| ID pregunta | Bloque (contentObject) al que pertenece | Tipo (mcq / short-answer / etc.) | Enunciado | Respuesta correcta | Distractores | Rúbrica de puntaje | Objetivo Bloom |
+|---|---|---|---|---|---|---|---|
+| RT1 | `b-practica-texto-basico` | rúbrica práctica | El texto corresponde con el contenido solicitado en el prompt | El contenido generado responde directamente a lo pedido | N/A (rúbrica de evidencia, no opción múltiple) | No cumple: Hay desviación evidente respecto al prompt | O2 |
+| RT2 | `b-practica-texto-basico` | rúbrica práctica | Refleja ajustes pertinentes en los parámetros de generación | Si la herramienta ofrecía tono/longitud/estilo y el contenido lo requería, se ajustó | N/A (rúbrica de evidencia, no opción múltiple) | No cumple: No se ajustó habiendo opción y siendo pertinente | O2 |
+| RT3 | `b-practica-texto-basico` | rúbrica práctica | Se presenta sin errores ortográficos/de redacción evidentes | Texto revisado, sin errores visibles | N/A (rúbrica de evidencia, no opción múltiple) | No cumple: Errores evidentes sin corregir | O2 |
+| RT4 | `b-practica-texto-basico` | rúbrica práctica | Está disponible para su uso/almacenamiento en formato digital | Copiado/guardado correctamente | N/A (rúbrica de evidencia, no opción múltiple) | No cumple: No se guardó o el formato es inválido | O2 |
+
+### Módulo 2 — Rúbrica de evidencia práctica: `b-practica-imagen-basico` (E5337, Producto 2)
+
+| ID pregunta | Bloque (contentObject) al que pertenece | Tipo (mcq / short-answer / etc.) | Enunciado | Respuesta correcta | Distractores | Rúbrica de puntaje | Objetivo Bloom |
+|---|---|---|---|---|---|---|---|
+| RI1 | `b-practica-imagen-basico` | rúbrica práctica | La imagen corresponde con la descripción solicitada en el prompt | Coincide con lo descrito | N/A (rúbrica de evidencia, no opción múltiple) | No cumple: Desviación evidente | O3 |
+| RI2 | `b-practica-imagen-basico` | rúbrica práctica | Refleja los ajustes de parámetros pertinentes | Si la herramienta ofrecía tamaño/estilo/detalle y era pertinente, se ajustó | N/A (rúbrica de evidencia, no opción múltiple) | No cumple: No se ajustó habiendo opción y siendo pertinente | O3 |
+| RI3 | `b-practica-imagen-basico` | rúbrica práctica | Se presenta sin errores visuales evidentes | Sin artefactos obvios (manos deformes, texto ilegible, etc.) | N/A (rúbrica de evidencia, no opción múltiple) | No cumple: Errores visuales evidentes | O3 |
+| RI4 | `b-practica-imagen-basico` | rúbrica práctica | Está guardada en formato digital estándar: PNG/JPG | Guardada correctamente | N/A (rúbrica de evidencia, no opción múltiple) | No cumple: Formato incorrecto o no guardada | O3 |
+
+### Módulo 2 — Evaluación sumativa (`b-evaluacion-modulo2`) — opción múltiple
+
+| ID pregunta | Bloque (contentObject) al que pertenece | Tipo (mcq / short-answer / etc.) | Enunciado | Respuesta correcta | Distractores | Rúbrica de puntaje | Objetivo Bloom |
+|---|---|---|---|---|---|---|---|
+| Q1 (M2) | `b-evaluacion-modulo2` | mcq | Un prompt efectivo para generar texto debería especificar, como mínimo: | b) qué se quiere, para quién y con qué tono/formato | a) solo el tema, sin más detalle; c) el nombre del modelo únicamente; d) la fecha de hoy | 1 pt si b. Aprobación: ≥70% en esta parte + ambas rúbricas prácticas aprobadas. | O2 |
+| Q2 (M2) | `b-evaluacion-modulo2` | mcq | Si el primer texto generado no tiene el tono correcto, la forma más eficiente de corregirlo es: | b) pedir el ajuste puntual en la misma conversación ("hazlo más formal") | a) empezar una conversación nueva desde cero siempre; c) copiar el texto y editarlo a mano sin volver a generar; d) cambiar de herramienta | 1 pt si b. Aprobación: ≥70% en esta parte + ambas rúbricas prácticas aprobadas. | O2 |
+| Q3 (M2) | `b-evaluacion-modulo2` | mcq | Un prompt de imagen efectivo debería describir, como mínimo: | c) sujeto, ambiente y estilo | a) solo el color deseado; b) solo el nombre del programa; d) la resolución de pantalla del usuario | 1 pt si c. Aprobación: ≥70% en esta parte + ambas rúbricas prácticas aprobadas. | O3 |
+| Q4 (M2) | `b-evaluacion-modulo2` | mcq | Antes de entregar un texto o imagen generado, ¿qué se debe verificar según los criterios de calidad de EC1705? | b) que corresponda al prompt y no tenga errores evidentes | a) que tenga al menos 500 palabras; c) que use un modelo de pago; d) que se haya generado en menos de 10 segundos | 1 pt si b. Aprobación: ≥70% en esta parte + ambas rúbricas prácticas aprobadas. | O4 |
+| Q5 (M2) | `b-evaluacion-modulo2` | mcq | ¿Cuál de las siguientes es una función básica común a las herramientas de generación de imagen vistas en este módulo? | b) permitir ajustar tamaño/estilo/detalle antes de generar, cuando la herramienta lo ofrece | a) requerir instalación de un servidor propio siempre; c) generar solo en blanco y negro; d) requerir tarjeta de crédito para cualquier uso | 1 pt si b. Aprobación: ≥70% en esta parte + ambas rúbricas prácticas aprobadas. | O1, O3 |
+
 *(Cada ítem debería trazarse a un objetivo de la Fase 1 y, si alimenta un
 checkpoint, al `checkpointId` correspondiente — anotado en la columna de
 rúbrica donde aplica.)*

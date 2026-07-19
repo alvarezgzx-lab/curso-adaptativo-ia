@@ -147,6 +147,91 @@
       ],
       "rutaPorDefectoSiAmbiguo": "TODO",
       "casoSinHistorialPrevio": "b-reflexion-guiada-privacidad — por defecto nunca se fuerza contenido avanzado no solicitado explícitamente por el alumno, mismo criterio conservador que los checkpoints de avance de Módulo 2."
+    },
+    {
+      "checkpointId": "chk-diagnostico-m2",
+      "modo": "itinerario_con_practica_interna",
+      "queSeEvaluaAntesDeEsePunto": {
+        "actividadesPrevias": ["b-bienvenida-m2", "b-preparar-generacion-texto", "b-diagnostico-m2"],
+        "senalesXapi": [
+          "answered sobre b-diagnostico-m2 (D1: ¿ya generaste texto o imágenes con IA antes? Nunca/Algunas veces/Sí, con frecuencia)",
+          "Opcional, histórico multi-módulo: route-assigned de chk-diagnostico-inicial (M1) — si fue b-exploracion-directa-experiencia, es señal adicional de experiencia previa."
+        ]
+      },
+      "configMotor": { "lambda": 0.9, "pmin": 0.8, "minAttemptsPerCategory": 2, "alphaUtility": 0.5 },
+      "itemsDeSalida": { "itemIds": [] },
+      "rutasPosibles": [
+        {
+          "nextBlockId": "b-intro-texto-guiada",
+          "hipotesisAsociadas": null,
+          "factorAsociado": null,
+          "criterioDeSeleccion": "Si el alumno responde 'Nunca' o 'Algunas veces' en D1, O no hay señal histórica de M1 que indique experiencia, ir aquí (ruta con más ejemplos resueltos y pasos explícitos)."
+        },
+        {
+          "nextBlockId": "b-intro-texto-acelerada",
+          "hipotesisAsociadas": null,
+          "factorAsociado": null,
+          "criterioDeSeleccion": "Si el alumno responde 'Sí, con frecuencia' en D1 Y la ruta histórica de chk-diagnostico-inicial en M1 fue b-exploracion-directa-experiencia, ir aquí (menos ejemplos redundantes, más énfasis en profundizar rápido)."
+        }
+      ],
+      "rutaPorDefectoSiAmbiguo": "TODO",
+      "casoSinHistorialPrevio": "b-intro-texto-guiada — perfil principiante por defecto, mismo criterio que chk-diagnostico-inicial en M1."
+    },
+    {
+      "checkpointId": "chk-avance-texto",
+      "modo": "itinerario_con_practica_interna",
+      "queSeEvaluaAntesDeEsePunto": {
+        "actividadesPrevias": ["b-intro-texto-guiada o b-intro-texto-acelerada", "b-practica-texto-basico"],
+        "senalesXapi": [
+          "passed/completed sobre b-practica-texto-basico, con result.extensions.intentos (número de intentos hasta cumplir la rúbrica de 4 criterios) y result.extensions.interesAvanzado (Sí/No, respuesta a la pregunta opcional del bloque)"
+        ]
+      },
+      "configMotor": { "lambda": 0.9, "pmin": 0.8, "minAttemptsPerCategory": 2, "alphaUtility": 0.5 },
+      "itemsDeSalida": { "itemIds": [] },
+      "rutasPosibles": [
+        {
+          "nextBlockId": "b-texto-avanzado",
+          "hipotesisAsociadas": null,
+          "factorAsociado": null,
+          "criterioDeSeleccion": "Si el alumno cumplió la rúbrica de evidencia básica de texto en su primer intento (intentos = 1) Y result.extensions.interesAvanzado = 'Sí', ir aquí."
+        },
+        {
+          "nextBlockId": "b-preparar-generacion-imagen",
+          "hipotesisAsociadas": null,
+          "factorAsociado": null,
+          "criterioDeSeleccion": "En cualquier otro caso (intentos > 1, o interesAvanzado = 'No' o sin respuesta), ir aquí directo. Regla dura: nunca se penaliza ni se retiene al alumno por no tomar la ruta avanzada — es enriquecimiento, no un obstáculo ni un requisito oculto."
+        }
+      ],
+      "rutaPorDefectoSiAmbiguo": "TODO",
+      "casoSinHistorialPrevio": "b-preparar-generacion-imagen — por defecto nunca se fuerza contenido avanzado no solicitado explícitamente por el alumno."
+    },
+    {
+      "checkpointId": "chk-avance-imagen",
+      "modo": "itinerario_con_practica_interna",
+      "queSeEvaluaAntesDeEsePunto": {
+        "actividadesPrevias": ["b-preparar-generacion-imagen", "b-intro-imagen-basica", "b-practica-imagen-basico"],
+        "senalesXapi": [
+          "passed/completed sobre b-practica-imagen-basico, con los mismos dos campos de extensión que chk-avance-texto (intentos, interesAvanzado)"
+        ]
+      },
+      "configMotor": { "lambda": 0.9, "pmin": 0.8, "minAttemptsPerCategory": 2, "alphaUtility": 0.5 },
+      "itemsDeSalida": { "itemIds": [] },
+      "rutasPosibles": [
+        {
+          "nextBlockId": "b-imagen-avanzada",
+          "hipotesisAsociadas": null,
+          "factorAsociado": null,
+          "criterioDeSeleccion": "Si el alumno cumplió la rúbrica de evidencia básica de imagen en su primer intento Y result.extensions.interesAvanzado = 'Sí', ir aquí."
+        },
+        {
+          "nextBlockId": "b-verificacion-outputs",
+          "hipotesisAsociadas": null,
+          "factorAsociado": null,
+          "criterioDeSeleccion": "En cualquier otro caso, ir aquí directo. Misma regla dura de no penalización que chk-avance-texto."
+        }
+      ],
+      "rutaPorDefectoSiAmbiguo": "TODO",
+      "casoSinHistorialPrevio": "b-verificacion-outputs — mismo criterio conservador que chk-avance-texto."
     }
   ],
 

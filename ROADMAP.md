@@ -77,6 +77,17 @@ como fila en el storyboard (Definition of Done del proyecto completo).
 - [ ] `npm run monte-carlo -- <checkpointId>` en `middleware/` sin alerta
   (exactitud equilibrada ≥ 0.70).
 
+## Módulo 2 (E5337, desempeños 1-3)
+
+`lxd/00` a `lxd/08` ya incluyen el diseño completo de Módulo 2 (3
+checkpoints — `chk-diagnostico-m2`, `chk-avance-texto`, `chk-avance-imagen`
+— y 14 bloques, incluida la rama avanzada opcional del espectro
+básico↔avanzado). Mismo estado que Módulo 1: rutas y criterios de
+selección completos en `lxd/02`; `espacioDeHipotesis`/`configMotor`/
+`itemsDeSalida` de los 3 checkpoints nuevos sin calibrar (ver `lxd/08`,
+claves reservadas con array vacío) — IRT pendiente por igual, no bloquea
+el resto del diseño.
+
 ## Handoff a desarrollo (después de la Iteración 3)
 
 Cuando las tres gates de arriba estén cerradas, el paquete completo de

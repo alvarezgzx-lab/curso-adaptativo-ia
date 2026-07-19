@@ -11,3 +11,7 @@
 | Audio de narración de bienvenida | audio | `b-bienvenida-m1` | MP3 + transcripción TXT | — | 2 min | pendiente |
 | Diagrama "Autoregresivo vs. difusión" (con ejemplo de 3 pasos de refinado) | imagen | `b-fundamentos-avanzados` | PNG/SVG con alt-text | 1200×800 px | — | pendiente |
 | Infografía "Cómo identificar tu clase Niza" (ejemplo con un logotipo generado por IA) | imagen | `b-etica-legal-avanzado` | PNG/SVG con alt-text | 1200×800 px | — | pendiente |
+| Ejemplo de prompt de texto antes/después (vago → específico) | imagen/texto | `b-intro-texto-guiada` | PNG con alt-text + versión texto plano | — | — | pendiente |
+| Captura de Copilot Designer mostrando 4 variantes de imagen | imagen | `b-intro-imagen-basica` | PNG con alt-text | 1600×900 px | — | pendiente |
+| Diagrama simple: "steps/guidance scale/seed" con una imagen de ejemplo en 3 valores distintos | imagen | `b-imagen-avanzada` | PNG con alt-text | 1200×800 px | — | pendiente |
+| Plantilla de entrega — texto + imagen + prompt exacto | documento | `b-integracion-final-m2` | PDF accesible + DOCX editable | — | — | pendiente |

@@ -23,6 +23,14 @@
 | Retroalimentación recibida (automática o de un facilitador humano) sobre un bloque abierto, ej. `b-reflexion-guiada-privacidad` | `commented` *(ADL estándar)* | `activityId` = blockId revisado | `result.response` = texto de la retro | `context.extensions.autor`: "sistema" \| "facilitador"; ver nota de arquitectura multi-módulo en `guion-instruccional-modulo-1-EC1705.md`, sección 11 |
 | Responder pregunta de interés opcional al final de `b-sintesis-avanzada` | `answered` | `activityId` = `b-sintesis-avanzada` | `response` (Sí/No) | `result.extensions.interesAvanzado`: "Sí" \| "No" — mismo patrón que `chk-avance-texto`/`chk-avance-imagen` en Módulo 2 |
 | Ver bloque de ruta avanzada opcional (`b-fundamentos-avanzados`, `b-etica-legal-avanzado`) | `experienced` → `answered` | `activityId` = blockId | `completion: true`; `answered` con `response` a AV1/AV2 (no calificados) | `context.extensions.rutaOpcional: true` — para que la evaluación final pueda distinguir evidencia de piso obligatorio de evidencia de enriquecimiento |
+| **Módulo 2** — Ver bloque de contenido (`narrative`/`block`) | `experienced` | `activityId` = blockId | `completion: true` | — |
+| Responder autodiagnóstico (`b-diagnostico-m2`) | `answered` | `activityId` = `b-diagnostico-m2` | `response` | `usadoParaBranching: true` |
+| Completar/generar texto o imagen básicos | `attempted` → `passed`/`failed` | `activityId` = `b-practica-texto-basico` / `b-practica-imagen-basico` | `result.success`; `result.extensions.intentos`; `result.extensions.interesAvanzado` (Sí/No) | `checkpointAsociado`: `chk-avance-texto` / `chk-avance-imagen` |
+| Explorar contenido de ruta avanzada | `experienced` → `answered` | `activityId` = `b-texto-avanzado` / `b-imagen-avanzada` | `response` si hay pregunta de comprensión (O5) | `rutaOpcional: true` |
+| Verificar outputs antes de entregar | `attempted` | `activityId` = `b-verificacion-outputs` | `result.response` (discrepancias encontradas, si las hay) | — |
+| Completar entrega integradora | `completed` → `mastered` | `activityId` = `b-integracion-final-m2` | `completion: true`; `success: true` si cumple los 4 criterios oficiales de Producto (texto e imagen) | — |
+| Aprobar/reprobar evaluación sumativa | `passed`/`failed` | `activityId` = `b-evaluacion-modulo2` | `score.raw`, `score.max`, `score.scaled` | Criterio de aprobación del curso (≥70%) |
+| Alumno llega a un checkpoint / decisión de ruta | `checkpoint-reached` / `decision-requested` / `route-assigned` *(custom, ya definidos)* | `activityId` = checkpointId / `nextBlockId` | según `docs/xapi-verbs.md` | Sin cambios respecto a M1 |
 
 **Convención obligatoria** (para que la evaluación final de curso funcione
 sin reescribirse cuando se agreguen módulos): todo statement de este módulo

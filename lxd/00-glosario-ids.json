@@ -8,7 +8,7 @@
   "modulosRegistrados": [
     { "moduleId": "m0-linea-base-curso", "descripcion": "Diagnóstico inicial de apertura de todo el curso (bookend de entrada).", "estado": "diseñado en esta iteración", "fuente": "checkpoints-decision-curso.json" },
     { "moduleId": "m1-fundamentos-iagen", "descripcion": "Módulo 1 — Fundamentos, ética y marco regulatorio (Elemento E5336 de EC1705). Corregido para incluir espectro básico↔avanzado en sus rutas adaptativas (mismo principio que M2).", "estado": "diseñado (corregido)", "fuente": "guion-instruccional-modulo-1-EC1705.md" },
-    { "moduleId": "m2-produccion-texto-imagen", "descripcion": "Módulo 2 — Producción práctica: Texto e Imagen.", "estado": "pendiente de diseño", "fuente": null },
+    { "moduleId": "m2-produccion-texto-imagen", "descripcion": "Módulo 2 — Producción práctica: Texto e Imagen (Elemento E5337 de EC1705, desempeños 1-3). Rutas adaptativas con espectro básico↔avanzado.", "estado": "diseñado", "fuente": "guion-instruccional-modulo-2-EC1705.md" },
     { "moduleId": "m3-produccion-audio-video-uso-responsable", "descripcion": "Módulo 3 — Producción práctica: Audio, Video y uso responsable.", "estado": "pendiente de diseño", "fuente": null },
     { "moduleId": "m4-cierre-curso", "descripcion": "Evaluación final del curso (bookend de cierre); agrega el histórico de m0-m3.", "estado": "checkpoint diseñado en esta iteración; bloques de contenido de la ruta 'repaso dirigido' pendientes hasta que M2/M3 existan y se sepa sobre qué objetivos repasar", "fuente": "checkpoints-decision-curso.json" }
   ],
@@ -43,6 +43,24 @@
       "moduleId": "m1-fundamentos-iagen",
       "descripcionCorta": "Punto del espectro básico↔avanzado en M1 (agregado en la corrección de esta iteración, mismo patrón que chk-avance-texto/chk-avance-imagen de M2): si el alumno domina el piso de E5336 en su primer intento y muestra interés explícito, desbloquea la rama de enriquecimiento opcional (arquitecturas, límites técnicos, Clasificación de Niza, ética institucional); si no, continúa directo, sin penalización.",
       "ubicacionEnCurso": "Dentro de M1, inmediatamente después de chk-conceptos-basicos, al final de b-sintesis-avanzada."
+    },
+    {
+      "checkpointId": "chk-diagnostico-m2",
+      "moduleId": "m2-produccion-texto-imagen",
+      "descripcionCorta": "Diagnóstico de experiencia previa generando texto/imagen con IA; decide ruta guiada vs acelerada. Puede usar como señal adicional el histórico de chk-diagnostico-inicial de M1.",
+      "ubicacionEnCurso": "Al inicio de M2, después de preparar la generación de texto."
+    },
+    {
+      "checkpointId": "chk-avance-texto",
+      "moduleId": "m2-produccion-texto-imagen",
+      "descripcionCorta": "Primer punto del espectro básico↔avanzado: si el alumno domina el piso de E5337 (texto) y muestra interés, desbloquea la rama de enriquecimiento opcional; si no, continúa directo, sin penalización.",
+      "ubicacionEnCurso": "Después de la práctica de texto básico."
+    },
+    {
+      "checkpointId": "chk-avance-imagen",
+      "moduleId": "m2-produccion-texto-imagen",
+      "descripcionCorta": "Segundo punto del espectro básico↔avanzado, análogo a chk-avance-texto pero para imagen.",
+      "ubicacionEnCurso": "Después de la práctica de imagen básica."
     }
   ],
 
@@ -68,6 +86,21 @@
     { "blockId": "b-evaluacion-modulo1", "moduleId": "m1-fundamentos-iagen", "tipo": "component", "descripcionCorta": "Evaluación sumativa (prueba objetiva, 30 min) del Módulo 1.", "esCandidatoDeRuta": false },
     { "blockId": "b-fundamentos-avanzados", "moduleId": "m1-fundamentos-iagen", "tipo": "block", "descripcionCorta": "Ruta avanzada opcional (agregada en corrección): arquitecturas autoregresiva/difusión, ventana de contexto, comercial vs. self-hosted. Alimenta chk-avance-fundamentos como destino.", "esCandidatoDeRuta": true },
     { "blockId": "b-etica-legal-avanzado", "moduleId": "m1-fundamentos-iagen", "tipo": "block", "descripcionCorta": "Ruta avanzada opcional (agregada en corrección), sigue a b-fundamentos-avanzados: Clasificación de Niza y ética institucional (UNESCO).", "esCandidatoDeRuta": true },
+
+    { "blockId": "b-bienvenida-m2", "moduleId": "m2-produccion-texto-imagen", "tipo": "article", "descripcionCorta": "Bienvenida al Módulo 2, conecta con lo aprendido en M1.", "esCandidatoDeRuta": false },
+    { "blockId": "b-preparar-generacion-texto", "moduleId": "m2-produccion-texto-imagen", "tipo": "block", "descripcionCorta": "Selección de herramienta y acceso desde dispositivo, para texto (E5337 D1).", "esCandidatoDeRuta": false },
+    { "blockId": "b-diagnostico-m2", "moduleId": "m2-produccion-texto-imagen", "tipo": "component", "descripcionCorta": "Autodiagnóstico de experiencia previa generando texto/imagen; alimenta chk-diagnostico-m2.", "esCandidatoDeRuta": false },
+    { "blockId": "b-intro-texto-guiada", "moduleId": "m2-produccion-texto-imagen", "tipo": "block", "descripcionCorta": "Cómo escribir un prompt de texto efectivo, ruta con andamiaje alto.", "esCandidatoDeRuta": true },
+    { "blockId": "b-intro-texto-acelerada", "moduleId": "m2-produccion-texto-imagen", "tipo": "block", "descripcionCorta": "Cómo escribir un prompt de texto efectivo, ruta acelerada para quien ya tiene experiencia.", "esCandidatoDeRuta": true },
+    { "blockId": "b-practica-texto-basico", "moduleId": "m2-produccion-texto-imagen", "tipo": "component", "descripcionCorta": "Generación real de un texto básico; evidencia de E5337 D2/Producto 1; alimenta chk-avance-texto.", "esCandidatoDeRuta": false },
+    { "blockId": "b-texto-avanzado", "moduleId": "m2-produccion-texto-imagen", "tipo": "block", "descripcionCorta": "Ruta avanzada opcional: prompt engineering, parámetros (temperature), comparativa self-hosted.", "esCandidatoDeRuta": true },
+    { "blockId": "b-preparar-generacion-imagen", "moduleId": "m2-produccion-texto-imagen", "tipo": "block", "descripcionCorta": "Selección de herramienta y acceso desde dispositivo, para imagen (E5337 D1). Ruta directa desde chk-avance-texto si no se toma la rama avanzada.", "esCandidatoDeRuta": true },
+    { "blockId": "b-intro-imagen-basica", "moduleId": "m2-produccion-texto-imagen", "tipo": "block", "descripcionCorta": "Cómo escribir un prompt de imagen efectivo y ajustar parámetros básicos si la herramienta lo permite.", "esCandidatoDeRuta": false },
+    { "blockId": "b-practica-imagen-basico", "moduleId": "m2-produccion-texto-imagen", "tipo": "component", "descripcionCorta": "Generación real de una imagen básica; evidencia de E5337 D3/Producto 2; alimenta chk-avance-imagen.", "esCandidatoDeRuta": false },
+    { "blockId": "b-imagen-avanzada", "moduleId": "m2-produccion-texto-imagen", "tipo": "block", "descripcionCorta": "Ruta avanzada opcional: sampler/steps/guidance scale/seed, ComfyUI, Stable Diffusion.", "esCandidatoDeRuta": true },
+    { "blockId": "b-verificacion-outputs", "moduleId": "m2-produccion-texto-imagen", "tipo": "block", "descripcionCorta": "Verificación de calidad de texto e imagen antes de entregar. Ruta directa desde chk-avance-imagen si no se toma la rama avanzada.", "esCandidatoDeRuta": true },
+    { "blockId": "b-integracion-final-m2", "moduleId": "m2-produccion-texto-imagen", "tipo": "component", "descripcionCorta": "Entrega integradora: texto + imagen con prompts documentados; evidencia central de E5337 D1-D3.", "esCandidatoDeRuta": false },
+    { "blockId": "b-evaluacion-modulo2", "moduleId": "m2-produccion-texto-imagen", "tipo": "component", "descripcionCorta": "Evaluación sumativa del Módulo 2 (opción múltiple + entrega práctica calificada).", "esCandidatoDeRuta": false },
 
     { "blockId": "b-evaluacion-final-estandar", "moduleId": "m4-cierre-curso", "tipo": "component", "descripcionCorta": "Examen de certificación EC1705 estándar, sin repaso previo (ruta directa).", "esCandidatoDeRuta": true },
     { "blockId": "b-evaluacion-final-repaso-dirigido", "moduleId": "m4-cierre-curso", "tipo": "block", "descripcionCorta": "Repaso dirigido a los objetivos con más señales de dificultad acumuladas en el curso, antes del examen de certificación.", "esCandidatoDeRuta": true }

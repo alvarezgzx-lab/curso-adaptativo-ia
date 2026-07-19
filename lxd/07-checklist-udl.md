@@ -99,3 +99,30 @@ Pendiente: checklist UDL de `b-evaluacion-final-estandar` y
 `b-evaluacion-final-repaso-dirigido` una vez se diseñe su contenido real. La
 ruta `b-bienvenida-m1` de `chk-diagnostico-curso-inicial` ya queda cubierta
 por la ruta `default` de arriba (es el mismo bloque de entrada).
+
+## Módulo 2
+
+Repetido para las 7 rutas: `default` + 6 `nextBlockId`.
+
+### Ruta: `default`
+**Representación**: alt-text en toda imagen de ejemplo; ejemplos disponibles en texto y audio. **Acción/expresión**: elección libre de herramienta (texto e imagen) dentro de las opciones vistas. **Compromiso**: escenario de bienvenida conectado al contexto laboral propio del alumno (ver M1).
+
+### Ruta: `b-intro-texto-guiada`
+**Representación**: ejemplo de prompt en texto + versión narrada. **Acción/expresión**: práctica de reescritura con retroalimentación inmediata, intentos ilimitados. **Compromiso**: mensaje que normaliza no tener experiencia previa.
+
+### Ruta: `b-intro-texto-acelerada`
+**Representación**: contenido más denso, con opción de expandir ejemplos si se necesitan. **Acción/expresión**: puede saltar directo a la práctica si ya domina lo mostrado. **Compromiso**: reconocimiento explícito de la experiencia previa del alumno.
+
+### Ruta: `b-texto-avanzado` (opcional)
+**Representación**: texto + cita a fuente oficial visible/expandible, sin jerga sin explicar. **Acción/expresión**: el alumno puede omitir esta ruta en cualquier momento sin penalización — botón "continuar sin profundizar" siempre visible. **Compromiso**: enmarcado como "para quien quiere ir más allá", nunca como examen adicional.
+
+### Ruta: `b-imagen-avanzada` (opcional)
+Mismos 3 principios que `b-texto-avanzado`, aplicados a los controles de imagen (steps/guidance scale/seed/ComfyUI).
+
+### Ruta: `b-preparar-generacion-imagen` (llegada directa desde `chk-avance-texto`)
+**Representación**: transición explícita ("vamos directo a imagen") para no generar confusión sobre por qué no hubo contenido avanzado. **Acción/expresión**: igual que ruta default. **Compromiso**: mensaje neutro, sin implicar que se "perdió" algo.
+
+### Ruta: `b-verificacion-outputs` (llegada directa desde `chk-avance-imagen`)
+Mismo principio que la anterior, aplicado a la transición hacia la verificación final.
+
+**Checklist global:** ☑ Las 7 rutas tienen su bloque de UDL. ☑ Ambas rutas avanzadas documentan explícitamente que son opcionales y no penalizables.
