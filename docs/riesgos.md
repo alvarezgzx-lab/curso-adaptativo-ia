@@ -94,6 +94,11 @@ Actualización (corrección de Módulo 1): se agregó el checkpoint
 el estado de calibración IRT descrito arriba — sigue pendiente exactamente
 igual, ahora con 5 checkpoints totales en vez de 4.
 
+Actualización (Módulo 2): se agregaron 3 checkpoints y 14 bloques de
+Módulo 2 (E5337, desempeños 1-3), mismo estado de calibración IRT que los
+checkpoints de Módulo 1 — sigue pendiente por igual. Total del curso tras
+este PR: 8 checkpoints, 36 bloques.
+
 ## Brecha #2 — persistencia del estado bayesiano no probada contra uso real
 
 `middleware/src/stateStore.js` usa SQLite en modo WAL, adecuado para
